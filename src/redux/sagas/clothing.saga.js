@@ -3,13 +3,25 @@ import axios from 'axios';
 
 function* fetchClothingTypes() {
     try {
-      const clothingTypes = yield axios.get('/api/clothes');
+      const clothingTypes = yield axios.get('/api/clothes/types');
       yield put({
         type: 'SET_CLOTHING_TYPES',
         payload: clothingTypes.data
       });
     } catch (error) {
       console.log('fetchClothingTypes error:', error);
+    }
+}
+
+function* fetchClothingItems() {
+    try {
+      const clothingItems = yield axios.get('/api/clothes');
+      yield put({
+        type: 'SET_CLOTHES',
+        payload: clothingItems.data
+      });
+    } catch (error) {
+      console.log('fetchClothingItems error:', error);
     }
 }
 
@@ -20,7 +32,7 @@ function* postClothingItem(action) {
             url: '/api/clothes',
             data: action.payload
         })
-        // yield fetchClothingItems()
+        yield fetchClothingItems()
     }
     catch (error) {
         console.error('Clothing Item POST failed:', error)
@@ -30,6 +42,7 @@ function* postClothingItem(action) {
   function* clothingSaga() {
     yield takeLatest('SAGA/FETCH_CLOTHING_TYPES', fetchClothingTypes);
     yield takeLatest('SAGA/POST_CLOTHING_ITEM', postClothingItem);
+    yield takeLatest('SAGA/FETCH_CLOTHES', fetchClothingItems);
   }
 
 export default clothingSaga;

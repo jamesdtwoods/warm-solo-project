@@ -1,12 +1,22 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
-function ClothingItem() {
+function ClothingItem(clothingItem) {
+
+  // const dispatch = useDispatch();
+
+  // const deletePlant = () => {
+  //     dispatch({
+  //         type: 'SAGA/DELETE_PLANT',
+  //         payload: plant.plant.id
+  //     })
+  // }
+
   return (
-    <div className="container">
-      <div>
-        <p>Clothing Item</p>
-      </div>
-    </div>
+    <li>
+        <p>{clothingItem.clothingItem.name}</p>
+        {/* <button onClick={deletePlant}>Remove</button> */}
+    </li>
   );
 }
 

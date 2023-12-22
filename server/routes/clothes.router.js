@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/types', (req, res) => {
     const query = `
       SELECT * FROM "clothing_type"
         ORDER BY "type" ASC;
@@ -19,7 +19,23 @@ router.get('/', (req, res) => {
         res.sendStatus(500)
       })
   
-  });
+});
+
+router.get('/', (req, res) => {
+    const query = `
+      SELECT * FROM "clothes"
+        ORDER BY "name" ASC;
+    `;
+    pool.query(query)
+      .then(result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        console.log('ERROR: Get all clothing items', err);
+        res.sendStatus(500)
+      })
+  
+});
 
 /**
  * POST route template
