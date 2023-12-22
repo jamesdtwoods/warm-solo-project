@@ -1,21 +1,22 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function ClothingItem(clothingItem) {
-
+  const history = useHistory()
   const dispatch = useDispatch();
 
-  const deleteItem = () => {
-      dispatch({
-          type: 'SAGA/DELETE_CLOTHING_ITEM',
-          payload: clothingItem.clothingItem.id
-      })
-  }
+
+
+  const viewItem = () => {
+    history.push(`/viewClothingItem/${clothingItem.clothingItem.id}`)
+}
 
   return (
     <li>
         <p>{clothingItem.clothingItem.name}</p>
-        <button onClick={deleteItem}>Remove</button>
+        <button onClick={viewItem}>View</button>
+
     </li>
   );
 }

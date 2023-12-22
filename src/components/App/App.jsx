@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ClothingForm from '../ClothingForm/ClothingForm';
 import ClothingList from '../ClothingList/ClothingList';
+import ClothingItemDetails from '../ClothingItemDetails/ClothingItemDetails';
 
 import './App.css';
 
@@ -126,6 +127,14 @@ function App() {
             path="/viewClothes"
           >
             <ClothingList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Clothes Form else shows LoginPage
+            exact
+            path="/viewClothingItem/:id"
+          >
+            <ClothingItemDetails />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
