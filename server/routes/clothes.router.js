@@ -25,7 +25,24 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
-});
+    const queryText = `
+    INSERT INTO "clothes" 
+	("name", "description", "user_id", "clothing_type_id")
+	VALUES 
+	($1, $2, $4, $3);
+    `;
+    const queryValues = [
+        req.body.item,
+        req.body.description,
+        req.body.clothing_type_id,
+        req.user.id
+    ];
+    pool.query(queryText, queryValues)
+      .then((result) => { res.sendStatus(201); })
+      .catch((err) => {
+        console.log('Error in POST /api/clothes', err);
+        res.sendStatus(500);
+      });
+  });
 
 module.exports = router;

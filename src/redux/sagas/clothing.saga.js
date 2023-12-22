@@ -11,10 +11,25 @@ function* fetchClothingTypes() {
     } catch (error) {
       console.log('fetchClothingTypes error:', error);
     }
-  }
+}
+
+function* postClothingItem(action) {
+    try {
+        const response = yield axios({
+            method: 'POST',
+            url: '/api/clothes',
+            data: action.payload
+        })
+        // yield fetchClothingItems()
+    }
+    catch (error) {
+        console.error('Clothing Item POST failed:', error)
+    }
+}
 
   function* clothingSaga() {
     yield takeLatest('SAGA/FETCH_CLOTHING_TYPES', fetchClothingTypes);
+    yield takeLatest('SAGA/POST_CLOTHING_ITEM', postClothingItem);
   }
 
 export default clothingSaga;
