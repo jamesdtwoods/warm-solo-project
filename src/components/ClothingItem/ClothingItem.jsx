@@ -3,19 +3,19 @@ import { useDispatch } from 'react-redux';
 
 function ClothingItem(clothingItem) {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const deletePlant = () => {
-  //     dispatch({
-  //         type: 'SAGA/DELETE_PLANT',
-  //         payload: plant.plant.id
-  //     })
-  // }
+  const deleteItem = () => {
+      dispatch({
+          type: 'SAGA/DELETE_CLOTHING_ITEM',
+          payload: clothingItem.clothingItem.id
+      })
+  }
 
   return (
     <li>
         <p>{clothingItem.clothingItem.name}</p>
-        {/* <button onClick={deletePlant}>Remove</button> */}
+        <button onClick={deleteItem}>Remove</button>
     </li>
   );
 }

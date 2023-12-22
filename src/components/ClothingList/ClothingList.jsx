@@ -20,7 +20,7 @@ function ClothingList() {
       <ul>
           {clothesList.map((clothingItem) => (
               
-              <ClothingItem clothingItem={clothingItem} />
+              <ClothingItem key={clothingItem.id} clothingItem={clothingItem} />
               
           ))}
       </ul>

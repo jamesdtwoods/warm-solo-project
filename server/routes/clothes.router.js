@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/types', (req, res) => {
     const query = `
       SELECT * FROM "clothing_type"
@@ -37,9 +34,6 @@ router.get('/', (req, res) => {
   
 });
 
-/**
- * POST route template
- */
 router.post('/', (req, res) => {
     const queryText = `
     INSERT INTO "clothes" 
@@ -57,6 +51,19 @@ router.post('/', (req, res) => {
       .then((result) => { res.sendStatus(201); })
       .catch((err) => {
         console.log('Error in POST /api/clothes', err);
+        res.sendStatus(500);
+      });
+  });
+
+  router.delete('/:id', (req, res) => {
+    const queryText = `
+      DELETE FROM "clothes" 
+        WHERE id=$1
+    `;
+    pool.query(queryText, [req.params.id])
+      .then(() => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error in DELETE /api/clothes/:id', err);
         res.sendStatus(500);
       });
   });

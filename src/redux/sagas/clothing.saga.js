@@ -39,10 +39,24 @@ function* postClothingItem(action) {
     }
 }
 
+function* deleteClothingItem(action) {
+    try {
+        const response = yield axios({
+            method: 'DELETE',
+            url: `/api/clothes/${action.payload}`
+        })
+        yield fetchClothingItems()
+    }
+    catch (error) {
+        console.error('Clothing Item DELETE failed:', error)
+    }
+}
+
   function* clothingSaga() {
     yield takeLatest('SAGA/FETCH_CLOTHING_TYPES', fetchClothingTypes);
     yield takeLatest('SAGA/POST_CLOTHING_ITEM', postClothingItem);
     yield takeLatest('SAGA/FETCH_CLOTHES', fetchClothingItems);
+    yield takeLatest('SAGA/DELETE_CLOTHING_ITEM', deleteClothingItem);
   }
 
 export default clothingSaga;
