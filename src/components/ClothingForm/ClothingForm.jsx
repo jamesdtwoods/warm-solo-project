@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function ClothingForm() {
   const [description, setDescription] = useState('');
   const [item, setItem] = useState('');
   const clothing_types = useSelector(store => store.clothingReducer.clothingTypeReducer);
+  const history = useHistory()
   let selectedType;
 
   const dispatch = useDispatch();
@@ -31,6 +33,7 @@ function ClothingForm() {
     })
     setDescription('')
     setItem('')
+    history.push("/viewClothes")
   }
 
 
