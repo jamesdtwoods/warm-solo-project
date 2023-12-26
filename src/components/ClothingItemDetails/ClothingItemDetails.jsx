@@ -8,13 +8,6 @@ function ClothingItemDetails () {
     const history = useHistory()
     const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
 
-    // useEffect(() => {
-    //     dispatch({
-    //         type: 'SAGA/FETCH_CLOTHES'
-    //       })
-    // }, []); 
-
-
     const deleteItem = () => {
         dispatch({
             type: 'SAGA/DELETE_CLOTHING_ITEM',

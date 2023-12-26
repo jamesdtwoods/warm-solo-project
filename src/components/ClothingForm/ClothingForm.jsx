@@ -41,13 +41,13 @@ function ClothingForm() {
     <div className="clothing_form">
 
       Clothing Item:
-        <input
-          type="text"
-          name="item"
-          required
-          value={item}
-          onChange={(event) => setItem(event.target.value)}
-        />  
+      <input
+        type="text"
+        name="item"
+        required
+        value={item}
+        onChange={(event) => setItem(event.target.value)}
+      />  
       <br /><br />
       Description:
       <textarea
