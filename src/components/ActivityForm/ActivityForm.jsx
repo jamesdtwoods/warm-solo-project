@@ -23,26 +23,35 @@ function ActivityForm() {
   const setType = (value) => {
     selectedType = value;
     return selectedType;
-}
+  }
 
-const submitItem = () => {
-  console.log("selectedType", selectedType);
-  dispatch({ 
-    type: 'SAGA/POST_ACTIVITY', 
-    payload: {
-      date: date, 
-      temperature: temperature,
-      weather_conditions: weather,
-      notes: notes,
-      activity_type_id: selectedType
-    }
-  })
-  setDate('')
-  setTemperature('')
-  setWeather('')
-  setNotes('')
-  history.push("/viewActivities")
-}
+  let clothesArray=[];
+  const addClothes = (item) => {  
+    console.log('in add clothes', item);
+    clothesArray.push(item)
+    return clothesArray;
+  } 
+  console.log('clothes array', clothesArray);
+
+  const submitItem = () => {
+    console.log("clothes", clothesArray);
+    dispatch({ 
+      type: 'SAGA/POST_ACTIVITY', 
+      payload: {
+        date: date, 
+        temperature: temperature,
+        weather_conditions: weather,
+        notes: notes,
+        activity_type_id: selectedType,
+      }
+    })
+    setDate('')
+    setTemperature('')
+    setWeather('')
+    setNotes('')
+    history.push("/viewActivities")
+  }
+
 
 
   return (
@@ -95,13 +104,20 @@ const submitItem = () => {
       </select>
       <br /><br />
       Clothes:
-      {clothesList.map(item => {
+      {/* {clothesList.map(item => {
             return (<>
-              <input type="checkbox" name={item.name} value={item.id} id={item.id}/>
-              <label for={item.name}>{item.name}: {item.description}</label><br/>
+              <input type="checkbox" name='clothes' value={item.id} key={item.id} onClick={(e) => addClothes(e.target.value)}/>
+              <label for='clothes'>{item.name}</label><br/>
             </>)
+      })} */}
+      <select name="clothes"
+        onChange={(e) => addClothes(e.target.value)}
+        multiple>
+        {clothesList.map(item => {
+            return <option key={item.id} value={item.id}>{item.name}</option>
         })}
-      
+      </select>
+      <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
     </div>
   );
