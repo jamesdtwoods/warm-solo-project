@@ -52,11 +52,26 @@ function* deleteClothingItem(action) {
     }
 }
 
+function* editClothingItem(action) {
+    try {
+        const response = yield axios({
+            method: 'PUT',
+            url: `/api/clothes/${action.payload.id}`,
+            data: action.payload
+        })
+        yield fetchClothingItems()
+    }
+    catch (error) {
+        console.error('Clothing Item EDIT failed:', error)
+    }
+}
+
   function* clothingSaga() {
     yield takeLatest('SAGA/FETCH_CLOTHING_TYPES', fetchClothingTypes);
     yield takeLatest('SAGA/POST_CLOTHING_ITEM', postClothingItem);
     yield takeLatest('SAGA/FETCH_CLOTHES', fetchClothingItems);
     yield takeLatest('SAGA/DELETE_CLOTHING_ITEM', deleteClothingItem);
+    yield takeLatest('SAGA/EDIT_CLOTHING_ITEM', editClothingItem);
   }
 
 export default clothingSaga;

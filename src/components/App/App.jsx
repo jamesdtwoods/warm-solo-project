@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ClothingForm from '../ClothingForm/ClothingForm';
 import ClothingList from '../ClothingList/ClothingList';
 import ClothingItemDetails from '../ClothingItemDetails/ClothingItemDetails';
+import ClothingFormEdit from '../ClothingFormEdit/ClothingFormEdit';
 
 import './App.css';
 
@@ -45,8 +46,7 @@ function App() {
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
+            exact path="/about"
           >
             <AboutPage />
           </Route>
@@ -57,23 +57,20 @@ function App() {
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
+            exact path="/user"
           >
             <UserPage />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
+            exact path="/info"
           >
             <InfoPage />
           </ProtectedRoute>
 
           <Route
-            exact
-            path="/login"
+            exact path="/login"
           >
             {user.id ?
               // If the user is already logged in, 
@@ -86,8 +83,7 @@ function App() {
           </Route>
 
           <Route
-            exact
-            path="/registration"
+            exact path="/registration"
           >
             {user.id ?
               // If the user is already logged in, 
@@ -100,8 +96,7 @@ function App() {
           </Route>
 
           <Route
-            exact
-            path="/home"
+            exact path="/home"
           >
             {user.id ?
               // If the user is already logged in, 
@@ -115,26 +110,30 @@ function App() {
 
           <ProtectedRoute
             // logged in shows Clothes Form else shows LoginPage
-            exact
-            path="/newClothes"
+            exact path="/newClothes"
           >
             <ClothingForm />
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Clothes Form else shows LoginPage
-            exact
-            path="/viewClothes"
+            // logged in shows Clothes else shows LoginPage
+            exact path="/viewClothes"
           >
             <ClothingList />
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Clothes Form else shows LoginPage
-            exact
-            path="/viewClothingItem/:id"
+            // logged in shows Clothing item else shows LoginPage
+            exact path="/viewClothingItem/:id"
           >
             <ClothingItemDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Edit Clothes Form else shows LoginPage
+            exact path="/editClothes/:id/"
+          >
+            <ClothingFormEdit />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}

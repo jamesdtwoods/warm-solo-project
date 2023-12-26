@@ -10,7 +10,7 @@ function ClothingItem(clothingItem) {
 
   const viewItem = () => {
     history.push(`/viewClothingItem/${clothingItem.clothingItem.id}`)
-}
+  }
 
   return (
     <li>

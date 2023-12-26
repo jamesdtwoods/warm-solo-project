@@ -68,4 +68,28 @@ router.post('/', (req, res) => {
       });
   });
 
+router.put('/:id', (req, res) => {
+    const queryText = `
+      UPDATE "clothes"
+        SET 
+          "name"=$1, 
+          "description"=$2, 
+          "updated_date"=CURRENT_TIMESTAMP
+        WHERE
+          id=$3;
+    `;
+    const queryValues = [
+        req.body.item,
+        req.body.description,
+        req.params.id
+    ];
+  
+    pool.query(queryText, queryValues)
+      .then((result) => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error in PUT /api/clothes/:id', err);
+        res.sendStatus(500);
+      });
+  });
+
 module.exports = router;

@@ -32,10 +32,15 @@ function ClothingItemDetails () {
         history.push(`/viewClothes`)
     }
 
+    const editItem = () => {
+        history.push(`/editClothes/${id}`)
+      }
+
     return(
         <div data-testid="itemDetails">
-            <p>{clothingItemToDisplay.name}</p>
-            {/* <button onClick={deleteItem}>Edit</button> */}
+            <h3>{clothingItemToDisplay.name}</h3>
+            <p>{clothingItemToDisplay.description}</p>
+            <button onClick={editItem}>Edit</button>
             <button onClick={deleteItem}>Remove</button>
         </div>
     )
