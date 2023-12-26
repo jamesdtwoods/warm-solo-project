@@ -10,7 +10,6 @@ function ActivityForm() {
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const history = useHistory()
   let selectedType;
-  console.log('activity_types', activity_types);
 
   const dispatch = useDispatch();
 
@@ -27,6 +26,7 @@ function ActivityForm() {
 }
 
 const submitItem = () => {
+  console.log("selectedType", selectedType);
   dispatch({ 
     type: 'SAGA/POST_ACTIVITY', 
     payload: {

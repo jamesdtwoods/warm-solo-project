@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
     const queryValues = [
         req.body.date,
         req.body.temperature,
-        req.body.weather,
+        req.body.weather_conditions,
         req.body.notes,
         req.body.activity_type_id,
         req.user.id
