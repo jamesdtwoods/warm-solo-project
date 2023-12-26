@@ -8,13 +8,13 @@ function ActivityForm() {
   const [weather, setWeather] = useState('');
   const [notes, setNotes] = useState('');
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
+  const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const history = useHistory()
   let selectedType;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('in use effect/fetch activity types');
     dispatch({ 
     type: 'SAGA/FETCH_ACTIVITY_TYPES'
     });
@@ -93,6 +93,15 @@ const submitItem = () => {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}
       </select>
+      <br /><br />
+      Clothes:
+      {clothesList.map(item => {
+            return (<>
+              <input type="checkbox" name={item.name} value={item.id} id={item.id}/>
+              <label for={item.name}>{item.name}: {item.description}</label><br/>
+            </>)
+        })}
+      
       <button onClick={submitItem}>SUBMIT</button>
     </div>
   );
