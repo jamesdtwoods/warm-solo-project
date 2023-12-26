@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const clothingTypeReducer = (state = [], action) => {
+const clothingType = (state = [], action) => {
     switch (action.type) {
       case 'SET_CLOTHING_TYPES':
         return action.payload;
@@ -9,7 +9,7 @@ const clothingTypeReducer = (state = [], action) => {
     }
   };
 
-const clothingListReducer = (state = [], action) => {
+const clothingList = (state = [], action) => {
     switch (action.type) {
       case 'SET_CLOTHES':
         return action.payload;
@@ -18,7 +18,17 @@ const clothingListReducer = (state = [], action) => {
     }
 };
 
+const selectedItem = (state = {}, action) => {
+    switch (action.type) {
+      case 'SET_CLOTHING_ITEM':
+        return action.payload;
+      default:
+        return state;
+    }
+};
+
 export default combineReducers({
-    clothingTypeReducer,
-    clothingListReducer
+    clothingType,
+    clothingList,
+    selectedItem
 });

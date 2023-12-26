@@ -6,28 +6,19 @@ function ClothingItemDetails () {
     const { id } = useParams()
     const dispatch = useDispatch();
     const history = useHistory()
-    const clothesList = useSelector(store => store.clothingReducer.clothingListReducer);
-    let clothingItemToDisplay = {};
-    clothes(clothesList);
+    const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
 
-    useEffect(() => {
-        dispatch({
-            type: 'SAGA/FETCH_CLOTHES'
-          })
-    }, []); 
+    // useEffect(() => {
+    //     dispatch({
+    //         type: 'SAGA/FETCH_CLOTHES'
+    //       })
+    // }, []); 
 
-    function clothes(clothesList) {
-        for (let i=0; i < clothesList.length; i++) {
-            if (Number(id) === clothesList[i].id)
-            clothingItemToDisplay = clothesList[i]
-        }
-        return clothingItemToDisplay;
-    }
 
     const deleteItem = () => {
         dispatch({
             type: 'SAGA/DELETE_CLOTHING_ITEM',
-            payload: clothingItemToDisplay.id
+            payload: clothingItem.id
         })
         history.push(`/viewClothes`)
     }
@@ -36,10 +27,12 @@ function ClothingItemDetails () {
         history.push(`/editClothes/${id}`)
       }
 
+
+    console.log("clothingItem:", clothingItem);
     return(
         <div data-testid="itemDetails">
-            <h3>{clothingItemToDisplay.name}</h3>
-            <p>{clothingItemToDisplay.description}</p>
+            <h3>{clothingItem.name}</h3>
+            <p>{clothingItem.description}</p>
             <button onClick={editItem}>Edit</button>
             <button onClick={deleteItem}>Remove</button>
         </div>

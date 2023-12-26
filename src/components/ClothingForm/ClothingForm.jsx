@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 function ClothingForm() {
   const [description, setDescription] = useState('');
   const [item, setItem] = useState('');
-  const clothing_types = useSelector(store => store.clothingReducer.clothingTypeReducer);
+  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
   const history = useHistory()
   let selectedType;
 
