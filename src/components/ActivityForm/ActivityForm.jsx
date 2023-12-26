@@ -7,13 +7,15 @@ function ActivityForm() {
   const [temperature, setTemperature] = useState('');
   const [weather, setWeather] = useState('');
   const [notes, setNotes] = useState('');
-  const activity_types = useSelector(store => store.activityReducer.activityType);
+  const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const history = useHistory()
   let selectedType;
+  console.log('activity_types', activity_types);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('in use effect/fetch activity types');
     dispatch({ 
     type: 'SAGA/FETCH_ACTIVITY_TYPES'
     });

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* fetchActivityTypes() {
     try {
-      const activityTypes = yield axios.get('/api/clothes/types');
+      const activityTypes = yield axios.get('/api/activities/types');
       yield put({
         type: 'SET_ACTIVITY_TYPES',
         payload: activityTypes.data
@@ -15,7 +15,7 @@ function* fetchActivityTypes() {
 
 function* fetchActivities() {
     try {
-      const activities = yield axios.get('/api/clothes');
+      const activities = yield axios.get('/api/activities');
       yield put({
         type: 'SET_ACTIVITIES',
         payload: activities.data
@@ -29,7 +29,7 @@ function* postActivity(action) {
     try {
         const response = yield axios({
             method: 'POST',
-            url: '/api/clothes',
+            url: '/api/activities',
             data: action.payload
         })
         yield fetchActivities()
@@ -43,7 +43,7 @@ function* deleteActivity(action) {
     try {
         const response = yield axios({
             method: 'DELETE',
-            url: `/api/clothes/${action.payload}`
+            url: `/api/activities/${action.payload}`
         })
         yield fetchActivities()
     }
@@ -56,7 +56,7 @@ function* editActivity(action) {
     try {
         const response = yield axios({
             method: 'PUT',
-            url: `/api/clothes/${action.payload.id}`,
+            url: `/api/activities/${action.payload.id}`,
             data: action.payload
         })
         yield fetchActivities()
@@ -66,7 +66,7 @@ function* editActivity(action) {
     }
 }
 
-  function* activitySaga() {
+  function* activitiesSaga() {
     yield takeLatest('SAGA/FETCH_ACTIVITY_TYPES', fetchActivityTypes);
     yield takeLatest('SAGA/POST_ACTIVITY', postActivity);
     yield takeLatest('SAGA/FETCH_ACTIVITIES', fetchActivities);
@@ -74,4 +74,4 @@ function* editActivity(action) {
     yield takeLatest('SAGA/EDIT_ACTIVITY', editActivity);
   }
 
-export default activitySaga;
+export default activitiesSaga;

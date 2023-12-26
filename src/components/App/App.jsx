@@ -23,6 +23,7 @@ import ClothingForm from '../ClothingForm/ClothingForm';
 import ClothingList from '../ClothingList/ClothingList';
 import ClothingItemDetails from '../ClothingItemDetails/ClothingItemDetails';
 import ClothingFormEdit from '../ClothingFormEdit/ClothingFormEdit';
+import ActivityForm from '../ActivityForm/ActivityForm';
 
 import './App.css';
 
@@ -134,6 +135,13 @@ function App() {
             exact path="/editClothes/:id/"
           >
             <ClothingFormEdit />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Clothes Form else shows LoginPage
+            exact path="/newActivity"
+          >
+            <ActivityForm />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
