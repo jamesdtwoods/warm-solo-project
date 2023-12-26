@@ -55,18 +55,18 @@ router.post('/', (req, res) => {
       });
   });
 
-  router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const queryText = `
-      DELETE FROM "clothes" 
-        WHERE id=$1
+        DELETE FROM clothes
+        WHERE id=$1;
     `;
     pool.query(queryText, [req.params.id])
-      .then(() => { res.sendStatus(200); })
-      .catch((err) => {
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
         console.log('Error in DELETE /api/clothes/:id', err);
         res.sendStatus(500);
-      });
-  });
+        });
+});
 
 router.put('/:id', (req, res) => {
     const queryText = `

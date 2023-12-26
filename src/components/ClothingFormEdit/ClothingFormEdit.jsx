@@ -3,19 +3,19 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 function ClothingFormEdit() {
-  const clothing_types = useSelector(store => store.clothingReducer.clothingTypeReducer);
-  const clothesList = useSelector(store => store.clothingReducer.clothingListReducer);
+  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
+  const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
   const history = useHistory()
   const { id } = useParams()
   let selectedType;
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({ 
-    type: 'SAGA/FETCH_CLOTHES'
-    });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ 
+  //   type: 'SAGA/FETCH_CLOTHES'
+  //   });
+  // }, []);
 
 //   const setType = (value) => {
 //     selectedType = value;
@@ -36,19 +36,8 @@ function ClothingFormEdit() {
     history.push(`/viewClothingItem/${id}`)
   }
 
-    let clothingItemToDisplay = {};
-    clothes(clothesList);
-
-    function clothes(clothesList) {
-        for (let i=0; i < clothesList.length; i++) {
-            if (Number(id) === clothesList[i].id)
-            clothingItemToDisplay = clothesList[i]
-        }
-        return clothingItemToDisplay;
-    }
-
-    const [description, setDescription] = useState(clothingItemToDisplay.description);
-    const [item, setItem] = useState(clothingItemToDisplay.name);
+    const [description, setDescription] = useState(clothingItem.description);
+    const [item, setItem] = useState(clothingItem.name);
 
 
   return (
