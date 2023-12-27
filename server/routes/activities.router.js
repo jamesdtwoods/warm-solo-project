@@ -30,10 +30,10 @@ router.get('/', (req, res) => {
 	  ON activities_clothes.clothes_id = clothes.id
 	LEFT JOIN clothing_type
 	  ON clothes.clothing_type_id = clothing_type.id
-	WHERE activities.user_id = 1
+	WHERE activities.user_id = $1
 	ORDER BY activities_id;
     `;
-    pool.query(query)
+    pool.query(queryText, [req.user.id])
       .then((result) => {
         let theActivities = formatActivityObject(result.rows)
         console.log('formatted activities:', theActivities);
