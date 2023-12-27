@@ -20,12 +20,24 @@ router.get('/types', (req, res) => {
 
 router.get('/', (req, res) => {
     const query = `
-      SELECT * FROM "activities"
-        ORDER BY "date" ASC;
+    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
+    FROM activities
+    LEFT JOIN activity_type
+	  ON activities.activity_type_id = activity_type.id
+	LEFT JOIN activities_clothes
+	  ON activities.id = activities_clothes.activities_id
+	LEFT JOIN clothes
+	  ON activities_clothes.clothes_id = clothes.id
+	LEFT JOIN clothing_type
+	  ON clothes.clothing_type_id = clothing_type.id
+	WHERE activities.user_id = 1
+	ORDER BY activities_id;
     `;
     pool.query(query)
-      .then(result => {
-        res.send(result.rows);
+      .then((result) => {
+        let theActivities = formatActivityObject(result.rows)
+        console.log('formatted activities:', theActivities);
+        res.send([theActivities])
       })
       .catch(err => {
         console.log('ERROR: Get all activity items', err);
@@ -99,5 +111,42 @@ router.put('/:id', (req, res) => {
         res.sendStatus(500);
       });
   });
+
+
+//   [
+//    {
+//     activities_id: 1,
+//     date: 2024-01-01T06:00:00.000Z,
+//     temperature: 20,
+//     weather_conditions: 'Cloudy, windy',
+//     notes: 'Biked to school',
+//     activity_type: 'Biking',
+//     clothes_id: 9,
+//     name: 'Green Buff',
+//     clothing_type: 'Other'
+//   }
+//   ]
+  function formatActivityObject(activityRows) {
+    console.log('in formatting function', activityRows);
+    let activity = {}
+  
+    activity.activities_id = activityRows[0].activities_id
+    activity.date = activityRows[0].date
+    activity.temperature = activityRows[0].temperature
+    activity.weather_conditions = activityRows[0].weather_conditions
+    activity.notes = activityRows[0].notes
+    activity.activity_type = activityRows[0].activity_type
+    activity.clothes = []
+  
+    for (let row of activityRows) {
+      activity.clothes.push({
+        clothes_id: row.clothes_id,
+        name: row.name,
+        clothing_type: row.clothing_type
+      })
+    }
+  
+    return activity
+  }
 
 module.exports = router;

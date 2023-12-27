@@ -26,15 +26,12 @@ function ActivityForm() {
   }
 
   let clothesArray=[];
-  const addClothes = (item) => {  
-    console.log('in add clothes', item);
-    clothesArray.push(item)
+  const addClothes = (id) => {  
+    clothesArray.push(id)
     return clothesArray;
   } 
-  console.log('clothes array', clothesArray);
 
   const submitItem = () => {
-    console.log("clothes", clothesArray);
     dispatch({ 
       type: 'SAGA/POST_ACTIVITY', 
       payload: {
@@ -43,6 +40,7 @@ function ActivityForm() {
         weather_conditions: weather,
         notes: notes,
         activity_type_id: selectedType,
+        clothesArray: clothesArray
       }
     })
     setDate('')
