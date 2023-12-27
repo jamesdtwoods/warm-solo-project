@@ -25,6 +25,7 @@ import ClothingItemDetails from '../ClothingItemDetails/ClothingItemDetails';
 import ClothingFormEdit from '../ClothingFormEdit/ClothingFormEdit';
 import ActivityForm from '../ActivityForm/ActivityForm';
 import ActivityList from '../ActivityList/ActivityList';
+import ActivityDetails from '../ActivityDetails/ActivityDetails';
 
 import './App.css';
 
@@ -150,6 +151,13 @@ function App() {
             exact path="/viewActivities"
           >
             <ActivityList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Clothing item else shows LoginPage
+            exact path="/viewActivity/:id"
+          >
+            <ActivityDetails />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
