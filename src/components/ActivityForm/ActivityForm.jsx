@@ -9,17 +9,16 @@ function ActivityForm() {
   const [notes, setNotes] = useState('');
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
-  const history = useHistory()
-  let selectedType;
-
+  const history = useHistory();
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch({ 
     type: 'SAGA/FETCH_ACTIVITY_TYPES'
     });
   }, []);
 
+  let selectedType;
   const setType = (value) => {
     selectedType = value;
     return selectedType;
@@ -49,8 +48,6 @@ function ActivityForm() {
     setNotes('')
     history.push("/viewActivities")
   }
-
-
 
   return (
     <div className="activity_form">

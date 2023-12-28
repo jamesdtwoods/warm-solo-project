@@ -19,7 +19,7 @@ router.get('/types', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    const query = `
+    const queryText = `
     SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
     FROM activities
     LEFT JOIN activity_type

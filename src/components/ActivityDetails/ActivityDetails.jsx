@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 function ActivityDetails () {
-    const { id } = useParams()
+    const { id } = useParams();
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
     const activity = useSelector(store => store.activitiesReducer.selectedActivity);
 
     const deleteItem = () => {
@@ -18,10 +18,8 @@ function ActivityDetails () {
 
     const editItem = () => {
         history.push(`/editClothes/${id}`)
-      }
+    }
 
-
-    console.log("activity:", activity);
     return(
         <div data-testid="itemDetails">
             <h3>{activity.date}</h3>

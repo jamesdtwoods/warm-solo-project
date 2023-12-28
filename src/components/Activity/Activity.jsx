@@ -6,8 +6,6 @@ function Activity({activity}) {
   const history = useHistory()
   const dispatch = useDispatch();
 
-
-
   const viewActivity = () => {
     dispatch({
       type: 'SET_ACTIVITY',
@@ -16,10 +14,8 @@ function Activity({activity}) {
     history.push(`/viewActivity/${activity.activities_id}`)
   }
 
-  console.log('activity', activity);
-
   return (
-    <li>
+    <li key={activity.id}>
         <p>{activity.date}</p>
         <button onClick={viewActivity}>View</button>
 
