@@ -126,6 +126,7 @@ router.put('/:id', (req, res) => {
 //     clothing_type: 'Other'
 //   }
 //   ]
+// NEED TO FIGURE THIS OUT BETTER
   function formatActivityObject(activityRows) {
     console.log('in formatting function', activityRows);
     let activity = {}

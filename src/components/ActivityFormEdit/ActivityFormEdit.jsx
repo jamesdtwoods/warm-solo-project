@@ -7,6 +7,7 @@ function ActivityFormEdit() {
     const clothesList = useSelector(store => store.clothingReducer.clothingList);
     const activity = useSelector(store => store.activitiesReducer.selectedActivity);
     const history = useHistory();
+    const { id } = useParams();
     const dispatch = useDispatch();
 
     console.log('activity', activity);
@@ -26,10 +27,11 @@ function ActivityFormEdit() {
         weather_conditions: weather,
         notes: notes,
         activity_type_id: selectedType,
-        clothesArray: clothesArray
+        clothesArray: clothesArray,
+        id: id
       }
     })
-    history.push("/viewActivities")
+    history.push(`/viewActivity/${id}`)
   }
 
   const [date, setDate] = useState(activity.date);
@@ -48,6 +50,10 @@ function ActivityFormEdit() {
     clothesArray.push(id)
     return clothesArray;
   } 
+  
+  const handleCancel = () => {
+    history.push(`/viewActivity/${id}`)
+  }
 
   return (
     <div className="activity_form">
@@ -105,7 +111,7 @@ function ActivityFormEdit() {
               <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type}</li> 
               
           ))}
-            </ul>
+        </ul>
         {/* is there a way to have the previous choices selected? */}
         <select name="clothes"
         onChange={(e) => addClothes(e.target.value)}
@@ -116,6 +122,7 @@ function ActivityFormEdit() {
         </select>
         <br /><br />
         <button onClick={submitItem}>SUBMIT</button>
+        <button onClick={handleCancel}>CANCEL</button>
     </div>
   );
 }

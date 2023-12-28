@@ -20,8 +20,13 @@ function ActivityDetails () {
         history.push(`/editActivity/${id}`)
     }
 
+    const toActivityList = () => {
+        history.push(`/viewActivities`)
+    }
+
     return(
         <div data-testid="itemDetails">
+            <button onClick={toActivityList}>Activity List</button>
             <h3>{activity.date}</h3>
             <p>{activity.notes}</p>
             <ul>

@@ -9,13 +9,7 @@ function ClothingFormEdit() {
   const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
-  
-  console.log('selectedType', selectedType);
-  console.log('clothingItem.clothing_type_id', clothingItem.clothing_type_id);
-  console.log('clothingItem', clothingItem);
-  // console.log('description', description);
 
-  
   useEffect(() => {
     dispatch({
         type: 'SAGA/FETCH_CLOTHING_TYPES'
@@ -45,7 +39,9 @@ function ClothingFormEdit() {
     return selectedType;
   }
 
-
+  const handleCancel = () => {
+    history.push(`/viewClothingItem/${id}`)
+  }
 
   return (
     <div className="clothing_form">
@@ -77,7 +73,9 @@ function ClothingFormEdit() {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}
       </select>
+      <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
+      <button onClick={handleCancel}>CANCEL</button>
     </div>
   );
 }

@@ -49,6 +49,10 @@ function ActivityForm() {
     history.push("/viewActivities")
   }
 
+  const handleCancel = () => {
+    history.push("/viewActivities")
+  }
+
   return (
     <div className="activity_form">
 
@@ -114,6 +118,7 @@ function ActivityForm() {
       </select>
       <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
+      <button onClick={handleCancel}>CANCEL</button>
     </div>
   );
 }
