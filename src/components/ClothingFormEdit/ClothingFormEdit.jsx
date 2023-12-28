@@ -4,11 +4,12 @@ import { useHistory, useParams } from 'react-router-dom';
 
 function ClothingFormEdit() {
   const clothing_types = useSelector(store => store.clothingReducer.clothingType);
+  const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
   const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
-  let selectedType;
+  
   console.log('selectedType', selectedType);
   console.log('clothingItem.clothing_type_id', clothingItem.clothing_type_id);
   console.log('clothingItem', clothingItem);
@@ -38,7 +39,7 @@ function ClothingFormEdit() {
 
   const [description, setDescription] = useState(clothingItem.description);
   const [item, setItem] = useState(clothingItem.name);
-
+  let selectedType;
   const setType = (value) => {
     selectedType = value;
     return selectedType;

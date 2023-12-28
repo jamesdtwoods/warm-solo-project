@@ -10,14 +10,14 @@ function ActivityDetails () {
 
     const deleteItem = () => {
         dispatch({
-            type: 'SAGA/DELETE_CLOTHING_ITEM',
-            payload: clothingItem.id
+            type: 'SAGA/DELETE_ACTIVITY',
+            payload: id
         })
-        history.push(`/viewClothes`)
+        history.push(`/viewActivities`)
     }
 
     const editItem = () => {
-        history.push(`/editClothes/${id}`)
+        history.push(`/editActivity/${id}`)
     }
 
     return(
