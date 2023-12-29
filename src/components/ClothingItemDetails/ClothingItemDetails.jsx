@@ -18,12 +18,15 @@ function ClothingItemDetails () {
 
     const editItem = () => {
         history.push(`/editClothes/${id}`)
-      }
+    }
 
+    const toClothingList = () => {
+        history.push(`/viewClothes`)
+    }
 
-    console.log("clothingItem:", clothingItem);
     return(
         <div data-testid="itemDetails">
+            <button onClick={toClothingList}>Clothing List</button>
             <h3>{clothingItem.name}</h3>
             <p>{clothingItem.description}</p>
             <button onClick={editItem}>Edit</button>

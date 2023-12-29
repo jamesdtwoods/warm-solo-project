@@ -32,13 +32,17 @@ function Nav() {
               Clothes List
             </Link>
 
+            <Link className="navLink" to="/viewActivities">
+              Activity List
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}
 
-        <Link className="navLink" to="/about">
+        {/* <Link className="navLink" to="/about">
           About
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

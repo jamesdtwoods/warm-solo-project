@@ -4,17 +4,12 @@ import { useHistory, useParams } from 'react-router-dom';
 
 function ClothingFormEdit() {
   const clothing_types = useSelector(store => store.clothingReducer.clothingType);
+  const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
   const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
-  let selectedType;
-  console.log('selectedType', selectedType);
-  console.log('clothingItem.clothing_type_id', clothingItem.clothing_type_id);
-  console.log('clothingItem', clothingItem);
-  // console.log('description', description);
 
-  
   useEffect(() => {
     dispatch({
         type: 'SAGA/FETCH_CLOTHING_TYPES'
@@ -38,13 +33,15 @@ function ClothingFormEdit() {
 
   const [description, setDescription] = useState(clothingItem.description);
   const [item, setItem] = useState(clothingItem.name);
-
+  let selectedType;
   const setType = (value) => {
     selectedType = value;
     return selectedType;
   }
 
-
+  const handleCancel = () => {
+    history.push(`/viewClothingItem/${id}`)
+  }
 
   return (
     <div className="clothing_form">
@@ -76,7 +73,9 @@ function ClothingFormEdit() {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}
       </select>
+      <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
+      <button onClick={handleCancel}>CANCEL</button>
     </div>
   );
 }
