@@ -26,6 +26,7 @@ import ActivityForm from '../ActivityForm/ActivityForm';
 import ActivityList from '../ActivityList/ActivityList';
 import ActivityDetails from '../ActivityDetails/ActivityDetails';
 import ActivityFormEdit from '../ActivityFormEdit/ActivityFormEdit';
+import Weather from '../Weather/Weather';
 
 import './App.css';
 
@@ -165,6 +166,13 @@ function App() {
             exact path="/editActivity/:id/"
           >
             <ActivityFormEdit />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Edit Clothes Form else shows LoginPage
+            exact path="/weather/"
+          >
+            <Weather />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
