@@ -18,6 +18,7 @@ function Weather() {
     // setLocation('')
     // history.push("/")
   }
+  console.log('weather', theWeather);
 
   return (
     <div>

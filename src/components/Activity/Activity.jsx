@@ -15,11 +15,12 @@ function Activity({activity}) {
   }
 
   return (
-    <li key={activity.id}>
+    // <li key={activity.id}>
+    <>
         <p>{activity.date}</p>
         <button onClick={viewActivity}>View</button>
-
-    </li>
+    </>
+    // </li>
   );
 }
 

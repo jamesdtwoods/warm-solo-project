@@ -19,9 +19,9 @@ function ActivityList() {
       <h3>This is the activity list</h3>
       <ul>
           {activities.map((activity) => (
-              
+            <li key={activity.id}>
               <Activity key={activity.id} activity={activity} />
-              
+            </li>
           ))}
       </ul>
     </div>
