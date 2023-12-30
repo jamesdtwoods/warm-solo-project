@@ -178,6 +178,91 @@ let activities=  [
   ]
   
 // NEED TO FIGURE THIS OUT BETTER
+
+function countActivities (all) {
+    let activitiesCountArray = []
+    for (row of all) {
+        activitiesCountArray.push(row.activities_id)
+    }
+   return [... new Set(activitiesCountArray)]
+    // return activitiesCountArray
+}
+
+// returns first activity and clothes
+function format1 (all) {
+    let activitiesArray = [{
+        activities_id: all[0].activities_id,
+        date: all[0].date,
+        temperature: all[0].temperature,
+        weather_conditions: all[0].weather_conditions,
+        notes: all[0].notes,
+        activity_type: all[0].activity_type,
+        clothes_id: all[0].clothes_id,
+        name: all[0].name,
+        clothing_type: all[0].clothing_type
+    }]
+    for(let i=1; i<all.length; i++) {
+        if (all[i].activities_id !== all[i-1].activities_id){
+            activitiesArray.push({
+                activities_id: all[i].activities_id,
+                date: all[i].date,
+                temperature: all[i].temperature,
+                weather_conditions: all[i].weather_conditions,
+                notes: all[i].notes,
+                activity_type: all[i].activity_type,
+                clothes_id: all[i].clothes_id,
+                name: all[i].name,
+                clothing_type: all[i].clothing_type
+            })
+        }
+    }
+   return activitiesArray
+}
+
+// returns first activity and clothes in array within single object - still need clothes information
+function format2 (all) {
+    let activitiesArray = [{
+        activities_id: all[0].activities_id,
+        date: all[0].date,
+        temperature: all[0].temperature,
+        weather_conditions: all[0].weather_conditions,
+        notes: all[0].notes,
+        activity_type: all[0].activity_type,
+        clothes:[{
+            clothes_id: all[0].clothes_id,
+            name: all[0].name,
+            clothing_type: all[0].clothing_type
+        }]
+    }]
+    for(let i=1; i<all.length; i++) {
+        if (all[i].activities_id !== all[i-1].activities_id){
+            activitiesArray.push({
+                activities_id: all[i].activities_id,
+                date: all[i].date,
+                temperature: all[i].temperature,
+                weather_conditions: all[i].weather_conditions,
+                notes: all[i].notes,
+                activity_type: all[i].activity_type,
+                clothes:[]
+            })
+        }
+        for (let j=0; j<activitiesArray.length; j++) {
+            if(activitiesArray[j].activities_id===all[i-1].activities_id){
+            activitiesArray[j].clothes.push({
+              clothes_id: all[i-1].clothes_id,
+              name: all[i-1].name,
+              clothing_type: all[i-1].clothing_type
+            })
+          }
+        }
+    }
+   return activitiesArray
+}
+
+
+console.log(format2(activities));
+
+
 function formatActivityObject(all) {
     // console.log('in formatting function', activities);
     let formattedActivities=[]
@@ -210,4 +295,4 @@ function formatActivityObject(all) {
     return formattedActivities;
   }
 
-  console.log(formatActivityObject(activities));
+//   console.log(formatActivityObject(activities));
