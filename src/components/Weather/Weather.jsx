@@ -15,33 +15,21 @@ function Weather() {
       type: 'SAGA/FETCH_WEATHER', 
       payload: location
     })
-    // setLocation('')
+    setLocation('')
     // history.push("/")
   }
-  console.log('weather', theWeather);
+
+  const checkWeather = (theWeather) => {
+    let check = false;
+    if (theWeather.properties){
+      check = true;
+    }
+    return check;
+  }
 
   return (
-    <div>
-      <header className="App-header">
-        <h1>Weather API</h1>
-      </header>
-      <br />
-      {/* <input
-        type="text"
-        name="lat"
-        required
-        value={latitude}
-        placeholder='latitude'
-        onChange={(event) => setLatitude(event.target.value)}
-      />  
-      <input
-        type="text"
-        name="long"
-        required
-        value={longitude}
-        placeholder='longitude'
-        onChange={(event) => setLongitude(event.target.value)}
-      />   */}
+    <div className="container">
+      <h3>Weather API</h3>
       <h3>location: (NO SPACES)</h3>
       <input
         type="text"
@@ -52,10 +40,12 @@ function Weather() {
         onChange={(event) => setLocation(event.target.value)}
       />  
       <button onClick={fetchWeather}>Get Weather</button>
+      <br />
+      {checkWeather(theWeather) ? 
       <p>
-
-        {/* {theWeather.properties.periods[0].temperature} */}
+        {theWeather.properties.periods[0].temperature}
       </p>
+       : <></>}
     </div>
   );
 }
