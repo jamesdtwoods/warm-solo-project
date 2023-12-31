@@ -36,10 +36,15 @@ function ClothingForm() {
     history.push("/viewClothes")
   }
 
+  const backToList = () => {
+    history.push(`/viewClothes`)
+  }
+
 
   return (
     <div className="clothing_form">
-
+      <button onClick={backToList}>Back To Clothing List</button>
+      <br /><br />
       Clothing Item:
       <input
         type="text"
@@ -68,6 +73,9 @@ function ClothingForm() {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}
       </select>
+      <br /><br />
+      <button onClick={backToList}>Cancel</button>
+      <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
     </div>
   );
