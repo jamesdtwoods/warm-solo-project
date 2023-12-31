@@ -258,20 +258,16 @@ function format2 (all) {
                 weather_conditions: all[i].weather_conditions,
                 notes: all[i].notes,
                 activity_type: all[i].activity_type,
-                clothes: [{
-                    clothes_id: all[i].clothes_id,
-                    name: all[i].name,
-                    clothing_type: all[i].clothing_type
-                }]
+                clothes: []
             })
             // console.log('activity array at:', i, activitiesArray);
         }
         for (let j=0; j<activitiesArray.length; j++) {
             if(activitiesArray[j].activities_id === all[i-1].activities_id){
             activitiesArray[j].clothes.push({
-              clothes_id: all[i-1].clothes_id,
-              name: all[i-1].name,
-              clothing_type: all[i-1].clothing_type
+              clothes_id: all[i].clothes_id,
+              name: all[i].name,
+              clothing_type: all[i].clothing_type
             })
           }
         //   console.log('activity array with clothes at:', j, activitiesArray);
