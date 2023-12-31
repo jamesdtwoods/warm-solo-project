@@ -21,23 +21,22 @@ function ClothingList() {
     }
     return check;
   }
-  const mapFunction = (clothingItem) => {
-    return(
-      <>
-        <ul>
-          <ClothingItem key={clothingItem.id} clothingItem={clothingItem} />
-        </ul>
-      </>
-    )
-  }
-  const filterFunction = (clothesList, clothing_type_id) => {
+
+  const mapFunction = (clothesList, clothing_type_id) => {
     let itemArray=[]
     for (let item of clothesList) {
       if(item.clothing_type_id === clothing_type_id){
         itemArray.push(item);
       }
     }
-    return itemArray
+    return itemArray.map((clothingItem) => {
+      return(
+      <>
+        <ul>
+          <ClothingItem key={clothingItem.id} clothingItem={clothingItem} />
+        </ul>
+      </>)
+    })
   }
 
   return (
@@ -45,47 +44,47 @@ function ClothingList() {
       <h3>This is the clothing list</h3>
       {checkFunction(clothesList, 1) ? 
         <> <h3>Hats:</h3> 
-          {filterFunction(clothesList, 1).map(mapFunction)}
+          {mapFunction(clothesList, 1)}
         </> 
       : <></>}
       {checkFunction(clothesList, 2) ? 
         <> <h3>Gloves:</h3> 
-          {filterFunction(clothesList, 2).map(mapFunction)}
+          {mapFunction(clothesList, 2)}
         </> 
       : <></>}
       {checkFunction(clothesList, 3) ? 
         <> <h3>Socks:</h3> 
-          {filterFunction(clothesList, 3).map(mapFunction)}
+          {mapFunction(clothesList, 3)}
         </> 
       : <></>}
       {checkFunction(clothesList, 4) ? 
         <> <h3>Base Layer - Torso:</h3> 
-          {filterFunction(clothesList, 4).map(mapFunction)}
+          {mapFunction(clothesList, 4)}
         </> 
       : <></>}
       {checkFunction(clothesList, 5) ? 
         <> <h3>Base Layer - Legs:</h3> 
-          {filterFunction(clothesList, 5).map(mapFunction)}
+          {mapFunction(clothesList, 5)}
         </> 
       : <></>}
       {checkFunction(clothesList, 6) ? 
         <> <h3>Jackets:</h3> 
-          {filterFunction(clothesList, 6).map(mapFunction)}
+          {mapFunction(clothesList, 6)}
         </> 
       : <></>}
       {checkFunction(clothesList, 7) ? 
         <> <h3>Pants:</h3> 
-          {filterFunction(clothesList, 7).map(mapFunction)}
+          {mapFunction(clothesList, 7)}
         </> 
       : <></>}
       {checkFunction(clothesList, 8) ? 
         <> <h3>Accessories:</h3> 
-          {filterFunction(clothesList, 8).map(mapFunction)}
+          {mapFunction(clothesList, 8)}
         </> 
       : <></>}
       {checkFunction(clothesList, 9) ? 
         <> <h3>Other:</h3> 
-          {filterFunction(clothesList, 9).map(mapFunction)}
+          {mapFunction(clothesList, 9)}
         </> 
       : <></>}
     </div>
