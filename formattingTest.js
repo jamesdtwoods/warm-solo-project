@@ -228,12 +228,27 @@ function format2 (all) {
         weather_conditions: all[0].weather_conditions,
         notes: all[0].notes,
         activity_type: all[0].activity_type,
-        clothes:[{
+        clothes: [{
             clothes_id: all[0].clothes_id,
             name: all[0].name,
             clothing_type: all[0].clothing_type
         }]
     }]
+    
+    // [{
+    //     activities_id: all[0].activities_id,
+    //     date: all[0].date,
+    //     temperature: all[0].temperature,
+    //     weather_conditions: all[0].weather_conditions,
+    //     notes: all[0].notes,
+    //     activity_type: all[0].activity_type,
+    //     clothes:[{
+    //         clothes_id: all[0].clothes_id,
+    //         name: all[0].name,
+    //         clothing_type: all[0].clothing_type
+    //     }]
+    // }]
+    // console.log('activity array before', activitiesArray);
     for(let i=1; i<all.length; i++) {
         if (all[i].activities_id !== all[i-1].activities_id){
             activitiesArray.push({
@@ -243,17 +258,23 @@ function format2 (all) {
                 weather_conditions: all[i].weather_conditions,
                 notes: all[i].notes,
                 activity_type: all[i].activity_type,
-                clothes:[]
+                clothes: [{
+                    clothes_id: all[i].clothes_id,
+                    name: all[i].name,
+                    clothing_type: all[i].clothing_type
+                }]
             })
+            // console.log('activity array at:', i, activitiesArray);
         }
         for (let j=0; j<activitiesArray.length; j++) {
-            if(activitiesArray[j].activities_id===all[i-1].activities_id){
+            if(activitiesArray[j].activities_id === all[i-1].activities_id){
             activitiesArray[j].clothes.push({
               clothes_id: all[i-1].clothes_id,
               name: all[i-1].name,
               clothing_type: all[i-1].clothing_type
             })
           }
+        //   console.log('activity array with clothes at:', j, activitiesArray);
         }
     }
    return activitiesArray
