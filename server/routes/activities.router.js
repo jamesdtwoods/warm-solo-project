@@ -21,17 +21,17 @@ router.get('/types', (req, res) => {
 router.get('/', (req, res) => {
     const queryText = `
     SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
-    FROM activities
-    LEFT JOIN activity_type
-	  ON activities.activity_type_id = activity_type.id
-	LEFT JOIN activities_clothes
-	  ON activities.id = activities_clothes.activities_id
-	LEFT JOIN clothes
-	  ON activities_clothes.clothes_id = clothes.id
-	LEFT JOIN clothing_type
-	  ON clothes.clothing_type_id = clothing_type.id
-	WHERE activities.user_id = $1
-	ORDER BY activities_id;
+      FROM activities
+        LEFT JOIN activity_type
+          ON activities.activity_type_id = activity_type.id
+        LEFT JOIN activities_clothes
+          ON activities.id = activities_clothes.activities_id
+        LEFT JOIN clothes
+          ON activities_clothes.clothes_id = clothes.id
+        LEFT JOIN clothing_type
+          ON clothes.clothing_type_id = clothing_type.id
+      WHERE activities.user_id = $1
+      ORDER BY activities_id;
     `;
     pool.query(queryText, [req.user.id])
       .then((result) => {
@@ -48,9 +48,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const queryText = `
     INSERT INTO "activities" 
-	("date", "temperature", "weather_conditions", "notes", "user_id", "activity_type_id")
-	VALUES 
-	($1, $2, $3, $4, $6, $5);
+      ("date", "temperature", "weather_conditions", "notes", "user_id", "activity_type_id")
+    VALUES 
+      ($1, $2, $3, $4, $6, $5);
     `;
     const queryValues = [
         req.body.date,
@@ -70,8 +70,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const queryText = `
-        DELETE FROM activities
-        WHERE id=$1;
+      DELETE FROM activities
+      WHERE id=$1;
     `;
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })

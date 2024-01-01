@@ -21,7 +21,7 @@ router.get('/types', (req, res) => {
 router.get('/', (req, res) => {
     const query = `
       SELECT * FROM "clothes"
-      WHERE clothes.user_id = $1
+        WHERE clothes.user_id = $1
         ORDER BY "name" ASC;
     `;
     pool.query(query, [req.user.id])
@@ -38,9 +38,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const queryText = `
     INSERT INTO "clothes" 
-	("name", "description", "user_id", "clothing_type_id")
-	VALUES 
-	($1, $2, $4, $3);
+      ("name", "description", "user_id", "clothing_type_id")
+    VALUES 
+      ($1, $2, $4, $3);
     `;
     const queryValues = [
         req.body.item,
@@ -58,8 +58,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const queryText = `
-        DELETE FROM clothes
-        WHERE id=$1;
+      DELETE FROM clothes
+      WHERE id=$1;
     `;
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
