@@ -3,19 +3,19 @@ const axios = require('axios');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-const apiKey = process.env.GEOCODE_API_KEY
+const apiKey = process.env.MAPBOX_API_KEY
 
 router.get('/:location', (req, res) => {
     console.log('req.params', req.params)
     axios({
         method: 'GET',
-        url: `https://geocode.xyz/?locate=${req.params.location}&json=1&auth=${apiKey}`
+        url: `https://api.mapbox.com/geocoding/v5/mapbox.places/${req.params.location}.json?autocomplete=false&access_token=${apiKey}`
     })
     .then((response) => {
         console.log('response', response.data);
         axios({
             method: 'GET',
-            url: `https://api.weather.gov/points/${response.data.latt},${response.data.longt}`
+            url: `https://api.weather.gov/points/${response.data.features[0].center[1]},${response.data.features[0].center[0]}`
         })
         .then((response) => {
             // console.log(response.data.properties.forecastHourly);
