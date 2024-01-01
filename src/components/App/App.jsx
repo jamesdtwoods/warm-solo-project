@@ -4,7 +4,10 @@ import {
   Redirect,
   Route,
   Switch,
+  useHistory,
+  Link
 } from 'react-router-dom';
+
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -32,17 +35,32 @@ import './App.css';
 
 function App() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const user = useSelector(store => store.user);
+  const theWeather = useSelector(store => store.weather);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  const checkWeather = (theWeather) => {
+    let check = false;
+    if (theWeather.properties){
+      check = true;
+    }
+    return check;
+  }
+
   return (
     <Router>
       <div>
         <Nav />
+        {checkWeather(theWeather) ? 
+        <>
+          <h3>Current weather: {theWeather.properties.periods[0].temperature} ℉</h3>
+        </>
+         : <Link to="/weather">Get Weather</Link>}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
