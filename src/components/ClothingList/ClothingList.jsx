@@ -5,7 +5,7 @@ import ClothingItem from '../ClothingItem/ClothingItem';
 
 function ClothingList() {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
 
   useEffect(() => {

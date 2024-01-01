@@ -33,7 +33,7 @@ function ActivityDetails () {
 
     return(
         <div className="container">
-            <button onClick={toActivityList}>Activity List</button>
+            <button onClick={toActivityList}>Back to Activity List</button>
             <h3>{formatDate(activity.date)}</h3>
             <p>{activity.notes}</p>
             <ul>
