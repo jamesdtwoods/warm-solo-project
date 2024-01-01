@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
         console.log('Error in POST /api/activities', err);
         res.sendStatus(500);
       });
-  });
+});
 
 router.delete('/:id', (req, res) => {
     const queryText = `
@@ -110,189 +110,8 @@ router.put('/:id', (req, res) => {
         console.log('Error in PUT /api/activities/:id', err);
         res.sendStatus(500);
       });
-  });
+});
 
-
-  // [
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 1,
-  //     name: 'Swix Hat',
-  //     clothing_type: 'Hat'
-  //   },
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 2,
-  //     name: 'Swix Lobster Gloves',
-  //     clothing_type: 'Gloves'
-  //   },
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 3,
-  //     name: 'Thick Smartwool Socks',
-  //     clothing_type: 'Socks'
-  //   },
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 4,
-  //     name: 'Smartwool baselayer',
-  //     clothing_type: 'Base layer - torso'
-  //   },
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 6,
-  //     name: 'Gortex Bike Jacket',
-  //     clothing_type: 'Jacket'
-  //   },
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 7,
-  //     name: 'Swix Ski Pants',
-  //     clothing_type: 'Pants'
-  //   },
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 8,
-  //     name: 'Clear Bolle Goggles',
-  //     clothing_type: 'Accessories'
-  //   },
-  //   {
-  //     activities_id: 1,
-  //     date: 2024-01-01T06:00:00.000Z,
-  //     temperature: 20,
-  //     weather_conditions: 'Cloudy, windy',
-  //     notes: 'Biked to school',
-  //     activity_type: 'Biking',
-  //     clothes_id: 9,
-  //     name: 'Green Buff',
-  //     clothing_type: 'Other'
-  //   },
-  //   {
-  //     activities_id: 4,
-  //     date: 2023-11-29T06:00:00.000Z,
-  //     temperature: 43,
-  //     weather_conditions: 'rainy',
-  //     notes: 'nonn',
-  //     activity_type: 'CC Skiing (classic)',
-  //     clothes_id: 1,
-  //     name: 'Swix Hat',
-  //     clothing_type: 'Hat'
-  //   },
-  //   {
-  //     activities_id: 4,
-  //     date: 2023-11-29T06:00:00.000Z,
-  //     temperature: 43,
-  //     weather_conditions: 'rainy',
-  //     notes: 'nonn',
-  //     activity_type: 'CC Skiing (classic)',
-  //     clothes_id: 2,
-  //     name: 'Swix Lobster Gloves',
-  //     clothing_type: 'Gloves'
-  //   },
-  //   {
-  //     activities_id: 4,
-  //     date: 2023-11-29T06:00:00.000Z,
-  //     temperature: 43,
-  //     weather_conditions: 'rainy',
-  //     notes: 'nonn',
-  //     activity_type: 'CC Skiing (classic)',
-  //     clothes_id: 3,
-  //     name: 'Thick Smartwool Socks',
-  //     clothing_type: 'Socks'
-  //   },
-  //   {
-  //     activities_id: 4,
-  //     date: 2023-11-29T06:00:00.000Z,
-  //     temperature: 43,
-  //     weather_conditions: 'rainy',
-  //     notes: 'nonn',
-  //     activity_type: 'CC Skiing (classic)',
-  //     clothes_id: 4,
-  //     name: 'Smartwool baselayer',
-  //     clothing_type: 'Base layer - torso'
-  //   },
-  //   {
-  //     activities_id: 8,
-  //     date: 2024-01-25T06:00:00.000Z,
-  //     temperature: 55,
-  //     weather_conditions: 'sunny',
-  //     notes: 'new note',
-  //     activity_type: 'Running',
-  //     clothes_id: 6,
-  //     name: 'Gortex Bike Jacket',
-  //     clothing_type: 'Jacket'
-  //   },
-  //   {
-  //     activities_id: 8,
-  //     date: 2024-01-25T06:00:00.000Z,
-  //     temperature: 55,
-  //     weather_conditions: 'sunny',
-  //     notes: 'new note',
-  //     activity_type: 'Running',
-  //     clothes_id: 7,
-  //     name: 'Swix Ski Pants',
-  //     clothing_type: 'Pants'
-  //   },
-  //   {
-  //     activities_id: 8,
-  //     date: 2024-01-25T06:00:00.000Z,
-  //     temperature: 55,
-  //     weather_conditions: 'sunny',
-  //     notes: 'new note',
-  //     activity_type: 'Running',
-  //     clothes_id: 8,
-  //     name: 'Clear Bolle Goggles',
-  //     clothing_type: 'Accessories'
-  //   },
-  //   {
-  //     activities_id: 8,
-  //     date: 2024-01-25T06:00:00.000Z,
-  //     temperature: 55,
-  //     weather_conditions: 'sunny',
-  //     notes: 'new note',
-  //     activity_type: 'Running',
-  //     clothes_id: 9,
-  //     name: 'Green Buff',
-  //     clothing_type: 'Other'
-  //   }
-  // ]
-  
-// NEED TO FIGURE THIS OUT BETTER
 function format2 (all) {
   let activitiesArray = [{
       activities_id: all[0].activities_id,
@@ -308,7 +127,6 @@ function format2 (all) {
           clothing_type: all[0].clothing_type
       }]
   }]
-  // console.log('activity array before', activitiesArray);
   for(let i=1; i<all.length; i++) {
       if (all[i].activities_id !== all[i-1].activities_id){
           activitiesArray.push({
@@ -321,7 +139,6 @@ function format2 (all) {
               activity_type_id: all[i].activity_type_id,
               clothes: []
           })
-          // console.log('activity array at:', i, activitiesArray);
       }
       for (let j=0; j<activitiesArray.length; j++) {
           if(activitiesArray[j].activities_id === all[i].activities_id){
@@ -331,7 +148,6 @@ function format2 (all) {
             clothing_type: all[i].clothing_type
           })
         }
-      //   console.log('activity array with clothes at:', j, activitiesArray);
       }
   }
  return activitiesArray
