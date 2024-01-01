@@ -25,6 +25,21 @@ function* fetchActivities() {
     }
 }
 
+function* fetchActivitiesByWeather(action) {
+  try {
+    const activities = yield axios({
+      method: 'GET',
+      url: `/api/activities/${action.payload}`
+  })
+    yield put({
+      type: 'SET_ACTIVITIES',
+      payload: activities.data
+    });
+  } catch (error) {
+    console.log('fetchActivities error:', error);
+  }
+}
+
 function* postActivity(action) {
     try {
         const response = yield axios({
@@ -72,6 +87,7 @@ function* editActivity(action) {
     yield takeLatest('SAGA/FETCH_ACTIVITIES', fetchActivities);
     yield takeLatest('SAGA/DELETE_ACTIVITY', deleteActivity);
     yield takeLatest('SAGA/EDIT_ACTIVITY', editActivity);
+    yield takeLatest('SAGA/FETCH_ACTIVITIES_BY_WEATHER', fetchActivitiesByWeather);
   }
 
 export default activitiesSaga;

@@ -28,6 +28,7 @@ import ClothingItemDetails from '../ClothingItemDetails/ClothingItemDetails';
 import ClothingFormEdit from '../ClothingFormEdit/ClothingFormEdit';
 import ActivityForm from '../ActivityForm/ActivityForm';
 import ActivityList from '../ActivityList/ActivityList';
+import ActivityListByWeather from '../ActivityListByWeather/ActivityListByWeather';
 import ActivityDetails from '../ActivityDetails/ActivityDetails';
 import ActivityFormEdit from '../ActivityFormEdit/ActivityFormEdit';
 import Weather from '../Weather/Weather';
@@ -160,6 +161,13 @@ function App() {
             exact path="/viewActivities"
           >
             <ActivityList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Activities else shows LoginPage
+            exact path="/viewActivitiesByWeather"
+          >
+            <ActivityListByWeather />
           </ProtectedRoute>
 
           <ProtectedRoute

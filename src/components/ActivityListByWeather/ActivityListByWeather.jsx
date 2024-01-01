@@ -4,17 +4,17 @@ import { useHistory } from 'react-router-dom';
 import Activity from '../Activity/Activity';
 
 
-function ActivityList() {
+function ActivityListByWeather() {
   const dispatch = useDispatch();
   const history = useHistory()
   const activities = useSelector(store => store.activitiesReducer.activityList);
-  const theWeather = useSelector(store => store.weather);
 
-  useEffect(() => {
-      dispatch({
-          type: 'SAGA/FETCH_ACTIVITIES'
-        })
-  }, []); 
+
+  // useEffect(() => {
+  //     dispatch({
+  //         type: 'SAGA/FETCH_ACTIVITIES_BY_WEATHER'
+  //       })
+  // }, []); 
 
   const checkAllFunction = (activities) => {
     let check = false;
@@ -46,14 +46,6 @@ function ActivityList() {
     })
   }
 
-  const checkWeather = (theWeather) => {
-    let check = false;
-    if (theWeather.properties){
-      check = true;
-    }
-    return check;
-  }
-
   const addActivity = () => {
     dispatch({
       type: 'SAGA/FETCH_CLOTHES'
@@ -61,22 +53,10 @@ function ActivityList() {
     history.push(`/newActivity`)
   }
 
-  const activitiesByWeather = () => {
-    dispatch({
-      type: 'SAGA/FETCH_ACTIVITIES_BY_WEATHER',
-      payload: theWeather.properties.periods[0].temperature
-    })
-    history.push(`/viewActivitiesByWeather`)
-  }
-
   return (
     <div className="container">
       {checkAllFunction(activities) ?  
         <div>
-          {checkWeather(theWeather) ? 
-          <>
-            <button onClick={activitiesByWeather}>Show Activities With Similar Weather</button>
-          </> : <></>}
           <button onClick={addActivity}>Add Activity</button>
           <h2>Activity List</h2>
           {checkFunction(activities, 1) ? 
@@ -116,7 +96,7 @@ function ActivityList() {
           : <></>}
         </div>
         : <>
-            <h1>No activities</h1>
+            <h1>No activities within +/- 5℉ of current temperature</h1>
             <button onClick={addActivity}>Add Activity</button>
           </>}
     </div>
@@ -124,4 +104,4 @@ function ActivityList() {
 
 }
 
-export default ActivityList;
+export default ActivityListByWeather;
