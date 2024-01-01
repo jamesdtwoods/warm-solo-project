@@ -7,6 +7,15 @@ function ActivityDetails () {
     const dispatch = useDispatch();
     const history = useHistory();
     const activity = useSelector(store => store.activitiesReducer.selectedActivity);
+    const activities = useSelector(store => store.activitiesReducer.activityListByWeather);
+
+    const checkAllFunction = (activities) => {
+        let check = false;
+        for (let activity of activities) {
+          check = true;
+        }
+        return check;
+      }
 
     const deleteItem = () => {
         alert('are you sure you want to delete this activity')
@@ -25,6 +34,10 @@ function ActivityDetails () {
         history.push(`/viewActivities`)
     }
 
+    const toActivityListByWeather = () => {
+        history.push(`/viewActivitiesByWeather`)
+    }
+
     const formatDate = (dateInput) => {
         let year = dateInput.split('T',1)[0].split('-')[0]
         let month = dateInput.split('T',1)[0].split('-')[1]
@@ -34,7 +47,11 @@ function ActivityDetails () {
 
     return(
         <div className="container">
-            <button onClick={toActivityList}>Back to Activity List</button>
+            {checkAllFunction(activities) 
+             ? 
+            <button onClick={toActivityListByWeather}>Back to Activity List</button>
+             : 
+            <button onClick={toActivityList}>Back to Activity List</button>}
             <h3>{formatDate(activity.date)}</h3>
             <p>{activity.notes}</p>
             <ul>

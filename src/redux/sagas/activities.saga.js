@@ -32,7 +32,7 @@ function* fetchActivitiesByWeather(action) {
       url: `/api/activities/${action.payload}`
   })
     yield put({
-      type: 'SET_ACTIVITIES',
+      type: 'SET_ACTIVITIES_BY_WEATHER',
       payload: activities.data
     });
   } catch (error) {
