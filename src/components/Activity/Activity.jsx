@@ -13,7 +13,6 @@ function Activity({activity}) {
     })
     history.push(`/viewActivity/${activity.activities_id}`)
   }
-  console.log(activity);
 
   const formatDate = (dateInput) => {
     let year = dateInput.split('T',1)[0].split('-')[0]
@@ -22,15 +21,13 @@ function Activity({activity}) {
     return `${month}/${day}/${year}`
   }
 
-  console.log('format date test', formatDate(activity.date));
-
   return (
-    // <li key={activity.id}>
+    <>
     <li>
-        <p>{formatDate(activity.date)}</p>
-        <button onClick={viewActivity}>View</button>
+      <p>{formatDate(activity.date)} - {activity.temperature}℉, {activity.weather_conditions}</p>
+      <button onClick={viewActivity}>View</button>
     </li>
-    // </li>
+    </>
   );
 }
 

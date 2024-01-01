@@ -308,20 +308,6 @@ function format2 (all) {
           clothing_type: all[0].clothing_type
       }]
   }]
-  
-  // [{
-  //     activities_id: all[0].activities_id,
-  //     date: all[0].date,
-  //     temperature: all[0].temperature,
-  //     weather_conditions: all[0].weather_conditions,
-  //     notes: all[0].notes,
-  //     activity_type: all[0].activity_type,
-  //     clothes:[{
-  //         clothes_id: all[0].clothes_id,
-  //         name: all[0].name,
-  //         clothing_type: all[0].clothing_type
-  //     }]
-  // }]
   // console.log('activity array before', activitiesArray);
   for(let i=1; i<all.length; i++) {
       if (all[i].activities_id !== all[i-1].activities_id){
@@ -338,7 +324,7 @@ function format2 (all) {
           // console.log('activity array at:', i, activitiesArray);
       }
       for (let j=0; j<activitiesArray.length; j++) {
-          if(activitiesArray[j].activities_id === all[i-1].activities_id){
+          if(activitiesArray[j].activities_id === all[i].activities_id){
           activitiesArray[j].clothes.push({
             clothes_id: all[i].clothes_id,
             name: all[i].name,
