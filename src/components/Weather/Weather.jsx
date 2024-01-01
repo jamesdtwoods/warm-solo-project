@@ -42,10 +42,13 @@ function Weather() {
       <button onClick={fetchWeather}>Get Weather</button>
       <br />
       {checkWeather(theWeather) ? 
-      <p>
-        {theWeather.properties.periods[0].temperature}
-      </p>
-       : <></>}
+      <>
+        <h3>Current weather:</h3> 
+        <p>Temperature: {theWeather.properties.periods[0].temperature} ℉</p>
+        <p>Current wind: {theWeather.properties.periods[0].windSpeed} {theWeather.properties.periods[0].windDirection}</p>
+        <p>Current conditions: {theWeather.properties.periods[0].shortForecast}</p>
+        <p>Probability of precipitation in next hour: {theWeather.properties.periods[0].probabilityOfPrecipitation.value}%</p>
+      </> : <></>}
     </div>
   );
 }
