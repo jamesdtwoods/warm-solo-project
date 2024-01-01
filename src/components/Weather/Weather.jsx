@@ -29,8 +29,7 @@ function Weather() {
 
   return (
     <div className="container">
-      <h3>Weather API</h3>
-      <h3>location: (NO SPACES)</h3>
+      <h3>location:</h3>
       <input
         type="text"
         name="location"

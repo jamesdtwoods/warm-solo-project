@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
+import Header from '../Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -55,11 +55,12 @@ function App() {
   return (
     <Router>
       <div>
+        <Header />
         <Nav />
         {checkWeather(theWeather) ? 
-        <>
-          <h3>Current weather: {theWeather.properties.periods[0].temperature} ℉</h3>
-        </>
+        <div className="header-weather">
+          <p>Current weather: {theWeather.properties.periods[0].temperature} ℉</p>
+        </div>
          : <Link to="/weather">Get Weather</Link>}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
