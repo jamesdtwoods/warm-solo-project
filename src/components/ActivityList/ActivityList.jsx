@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Activity from '../Activity/Activity';
@@ -9,6 +9,8 @@ function ActivityList() {
   const history = useHistory()
   const activities = useSelector(store => store.activitiesReducer.activityList);
   const theWeather = useSelector(store => store.weather);
+  const [minTemp, setMinTemp] = useState('');
+  const [maxTemp, setMaxTemp] = useState('');
 
   useEffect(() => {
       dispatch({
@@ -61,10 +63,21 @@ function ActivityList() {
     history.push(`/newActivity`)
   }
 
-  const activitiesByWeather = () => {
+  // const activitiesByWeather = () => {
+  //   dispatch({
+  //     type: 'SAGA/FETCH_ACTIVITIES_BY_WEATHER',
+  //     payload: theWeather.properties.periods[0].temperature
+  //   })
+  //   history.push(`/viewActivitiesByWeather`)
+  // }
+
+  const searchActivities = () => {
     dispatch({
-      type: 'SAGA/FETCH_ACTIVITIES_BY_WEATHER',
-      payload: theWeather.properties.periods[0].temperature
+      type: 'SAGA/FETCH_ACTIVITIES_BY_SEARCH',
+      payload: {
+        min: minTemp,
+        max: maxTemp
+      }
     })
     history.push(`/viewActivitiesByWeather`)
   }
@@ -75,11 +88,29 @@ function ActivityList() {
         <div>
           {checkWeather(theWeather) ? 
           <>
-            <button onClick={activitiesByWeather}>
+            <button >
               Show Activities From Temperatures +/- 5℉ of current temperature
             </button><br /><br />
           </> : <></>}
-          <button onClick={addActivity}>Add Activity</button>
+          Search Activities by Temperature Range:
+          <br />
+          <input
+            type="number"
+            name="minTemp"
+            placeholder='min'
+            value={minTemp}
+            onChange={(event) => setMinTemp(event.target.value)}
+          />
+          <input
+            type="number"
+            name="maxTemp"
+            placeholder='max'
+            value={maxTemp}
+            onChange={(event) => setMaxTemp(event.target.value)}
+          />
+          <button onClick={searchActivities}>Search Activities</button>
+          <br /><br />
+          <button onClick={addActivity}>Add New Activity</button>
           <h2>Activity List</h2>
           {checkFunction(activities, 1) ? 
             <> <h3>Biking:</h3> 

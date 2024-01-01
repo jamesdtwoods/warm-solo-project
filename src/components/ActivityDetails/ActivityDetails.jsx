@@ -49,7 +49,11 @@ function ActivityDetails () {
         <div className="container">
             {checkAllFunction(activities) 
              ? 
-            <button onClick={toActivityListByWeather}>Back to Activity List</button>
+            <>
+            <button onClick={toActivityListByWeather}>Back to Activity List By Weather</button>
+            <br /><br />
+            <button onClick={toActivityList}>Back to Activity List</button>
+            </>
              : 
             <button onClick={toActivityList}>Back to Activity List</button>}
             <h3>{formatDate(activity.date)}</h3>

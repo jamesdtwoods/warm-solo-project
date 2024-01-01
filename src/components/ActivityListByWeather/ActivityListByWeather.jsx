@@ -90,7 +90,10 @@ function ActivityListByWeather() {
             </> 
           : <></>}
         </div>
-        : <h1>No activities within temperature range</h1>}
+        : <>
+            <h1>No activities within temperature range</h1>
+            <button onClick={toActivityList}>Back To Activity List</button>
+          </>}
     </div>
   );
 

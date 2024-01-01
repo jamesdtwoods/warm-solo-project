@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/:temperature', (req, res) => {
+router.get('/weather/:temperature', (req, res) => {
   const queryText = `
   SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
     FROM activities
@@ -65,6 +65,38 @@ router.get('/:temperature', (req, res) => {
   ];
   console.log('temp to use', req.params.temperature);
   console.log('user id', req.user.id);
+  pool.query(queryText, queryValues)
+    .then((result) => {
+      console.log('temp query result', result.rows);
+      let theActivities = format2(result.rows)
+      res.send(theActivities)
+    })
+    .catch(err => {
+      console.log('ERROR: Get activity items by temperature', err);
+      res.sendStatus(500)
+    })
+});
+
+router.get('/search/:tempRange', (req, res) => {
+  const queryText = `
+  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
+    FROM activities
+      LEFT JOIN activity_type
+        ON activities.activity_type_id = activity_type.id
+      LEFT JOIN activities_clothes
+        ON activities.id = activities_clothes.activities_id
+      LEFT JOIN clothes
+        ON activities_clothes.clothes_id = clothes.id
+      LEFT JOIN clothing_type
+        ON clothes.clothing_type_id = clothing_type.id
+    WHERE activities.user_id = $1 AND activities.temperature >= ($2) AND activities.temperature <= ($3) 
+    ORDER BY activities_id;
+  `;
+  const queryValues = [
+    req.user.id,
+    req.params.tempRange.split('-')[0],
+    req.params.tempRange.split('-')[1]
+  ];
   pool.query(queryText, queryValues)
     .then((result) => {
       console.log('temp query result', result.rows);
