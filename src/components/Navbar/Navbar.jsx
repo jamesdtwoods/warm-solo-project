@@ -23,9 +23,9 @@ function Navbar() {
     }
     return (
         <nav className="navigation">
-            <h2 className="brand-name">
+            <h1 className="nav-title" onClick={toHome}>
                 warm
-            </h2>
+            </h1>
         {user.id && (
             <>
           <button 
