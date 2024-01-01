@@ -20,7 +20,7 @@ router.get('/types', (req, res) => {
 
 router.get('/', (req, res) => {
     const queryText = `
-    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
+    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
     FROM activities
     LEFT JOIN activity_type
 	  ON activities.activity_type_id = activity_type.id
@@ -305,6 +305,7 @@ router.put('/:id', (req, res) => {
     activity.weather_conditions = activities[0].weather_conditions
     activity.notes = activities[0].notes
     activity.activity_type = activities[0].activity_type
+    activity.activity_type_id = activities[0].activity_type_id
     activity.clothes = []
   
     for (let row of activities) {
