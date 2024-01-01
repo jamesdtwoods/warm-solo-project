@@ -9,6 +9,7 @@ function ClothingItemDetails () {
     const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
 
     const deleteItem = () => {
+        alert('are you sure you want to delete this clothing item')
         dispatch({
             type: 'SAGA/DELETE_CLOTHING_ITEM',
             payload: clothingItem.id

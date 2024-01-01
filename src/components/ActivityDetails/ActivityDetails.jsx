@@ -9,6 +9,7 @@ function ActivityDetails () {
     const activity = useSelector(store => store.activitiesReducer.selectedActivity);
 
     const deleteItem = () => {
+        alert('are you sure you want to delete this activity')
         dispatch({
             type: 'SAGA/DELETE_ACTIVITY',
             payload: id
