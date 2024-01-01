@@ -22,12 +22,10 @@ function Activity({activity}) {
   }
 
   return (
-    <>
     <li>
       <p>{formatDate(activity.date)} - {activity.temperature}℉, {activity.weather_conditions}</p>
       <button onClick={viewActivity}>View</button>
     </li>
-    </>
   );
 }
 

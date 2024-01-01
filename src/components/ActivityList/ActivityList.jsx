@@ -41,11 +41,14 @@ function ActivityList() {
       }
     }
     return activityArray.map((activity) => {
-      return <Activity key={activity.id} activity={activity} />
+      return <Activity key={activity.activities_id} activity={activity} />
     })
   }
 
   const addActivity = () => {
+    dispatch({
+      type: 'SAGA/FETCH_CLOTHES'
+    })
     history.push(`/newActivity`)
   }
 
