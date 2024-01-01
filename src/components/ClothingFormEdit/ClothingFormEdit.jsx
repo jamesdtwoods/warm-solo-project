@@ -46,6 +46,7 @@ function ClothingFormEdit() {
   return (
     <div className="container">
       <button onClick={handleCancel}>Back to Clothing Item</button>
+      <br /><br />
       Clothing Item:
         <input
           type="text"

@@ -10,9 +10,9 @@ function Navbar() {
 
     return (
         <nav className="navigation">
-            <Link to="/home">
-                <h2 className="brand-name">warm</h2>
-            </Link>
+            <h2 className="brand-name">
+                warm
+            </h2>
         {user.id && (
             <>
           <button 

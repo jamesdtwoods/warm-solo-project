@@ -58,6 +58,7 @@ function ActivityFormEdit() {
   return (
     <div className="container">
       <button onClick={handleCancel}>Back to Activity</button>
+      <br /><br />
         Activity Date:
         {/* is there a way to have the previous date? */}
         <input
@@ -113,6 +114,7 @@ function ActivityFormEdit() {
           ))}
         </ul>
         {/* is there a way to have the previous choices selected? */}
+        Clothes:
         <select name="clothes"
         onChange={(e) => addClothes(e.target.value)}
         multiple>

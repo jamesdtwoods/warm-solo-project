@@ -26,7 +26,7 @@ function ClothingItemDetails () {
 
     return(
         <div className="container">
-            <button onClick={toClothingList}>Clothing List</button>
+            <button onClick={toClothingList}>Back to Clothing List</button>
             <h3>{clothingItem.name}</h3>
             <p>{clothingItem.description}</p>
             <button onClick={editItem}>Edit</button>
