@@ -75,7 +75,9 @@ function ActivityList() {
         <div>
           {checkWeather(theWeather) ? 
           <>
-            <button onClick={activitiesByWeather}>Show Activities With Similar Weather</button>
+            <button onClick={activitiesByWeather}>
+              Show Activities From Temperatures +/- 5℉ of current temperature
+            </button><br /><br />
           </> : <></>}
           <button onClick={addActivity}>Add Activity</button>
           <h2>Activity List</h2>

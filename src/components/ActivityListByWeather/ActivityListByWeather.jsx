@@ -1,20 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Activity from '../Activity/Activity';
 
 
 function ActivityListByWeather() {
-  const dispatch = useDispatch();
   const history = useHistory()
   const activities = useSelector(store => store.activitiesReducer.activityList);
-
-
-  // useEffect(() => {
-  //     dispatch({
-  //         type: 'SAGA/FETCH_ACTIVITIES_BY_WEATHER'
-  //       })
-  // }, []); 
 
   const checkAllFunction = (activities) => {
     let check = false;
@@ -46,19 +38,16 @@ function ActivityListByWeather() {
     })
   }
 
-  const addActivity = () => {
-    dispatch({
-      type: 'SAGA/FETCH_CLOTHES'
-    })
-    history.push(`/newActivity`)
+  const toActivityList = () => {
+    history.push(`/viewActivities`)
   }
 
   return (
     <div className="container">
       {checkAllFunction(activities) ?  
         <div>
-          <button onClick={addActivity}>Add Activity</button>
-          <h2>Activity List</h2>
+          <button onClick={toActivityList}>Back To Activity List</button>
+          <h2>Activity List within +/- 5℉ of current temperature</h2>
           {checkFunction(activities, 1) ? 
             <> <h3>Biking:</h3> 
               <ul>
