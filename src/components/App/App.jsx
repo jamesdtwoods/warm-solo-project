@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
+import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -30,6 +31,7 @@ import ActivityList from '../ActivityList/ActivityList';
 import ActivityDetails from '../ActivityDetails/ActivityDetails';
 import ActivityFormEdit from '../ActivityFormEdit/ActivityFormEdit';
 import Weather from '../Weather/Weather';
+import WeatherHeader from '../WeatherHeader/WeatherHeader';
 
 import './App.css';
 
@@ -55,16 +57,11 @@ function App() {
   return (
     <Router>
       <div>
-        <Header />
-        <Nav />
-        {checkWeather(theWeather) ? 
-        <div className="header-weather">
-          <p>Current weather: {theWeather.properties.periods[0].temperature} ℉</p>
-        </div>
-         : 
-        <div className="header-weather">
-          <Link to="/weather">Get Weather</Link>
-        </div>}
+        {/* <Header /> */}
+        {/* <Nav /> */}
+        <Navbar />
+        <WeatherHeader />
+
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
