@@ -37,22 +37,11 @@ import './App.css';
 
 function App() {
   const dispatch = useDispatch();
-  const history = useHistory();
-
   const user = useSelector(store => store.user);
-  const theWeather = useSelector(store => store.weather);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
-
-  const checkWeather = (theWeather) => {
-    let check = false;
-    if (theWeather.properties){
-      check = true;
-    }
-    return check;
-  }
 
   return (
     <Router>

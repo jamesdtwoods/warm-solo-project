@@ -1,13 +1,26 @@
-import './Navbar.css';
-import { useState } from "react";
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+// import './Navbar.css';
 
 function Navbar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false)
     const user = useSelector((store) => store.user);
+    const history = useHistory();
 
+    const toHome = () => {
+      setIsNavExpanded(false)
+      history.push(`/home`)
+    }
+    const toClothes = () => {
+      setIsNavExpanded(false)
+      history.push(`/viewClothes`)
+    }
+    const toActivities = () => {
+      setIsNavExpanded(false)
+      history.push(`/viewActivities`)
+    }
     return (
         <nav className="navigation">
             <h2 className="brand-name">
@@ -40,20 +53,14 @@ function Navbar() {
                 isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
             }>
             <ul>
-              <li>
-                <Link className="navLink" to="/user">
-                    Home
-                </Link>
+              <li className="nav" onClick={toHome}>
+                Home
               </li>
-              <li>
-                <Link className="navLink" to="/viewClothes">
-                    Clothes List
-                </Link>
+              <li className="nav" onClick={toClothes}>
+                Clothes List
               </li>
-              <li>
-                <Link className="navLink" to="/viewActivities">
-                    Activity List
-                </Link>
+              <li className="nav" onClick={toActivities}>
+                Activity List
               </li>
               <li>
                 <LogOutButton className="navLink" />
