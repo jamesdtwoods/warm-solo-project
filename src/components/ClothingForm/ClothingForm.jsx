@@ -42,7 +42,7 @@ function ClothingForm() {
 
 
   return (
-    <div className="clothing_form">
+    <div className="container">
       <button onClick={backToList}>Back To Clothing List</button>
       <br /><br />
       Clothing Item:

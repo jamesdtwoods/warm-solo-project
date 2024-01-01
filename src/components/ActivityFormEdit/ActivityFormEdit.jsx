@@ -56,8 +56,8 @@ function ActivityFormEdit() {
   }
 
   return (
-    <div className="activity_form">
-
+    <div className="container">
+      <button onClick={handleCancel}>Back to Activity</button>
         Activity Date:
         {/* is there a way to have the previous date? */}
         <input

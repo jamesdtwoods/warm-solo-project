@@ -49,13 +49,14 @@ function ActivityForm() {
     history.push("/viewActivities")
   }
 
-  const handleCancel = () => {
-    history.push("/viewActivities")
+  const backToList = () => {
+    history.push(`/viewActivities`)
   }
 
   return (
-    <div className="activity_form">
-
+    <div className="container">
+      <button onClick={backToList}>Back to activities list</button>
+      <br /><br />
       Activity Date:
       <input
         type="date"
@@ -118,7 +119,7 @@ function ActivityForm() {
       </select>
       <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
-      <button onClick={handleCancel}>CANCEL</button>
+      <button onClick={backToList}>CANCEL</button>
     </div>
   );
 }
