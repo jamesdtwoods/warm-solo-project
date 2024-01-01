@@ -21,9 +21,10 @@ router.get('/types', (req, res) => {
 router.get('/', (req, res) => {
     const query = `
       SELECT * FROM "clothes"
+      WHERE clothes.user_id = $1
         ORDER BY "name" ASC;
     `;
-    pool.query(query)
+    pool.query(query, [req.user.id])
       .then(result => {
         res.send(result.rows);
       })

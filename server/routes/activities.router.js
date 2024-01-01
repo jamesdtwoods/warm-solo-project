@@ -36,7 +36,6 @@ router.get('/', (req, res) => {
     pool.query(queryText, [req.user.id])
       .then((result) => {
         let theActivities = format2(result.rows)
-        console.log('formatted activities:', theActivities);
         res.send(theActivities)
       })
       .catch(err => {
@@ -113,44 +112,48 @@ router.put('/:id', (req, res) => {
 });
 
 function format2 (all) {
-  let activitiesArray = [{
-      activities_id: all[0].activities_id,
-      date: all[0].date,
-      temperature: all[0].temperature,
-      weather_conditions: all[0].weather_conditions,
-      notes: all[0].notes,
-      activity_type: all[0].activity_type,
-      activity_type_id: all[0].activity_type_id,
-      clothes: [{
-          clothes_id: all[0].clothes_id,
-          name: all[0].name,
-          clothing_type: all[0].clothing_type
-      }]
-  }]
-  for(let i=1; i<all.length; i++) {
-      if (all[i].activities_id !== all[i-1].activities_id){
-          activitiesArray.push({
-              activities_id: all[i].activities_id,
-              date: all[i].date,
-              temperature: all[i].temperature,
-              weather_conditions: all[i].weather_conditions,
-              notes: all[i].notes,
-              activity_type: all[i].activity_type,
-              activity_type_id: all[i].activity_type_id,
-              clothes: []
-          })
-      }
-      for (let j=0; j<activitiesArray.length; j++) {
-          if(activitiesArray[j].activities_id === all[i].activities_id){
-          activitiesArray[j].clothes.push({
-            clothes_id: all[i].clothes_id,
-            name: all[i].name,
-            clothing_type: all[i].clothing_type
-          })
+  if (all[0] === undefined){
+    return [];
+  } else {
+    let activitiesArray = [{
+        activities_id: all[0].activities_id,
+        date: all[0].date,
+        temperature: all[0].temperature,
+        weather_conditions: all[0].weather_conditions,
+        notes: all[0].notes,
+        activity_type: all[0].activity_type,
+        activity_type_id: all[0].activity_type_id,
+        clothes: [{
+            clothes_id: all[0].clothes_id,
+            name: all[0].name,
+            clothing_type: all[0].clothing_type
+        }]
+    }]
+    for(let i=1; i<all.length; i++) {
+        if (all[i].activities_id !== all[i-1].activities_id){
+            activitiesArray.push({
+                activities_id: all[i].activities_id,
+                date: all[i].date,
+                temperature: all[i].temperature,
+                weather_conditions: all[i].weather_conditions,
+                notes: all[i].notes,
+                activity_type: all[i].activity_type,
+                activity_type_id: all[i].activity_type_id,
+                clothes: []
+            })
         }
-      }
+        for (let j=0; j<activitiesArray.length; j++) {
+            if(activitiesArray[j].activities_id === all[i].activities_id){
+            activitiesArray[j].clothes.push({
+              clothes_id: all[i].clothes_id,
+              name: all[i].name,
+              clothing_type: all[i].clothing_type
+            })
+          }
+        }
+    }
+  return activitiesArray
   }
- return activitiesArray
 }
 
 module.exports = router;
