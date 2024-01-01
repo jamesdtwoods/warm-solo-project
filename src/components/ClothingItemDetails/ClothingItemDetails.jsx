@@ -25,7 +25,7 @@ function ClothingItemDetails () {
     }
 
     return(
-        <div data-testid="itemDetails">
+        <div className="container">
             <button onClick={toClothingList}>Clothing List</button>
             <h3>{clothingItem.name}</h3>
             <p>{clothingItem.description}</p>

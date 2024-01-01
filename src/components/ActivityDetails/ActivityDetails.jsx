@@ -24,10 +24,17 @@ function ActivityDetails () {
         history.push(`/viewActivities`)
     }
 
+    const formatDate = (dateInput) => {
+        let year = dateInput.split('T',1)[0].split('-')[0]
+        let month = dateInput.split('T',1)[0].split('-')[1]
+        let day = dateInput.split('T',1)[0].split('-')[2]
+        return `${month}/${day}/${year}`
+      }
+
     return(
-        <div data-testid="itemDetails">
+        <div className="container">
             <button onClick={toActivityList}>Activity List</button>
-            <h3>{activity.date}</h3>
+            <h3>{formatDate(activity.date)}</h3>
             <p>{activity.notes}</p>
             <ul>
             {activity.clothes.map((clothingItem) => (

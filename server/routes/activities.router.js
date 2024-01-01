@@ -35,9 +35,9 @@ router.get('/', (req, res) => {
     `;
     pool.query(queryText, [req.user.id])
       .then((result) => {
-        let theActivities = formatActivityObject(result.rows)
+        let theActivities = format2(result.rows)
         console.log('formatted activities:', theActivities);
-        res.send([theActivities])
+        res.send(theActivities)
       })
       .catch(err => {
         console.log('ERROR: Get all activity items', err);
@@ -293,30 +293,62 @@ router.put('/:id', (req, res) => {
   // ]
   
 // NEED TO FIGURE THIS OUT BETTER
-  function formatActivityObject(activities) {
-    console.log('in formatting function', activities);
-
-    
-    let activity = {}
+function format2 (all) {
+  let activitiesArray = [{
+      activities_id: all[0].activities_id,
+      date: all[0].date,
+      temperature: all[0].temperature,
+      weather_conditions: all[0].weather_conditions,
+      notes: all[0].notes,
+      activity_type: all[0].activity_type,
+      activity_type_id: all[0].activity_type_id,
+      clothes: [{
+          clothes_id: all[0].clothes_id,
+          name: all[0].name,
+          clothing_type: all[0].clothing_type
+      }]
+  }]
   
-    activity.activities_id = activities[0].activities_id
-    activity.date = activities[0].date
-    activity.temperature = activities[0].temperature
-    activity.weather_conditions = activities[0].weather_conditions
-    activity.notes = activities[0].notes
-    activity.activity_type = activities[0].activity_type
-    activity.activity_type_id = activities[0].activity_type_id
-    activity.clothes = []
-  
-    for (let row of activities) {
-      activity.clothes.push({
-        clothes_id: row.clothes_id,
-        name: row.name,
-        clothing_type: row.clothing_type
-      })
-    }
-  
-    return activity
+  // [{
+  //     activities_id: all[0].activities_id,
+  //     date: all[0].date,
+  //     temperature: all[0].temperature,
+  //     weather_conditions: all[0].weather_conditions,
+  //     notes: all[0].notes,
+  //     activity_type: all[0].activity_type,
+  //     clothes:[{
+  //         clothes_id: all[0].clothes_id,
+  //         name: all[0].name,
+  //         clothing_type: all[0].clothing_type
+  //     }]
+  // }]
+  // console.log('activity array before', activitiesArray);
+  for(let i=1; i<all.length; i++) {
+      if (all[i].activities_id !== all[i-1].activities_id){
+          activitiesArray.push({
+              activities_id: all[i].activities_id,
+              date: all[i].date,
+              temperature: all[i].temperature,
+              weather_conditions: all[i].weather_conditions,
+              notes: all[i].notes,
+              activity_type: all[i].activity_type,
+              activity_type_id: all[i].activity_type_id,
+              clothes: []
+          })
+          // console.log('activity array at:', i, activitiesArray);
+      }
+      for (let j=0; j<activitiesArray.length; j++) {
+          if(activitiesArray[j].activities_id === all[i-1].activities_id){
+          activitiesArray[j].clothes.push({
+            clothes_id: all[i].clothes_id,
+            name: all[i].name,
+            clothing_type: all[i].clothing_type
+          })
+        }
+      //   console.log('activity array with clothes at:', j, activitiesArray);
+      }
   }
+ return activitiesArray
+}
 
 module.exports = router;

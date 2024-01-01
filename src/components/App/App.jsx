@@ -61,7 +61,10 @@ function App() {
         <div className="header-weather">
           <p>Current weather: {theWeather.properties.periods[0].temperature} ℉</p>
         </div>
-         : <Link to="/weather">Get Weather</Link>}
+         : 
+        <div className="header-weather">
+          <Link to="/weather">Get Weather</Link>
+        </div>}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
