@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
       LEFT JOIN clothing_type
         ON clothes.clothing_type_id = clothing_type.id
     WHERE activities.user_id = $1
-    ORDER BY activities_id;
+    ORDER BY activities.date;
   `;
   pool.query(queryText, [req.user.id])
     .then((result) => {
@@ -114,7 +114,8 @@ router.post('/', (req, res) => {
     INSERT INTO "activities" 
       ("date", "temperature", "weather_conditions", "notes", "user_id", "activity_type_id")
     VALUES 
-      ($1, $2, $3, $4, $6, $5);
+      ($1, $2, $3, $4, $6, $5)
+      RETURNING "id";
     `;
     const queryValues = [
         req.body.date,
@@ -125,12 +126,29 @@ router.post('/', (req, res) => {
         req.user.id
     ];
     pool.query(queryText, queryValues)
-      .then((result) => { res.sendStatus(201); })
-      .catch((err) => {
-        console.log('Error in POST /api/activities', err);
-        res.sendStatus(500);
-      });
-});
+    .then(result => {
+      // ID IS HERE!
+      console.log('New Activities Id:', result.rows[0].id);
+      const activitesId = result.rows[0].id
+      const clothesArray = req.body.clothesArray
+      console.log('new query', createActivitiesClothesQuery(clothesArray, activitesId));
+      // Now handle the clothes reference:
+      const insertActivitiesClothesQuery = createActivitiesClothesQuery(clothesArray, activitesId);
+      // SECOND QUERY ADDS clothes FOR THAT NEW activity
+      pool.query(insertActivitiesClothesQuery)
+        .then(result => {
+          //Now that both are done, send back success!
+          res.sendStatus(201);
+        }).catch(err => {
+          // catch for second query
+          console.log(err);
+          res.sendStatus(500)
+      })
+    }).catch(err => { // 👈 Catch for first query
+      console.log(err);
+      res.sendStatus(500)
+    })
+})
 
 router.delete('/:id', (req, res) => {
     const queryText = `
@@ -218,6 +236,26 @@ function format2 (all) {
     }
   return activitiesArray
   }
+}
+
+function createActivitiesClothesQuery (clothesArray, activities_id) {
+  let activitiesClothesQuery = `
+  INSERT INTO "activities_clothes" 
+  ("activities_id", "clothes_id")
+  VALUES
+  `
+  for (let i=0; i<clothesArray.length; i++) {
+    if (i < clothesArray.length-1){
+      activitiesClothesQuery+=`
+      (${activities_id}, ${clothesArray[i]}),
+    `
+    } else if (i === clothesArray.length-1) {
+      activitiesClothesQuery+=`
+      (${activities_id}, ${clothesArray[i]});
+      `
+    }
+  }
+  return activitiesClothesQuery;
 }
 
 module.exports = router;

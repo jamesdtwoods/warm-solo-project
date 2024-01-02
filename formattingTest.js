@@ -277,7 +277,6 @@ function format2 (all) {
 }
 
 
-console.log(format2(activities));
 
 
 function formatActivityObject(all) {
@@ -313,3 +312,33 @@ function formatActivityObject(all) {
   }
 
 //   console.log(formatActivityObject(activities));
+
+
+let clothesArray = [2,4,6,8];
+let activities_id = 9;
+
+
+
+
+function createActivitiesClothesQuery (clothesArray, activities_id) {
+  let activitiesClothesQuery = `
+  INSERT INTO "activities_clothes" 
+  ("activities_id", "clothes_id")
+  VALUES
+  `
+  for (let i=0; i<clothesArray.length; i++) {
+    console.log(i);
+    if (i < clothesArray.length-1){
+      activitiesClothesQuery+=`
+      (${activities_id}, ${clothesArray[i]}),
+    `
+    } else if (i === clothesArray.length-1) {
+      activitiesClothesQuery+=`
+      (${activities_id}, ${clothesArray[i]});
+      `
+    }
+  }
+  return activitiesClothesQuery;
+}
+
+console.log(createActivitiesClothesQuery(clothesArray, activities_id));
