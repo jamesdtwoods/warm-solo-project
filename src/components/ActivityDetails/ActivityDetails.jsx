@@ -51,7 +51,7 @@ function ActivityDetails () {
             </>
              : 
             <button onClick={toActivityList}>Back to Activity List</button>}
-            <h3>{formatDate(activity.date)}</h3>
+            <h3>{formatDate(activity.date)}  ({activity.temperature}℉)</h3>
             <p>{activity.notes}</p>
             <ul>
                 {activity.clothes.map((clothingItem) => (
