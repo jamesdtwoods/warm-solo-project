@@ -31,11 +31,11 @@ router.get('/', (req, res) => {
       LEFT JOIN clothing_type
         ON clothes.clothing_type_id = clothing_type.id
     WHERE activities.user_id = $1
-    ORDER BY activities.date;
+    ORDER BY activities.date, activities.temperature, activities_id;
   `;
   pool.query(queryText, [req.user.id])
     .then((result) => {
-      let theActivities = format2(result.rows)
+      let theActivities = formatActivities(result.rows)
       res.send(theActivities)
     })
     .catch(err => {
@@ -68,7 +68,7 @@ router.get('/weather/:temperature', (req, res) => {
   pool.query(queryText, queryValues)
     .then((result) => {
       console.log('temp query result', result.rows);
-      let theActivities = format2(result.rows)
+      let theActivities = formatActivities(result.rows)
       res.send(theActivities)
     })
     .catch(err => {
@@ -100,7 +100,7 @@ router.get('/search/:tempRange', (req, res) => {
   pool.query(queryText, queryValues)
     .then((result) => {
       console.log('temp query result', result.rows);
-      let theActivities = format2(result.rows)
+      let theActivities = formatActivities(result.rows)
       res.send(theActivities)
     })
     .catch(err => {
@@ -193,7 +193,7 @@ router.put('/:id', (req, res) => {
       });
 });
 
-function format2 (all) {
+function formatActivities (all) {
   if (all[0] === undefined){
     return [];
   } else {
