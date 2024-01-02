@@ -18,17 +18,25 @@ function ActivityForm() {
     });
   }, []);
 
+  const [checkedState, setCheckedState] = useState(
+    new Array(clothesList.length).fill(false)
+  );  
+
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedState(updatedCheckedState);
+  };
+
+  console.log('checkedState',checkedState);
+
   let selectedType;
   const setType = (value) => {
     selectedType = value;
     return selectedType;
   }
-
-  let clothesArray=[];
-  const addClothes = (id) => {  
-    clothesArray.push(id)
-    return clothesArray;
-  } 
 
   const submitItem = () => {
     dispatch({ 
@@ -39,7 +47,7 @@ function ActivityForm() {
         weather_conditions: weather,
         notes: notes,
         activity_type_id: selectedType,
-        clothesArray: clothesArray
+        clothesArray: checkedState
       }
     })
     setDate('')
@@ -103,20 +111,21 @@ function ActivityForm() {
         })}
       </select>
       <br /><br />
-      Clothes:
-      {/* {clothesList.map(item => {
+      Closet:
+      <br />
+      {clothesList.map((item, index) => {
             return (<>
-              <input type="checkbox" name='clothes' value={item.id} key={item.id} onClick={(e) => addClothes(e.target.value)}/>
-              <label for='clothes'>{item.name}</label><br/>
+              <input type="checkbox" name='clothes' value={item.id} key={index} checked={checkedState[index]} onChange={() => handleOnChange(index)}/>
+              <label htmlFor='clothes'>{item.name}</label><br/>
             </>)
-      })} */}
-      <select name="clothes"
+      })}
+      {/* <select name="clothes"
         onChange={(e) => addClothes(e.target.value)}
         multiple>
         {clothesList.map(item => {
             return <option key={item.id} value={item.id}>{item.name}</option>
         })}
-      </select>
+      </select> */}
       <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
       <button onClick={backToList}>CANCEL</button>
