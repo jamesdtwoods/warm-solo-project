@@ -74,13 +74,21 @@ function ActivityList() {
     history.push(`/viewActivitiesByWeather`)
   }
 
+  const searchActivitiesByWeather = () => {
+    dispatch({
+      type: 'SAGA/FETCH_ACTIVITIES_BY_WEATHER',
+      payload: theWeather.properties.periods[0].temperature
+    })
+    history.push(`/viewActivitiesByWeather`)
+  }
+
   return (
     <div className="container">
       {checkAllFunction(activities) ?  
         <div>
           {checkWeather(theWeather) ? 
           <>
-            <button >
+            <button onClick={searchActivitiesByWeather}>
               Show Activities From Temperatures +/- 5℉ of current temperature
             </button><br /><br />
           </> : <></>}
