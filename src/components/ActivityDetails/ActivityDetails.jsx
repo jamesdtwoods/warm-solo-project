@@ -15,8 +15,7 @@ function ActivityDetails () {
           check = true;
         }
         return check;
-      }
-
+    }
     const deleteItem = () => {
         alert('are you sure you want to delete this activity')
         dispatch({
@@ -25,25 +24,21 @@ function ActivityDetails () {
         })
         history.push(`/viewActivities`)
     }
-
     const editItem = () => {
         history.push(`/editActivity/${id}`)
     }
-
     const toActivityList = () => {
         history.push(`/viewActivities`)
     }
-
     const toActivityListByWeather = () => {
         history.push(`/viewActivitiesByWeather`)
     }
-
     const formatDate = (dateInput) => {
         let year = dateInput.split('T',1)[0].split('-')[0]
         let month = dateInput.split('T',1)[0].split('-')[1]
         let day = dateInput.split('T',1)[0].split('-')[2]
         return `${month}/${day}/${year}`
-      }
+    }
 
     return(
         <div className="container">
@@ -59,11 +54,9 @@ function ActivityDetails () {
             <h3>{formatDate(activity.date)}</h3>
             <p>{activity.notes}</p>
             <ul>
-            {activity.clothes.map((clothingItem) => (
-              
-              <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type}</li> 
-              
-          ))}
+                {activity.clothes.map((clothingItem) => (
+                    <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type}</li> 
+                ))}
             </ul>
             <button onClick={editItem}>Edit</button>
             <button onClick={deleteItem}>Remove</button>

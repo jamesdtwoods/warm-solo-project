@@ -63,14 +63,6 @@ function ActivityList() {
     history.push(`/newActivity`)
   }
 
-  // const activitiesByWeather = () => {
-  //   dispatch({
-  //     type: 'SAGA/FETCH_ACTIVITIES_BY_WEATHER',
-  //     payload: theWeather.properties.periods[0].temperature
-  //   })
-  //   history.push(`/viewActivitiesByWeather`)
-  // }
-
   const searchActivities = () => {
     dispatch({
       type: 'SAGA/FETCH_ACTIVITIES_BY_SEARCH',
