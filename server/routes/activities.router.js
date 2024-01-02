@@ -57,7 +57,7 @@ router.get('/weather/:temperature', (req, res) => {
       LEFT JOIN clothing_type
         ON clothes.clothing_type_id = clothing_type.id
     WHERE activities.user_id = $1 AND activities.temperature >= ($2 - 5) AND activities.temperature <= ($2 + 5) 
-    ORDER BY activities_id;
+    ORDER BY activities.date, activities.temperature, activities_id;
   `;
   const queryValues = [
     req.user.id,
@@ -90,7 +90,7 @@ router.get('/search/:tempRange', (req, res) => {
       LEFT JOIN clothing_type
         ON clothes.clothing_type_id = clothing_type.id
     WHERE activities.user_id = $1 AND activities.temperature >= ($2) AND activities.temperature <= ($3) 
-    ORDER BY activities_id;
+    ORDER BY activities.date, activities.temperature, activities_id;
   `;
   const queryValues = [
     req.user.id,
