@@ -20,7 +20,7 @@ function ActivityForm() {
     dispatch({ 
     type: 'SAGA/FETCH_ACTIVITY_TYPES'
     });
-  }, []);
+  }, [checkedState]);
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
