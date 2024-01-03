@@ -34,7 +34,14 @@ function ActivityFormEdit() {
     history.push(`/viewActivity/${id}`)
   }
 
-  const [date, setDate] = useState(activity.date);
+  const formatDate = (dateInput) => {
+    let year = dateInput.split('T',1)[0].split('-')[0]
+    let month = dateInput.split('T',1)[0].split('-')[1]
+    let day = dateInput.split('T',1)[0].split('-')[2]
+    return `${year}-${month}-${day}`
+}
+
+  const [date, setDate] = useState(formatDate(activity.date));
   const [temperature, setTemperature] = useState(activity.temperature);
   const [weather, setWeather] = useState(activity.weather_conditions);
   const [notes, setNotes] = useState(activity.notes);
