@@ -7,6 +7,7 @@ function ActivityForm() {
   const [temperature, setTemperature] = useState('');
   const [weather, setWeather] = useState('');
   const [notes, setNotes] = useState('');
+  const [activityType, setActivityType] = useState('');
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const history = useHistory();
@@ -21,14 +22,6 @@ function ActivityForm() {
     });
   }, []);
 
-  // FIX THIS TODAY
-  let selectedType;
-  const setType = (value) => {
-    selectedType = value;
-    return selectedType;
-  }
-
-  
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
@@ -36,9 +29,6 @@ function ActivityForm() {
     setCheckedState(updatedCheckedState);
   };
 
-  // console.log('checkedState',checkedState);
-
-  // FIX THIS TODAY
   const formatClothesArray = (checkboxArray, clothesListArray) => {
     let count = 0;
     for(let i=0; i<checkboxArray.length; i++) {
@@ -47,29 +37,15 @@ function ActivityForm() {
         count++;
       }
     }
-    checkboxArray.sort()
-    console.log('count', count);
-    checkboxArray.splice(count, checkboxArray.length-count)
+    checkboxArray.sort().splice(count, checkboxArray.length-count)
     return checkboxArray
   }
 
-  // const formatClothesArray2 = (checkboxArray) => {
-  //   console.log('before second loop', checkboxArray);
-  //   let i=0
-  //   while(checkboxArray.length>0) {
-  //     if(checkboxArray[i]===false){
-  //       checkboxArray.pop();
-  //     }
-  //     i++;
-  //   }
-  //   console.log('after second loop', checkboxArray);
-  //   return checkboxArray
-  // }
-
-
   const submitItem = () => {
-    let newClothesArray = formatClothesArray(checkedState, clothesList);
-    console.log(newClothesArray);
+    console.log('selected type:', checkedState);
+    const newClothesArray = formatClothesArray(checkedState, clothesList);
+    console.log('selected type:', activityType);
+    console.log('newClothesArray:', newClothesArray);
     // dispatch({ 
     //   type: 'SAGA/POST_ACTIVITY', 
     //   payload: {
@@ -134,8 +110,8 @@ function ActivityForm() {
       <br /><br />
       Activity Type:
       <select name="type"
-        onChange={(e) => setType(e.target.value)}
-        defaultValue=''>
+        onChange={(e) => setActivityType(e.target.value)}
+        defaultValue={activityType}>
         <option value=''></option>
         {activity_types.map(type => {
             return <option key={type.id} value={type.id}>{type.type}</option>

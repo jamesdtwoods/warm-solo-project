@@ -245,16 +245,14 @@ function createActivitiesClothesQuery (clothesArray, activities_id) {
   VALUES
   `
   for (let i=0; i<clothesArray.length; i++) {
-    if (i < clothesArray.length-1 && clothesArray[i]){
+    if (i < clothesArray.length-1){
       activitiesClothesQuery+=`
       (${activities_id}, ${clothesArray[i]}),
     `
-    } else if (i === clothesArray.length-1 && clothesArray[i]) {
+    } else if (i === clothesArray.length-1) {
       activitiesClothesQuery+=`
       (${activities_id}, ${clothesArray[i]});
       `
-    } else if (i === clothesArray.length-1) {
-      activitiesClothesQuery+=`;`
     }
   }
   return activitiesClothesQuery;
