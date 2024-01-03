@@ -11,34 +11,49 @@ function ActivityForm() {
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const history = useHistory();
   const dispatch = useDispatch();
-  
+  const [checkedState, setCheckedState] = useState(
+    new Array(clothesList.length).fill(false)
+  );  
+
   useEffect(() => {
     dispatch({ 
     type: 'SAGA/FETCH_ACTIVITY_TYPES'
     });
   }, []);
 
-  const [checkedState, setCheckedState] = useState(
-    new Array(clothesList.length).fill(false)
-  );  
-
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedState(updatedCheckedState);
-  };
-
-  console.log('checkedState',checkedState);
-
+  // FIX THIS TODAY
   let selectedType;
   const setType = (value) => {
     selectedType = value;
     return selectedType;
   }
 
+  console.log('selected type', selectedType);
+  
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+  };
+
+  console.log('checkedState',checkedState);
+
+  // FIX THIS TODAY
+  const formatClothesArray = (checkboxArray, clothesListArray) => {
+    for(let i=0; i<checkboxArray.length; i++) {
+      for (let j=0; j<clothesListArray.length; j++) {
+        if(checkboxArray[i]===true){
+          checkboxArray[i] = clothesListArray[i].id
+        }
+      }
+    }
+    return checkboxArray
+  }
+
+
   const submitItem = () => {
+    let newClothesArray = formatClothesArray(checkedState, clothesList);
     dispatch({ 
       type: 'SAGA/POST_ACTIVITY', 
       payload: {
@@ -47,7 +62,7 @@ function ActivityForm() {
         weather_conditions: weather,
         notes: notes,
         activity_type_id: selectedType,
-        clothesArray: checkedState
+        clothesArray: newClothesArray
       }
     })
     setDate('')
@@ -104,8 +119,7 @@ function ActivityForm() {
       Activity Type:
       <select name="type"
         onChange={(e) => setType(e.target.value)}
-        defaultValue=''>
-        <option value=''></option>
+>
         {activity_types.map(type => {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}
@@ -116,7 +130,7 @@ function ActivityForm() {
       {clothesList.map((item, index) => {
             return (<>
               <input type="checkbox" name='clothes' value={item.id} key={index} checked={checkedState[index]} onChange={() => handleOnChange(index)}/>
-              <label htmlFor='clothes'>{item.name}</label><br/>
+              <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
             </>)
       })}
       {/* <select name="clothes"

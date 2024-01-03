@@ -237,7 +237,7 @@ function formatActivities (all) {
   return activitiesArray
   }
 }
-
+  // FIX THIS TODAY
 function createActivitiesClothesQuery (clothesArray, activities_id) {
   let activitiesClothesQuery = `
   INSERT INTO "activities_clothes" 
@@ -245,14 +245,16 @@ function createActivitiesClothesQuery (clothesArray, activities_id) {
   VALUES
   `
   for (let i=0; i<clothesArray.length; i++) {
-    if (i < clothesArray.length-1){
+    if (i < clothesArray.length-1 && clothesArray[i]){
       activitiesClothesQuery+=`
       (${activities_id}, ${clothesArray[i]}),
     `
-    } else if (i === clothesArray.length-1) {
+    } else if (i === clothesArray.length-1 && clothesArray[i]) {
       activitiesClothesQuery+=`
       (${activities_id}, ${clothesArray[i]});
       `
+    } else if (i === clothesArray.length-1) {
+      activitiesClothesQuery+=`;`
     }
   }
   return activitiesClothesQuery;
