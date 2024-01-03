@@ -37,14 +37,18 @@ function ActivityForm() {
         count++;
       }
     }
-    checkboxArray.sort().splice(count, checkboxArray.length-count)
+    checkboxArray.sort()
+    console.log('after sort', checkboxArray);
+    checkboxArray.splice(count, checkboxArray.length-count)
+    console.log('after splice', checkboxArray);
+
     return checkboxArray
   }
 
   const submitItem = () => {
     console.log('selected type:', checkedState);
     const newClothesArray = formatClothesArray(checkedState, clothesList);
-    console.log('selected type:', activityType);
+    console.log('selected activity type:', activityType);
     console.log('newClothesArray:', newClothesArray);
     // dispatch({ 
     //   type: 'SAGA/POST_ACTIVITY', 
@@ -53,7 +57,7 @@ function ActivityForm() {
     //     temperature: temperature,
     //     weather_conditions: weather,
     //     notes: notes,
-    //     activity_type_id: selectedType,
+    //     activity_type_id: activityType,
     //     clothesArray: newClothesArray
     //   }
     // })
@@ -122,17 +126,17 @@ function ActivityForm() {
       <br />
       {clothesList.map((item, index) => {
             return (<>
-              <input type="checkbox" name='clothes' value={item.id} key={index} checked={checkedState[index]} onChange={() => handleOnChange(index)}/>
+              <input 
+                type="checkbox" 
+                name='clothes' 
+                value={item.id} 
+                key={index} 
+                checked={checkedState[index]} 
+                onChange={() => handleOnChange(index)}
+              />
               <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
             </>)
       })}
-      {/* <select name="clothes"
-        onChange={(e) => addClothes(e.target.value)}
-        multiple>
-        {clothesList.map(item => {
-            return <option key={item.id} value={item.id}>{item.name}</option>
-        })}
-      </select> */}
       <br /><br />
       <button onClick={submitItem}>SUBMIT</button>
       <button onClick={backToList}>CANCEL</button>

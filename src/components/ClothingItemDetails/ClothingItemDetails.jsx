@@ -27,11 +27,12 @@ function ClothingItemDetails () {
 
     return(
         <div className="container">
-            <button onClick={toClothingList}>Back to Clothing List</button>
+            <button onClick={toClothingList}>Back to Closet</button>
             <h3>{clothingItem.name}</h3>
             <p>{clothingItem.description}</p>
             <button onClick={editItem}>Edit</button>
-            <button onClick={deleteItem}>Remove</button>
+            <br /><br />
+            <button onClick={deleteItem}>Remove from Closet</button>
         </div>
     )
 }

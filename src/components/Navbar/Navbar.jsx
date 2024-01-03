@@ -57,10 +57,10 @@ function Navbar() {
                 Home
               </li>
               <li className="nav" onClick={toClothes}>
-                Clothes List
+                Closet
               </li>
               <li className="nav" onClick={toActivities}>
-                Activity List
+                Activity Log
               </li>
               <li>
                 <LogOutButton className="navLink" />

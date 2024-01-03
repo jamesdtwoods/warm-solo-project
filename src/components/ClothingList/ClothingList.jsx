@@ -52,8 +52,8 @@ function ClothingList() {
     <div className="container">
       {checkAllFunction(clothesList) ?  
         <div>
-          <button onClick={addClothes}>Add Clothes</button>
-          <h2>Clothing List</h2>
+          <button onClick={addClothes}>Add Clothes to Closet</button>
+          <h2>Closet</h2>
           {checkFunction(clothesList, 1) ? 
             <> <h3>Hats:</h3> 
               <ul>

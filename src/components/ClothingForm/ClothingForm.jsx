@@ -43,7 +43,7 @@ function ClothingForm() {
 
   return (
     <div className="container">
-      <button onClick={backToList}>Back To Clothing List</button>
+      <button onClick={backToList}>Back To Closet</button>
       <br /><br />
       Clothing Item:
       <input
@@ -76,7 +76,7 @@ function ClothingForm() {
       <br /><br />
       <button onClick={backToList}>Cancel</button>
       <br /><br />
-      <button onClick={submitItem}>SUBMIT</button>
+      <button onClick={submitItem}>Add to Closet</button>
     </div>
   );
 }
