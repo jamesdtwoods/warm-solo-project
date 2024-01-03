@@ -57,7 +57,7 @@ function ActivityFormEdit() {
 
   return (
     <div className="container">
-      <button onClick={handleCancel}>Back to Activity</button>
+      <button onClick={handleCancel}>Back to Activity Log</button>
       <br /><br />
         Activity Date:
         {/* is there a way to have the previous date? */}
@@ -123,8 +123,8 @@ function ActivityFormEdit() {
         })}
         </select>
         <br /><br />
-        <button onClick={submitItem}>SUBMIT</button>
-        <button onClick={handleCancel}>CANCEL</button>
+        <button onClick={submitItem}>Add to Activity Log</button>
+        <button onClick={handleCancel}>Cancel</button>
     </div>
   );
 }

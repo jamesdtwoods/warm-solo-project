@@ -74,7 +74,7 @@ function ActivityForm() {
 
   return (
     <div className="container">
-      <button onClick={backToList}>Back to activities list</button>
+      <button onClick={backToList}>Back to activities log</button>
       <br /><br />
       Activity Date:
       <input
@@ -138,8 +138,8 @@ function ActivityForm() {
             </>)
       })}
       <br /><br />
-      <button onClick={submitItem}>SUBMIT</button>
-      <button onClick={backToList}>CANCEL</button>
+      <button onClick={submitItem}>Add to Activity Log</button>
+      <button onClick={backToList}>Cancel</button>
     </div>
   );
 }

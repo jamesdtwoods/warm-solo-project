@@ -111,7 +111,7 @@ function ActivityList() {
           <button onClick={searchActivities}>Search Activities</button>
           <br /><br />
           <button onClick={addActivity}>Add New Activity</button>
-          <h2>Activity List</h2>
+          <h2>Activity Log</h2>
           {checkFunction(activities, 1) ? 
             <> <h3>Biking:</h3> 
               <ul>
@@ -149,7 +149,7 @@ function ActivityList() {
           : <></>}
         </div>
         : <>
-            <h1>No activities</h1>
+            <h1>No activities in log yet</h1>
             <button onClick={addActivity}>Add Activity</button>
           </>}
     </div>
