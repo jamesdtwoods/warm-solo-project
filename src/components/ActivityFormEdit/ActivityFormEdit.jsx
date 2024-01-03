@@ -3,14 +3,14 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 function ActivityFormEdit() {
-    const activity_types = useSelector(store => store.activitiesReducer.activityType);
-    const clothesList = useSelector(store => store.clothingReducer.clothingList);
-    const activity = useSelector(store => store.activitiesReducer.selectedActivity);
-    const history = useHistory();
-    const { id } = useParams();
-    const dispatch = useDispatch();
+  const activity_types = useSelector(store => store.activitiesReducer.activityType);
+  const clothesList = useSelector(store => store.clothingReducer.clothingList);
+  const activity = useSelector(store => store.activitiesReducer.selectedActivity);
+  const history = useHistory();
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-    console.log('activity', activity);
+  console.log('activity', activity);
   
   useEffect(() => {
     dispatch({ 

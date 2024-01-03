@@ -48,6 +48,8 @@ function ActivityListByWeather() {
     history.push(`/viewActivities`)
   }
 
+  // history.goBack()
+
   return (
     <div className="container">
       {checkAllFunction(activities) ?  

@@ -28,7 +28,6 @@ function ActivityForm() {
     return selectedType;
   }
 
-  console.log('selected type', selectedType);
   
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -37,39 +36,56 @@ function ActivityForm() {
     setCheckedState(updatedCheckedState);
   };
 
-  console.log('checkedState',checkedState);
+  // console.log('checkedState',checkedState);
 
   // FIX THIS TODAY
   const formatClothesArray = (checkboxArray, clothesListArray) => {
+    let count = 0;
     for(let i=0; i<checkboxArray.length; i++) {
-      for (let j=0; j<clothesListArray.length; j++) {
-        if(checkboxArray[i]===true){
-          checkboxArray[i] = clothesListArray[i].id
-        }
+      if(checkboxArray[i]===true){
+        checkboxArray[i] = clothesListArray[i].id;
+        count++;
       }
     }
+    checkboxArray.sort()
+    console.log('count', count);
+    checkboxArray.splice(count, checkboxArray.length-count)
     return checkboxArray
   }
+
+  // const formatClothesArray2 = (checkboxArray) => {
+  //   console.log('before second loop', checkboxArray);
+  //   let i=0
+  //   while(checkboxArray.length>0) {
+  //     if(checkboxArray[i]===false){
+  //       checkboxArray.pop();
+  //     }
+  //     i++;
+  //   }
+  //   console.log('after second loop', checkboxArray);
+  //   return checkboxArray
+  // }
 
 
   const submitItem = () => {
     let newClothesArray = formatClothesArray(checkedState, clothesList);
-    dispatch({ 
-      type: 'SAGA/POST_ACTIVITY', 
-      payload: {
-        date: date, 
-        temperature: temperature,
-        weather_conditions: weather,
-        notes: notes,
-        activity_type_id: selectedType,
-        clothesArray: newClothesArray
-      }
-    })
-    setDate('')
-    setTemperature('')
-    setWeather('')
-    setNotes('')
-    history.push("/viewActivities")
+    console.log(newClothesArray);
+    // dispatch({ 
+    //   type: 'SAGA/POST_ACTIVITY', 
+    //   payload: {
+    //     date: date, 
+    //     temperature: temperature,
+    //     weather_conditions: weather,
+    //     notes: notes,
+    //     activity_type_id: selectedType,
+    //     clothesArray: newClothesArray
+    //   }
+    // })
+    // setDate('')
+    // setTemperature('')
+    // setWeather('')
+    // setNotes('')
+    // history.push("/viewActivities")
   }
 
   const backToList = () => {
@@ -119,7 +135,8 @@ function ActivityForm() {
       Activity Type:
       <select name="type"
         onChange={(e) => setType(e.target.value)}
->
+        defaultValue=''>
+        <option value=''></option>
         {activity_types.map(type => {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}

@@ -20,7 +20,7 @@ function ClothingForm() {
   const setType = (value) => {
     selectedType = value;
     return selectedType;
-}
+  }
 
   const submitItem = () => {
     dispatch({ 
