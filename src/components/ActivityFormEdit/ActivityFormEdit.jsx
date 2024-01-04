@@ -42,21 +42,7 @@ function ActivityFormEdit() {
     let month = dateInput.split('T',1)[0].split('-')[1]
     let day = dateInput.split('T',1)[0].split('-')[2]
     return `${year}-${month}-${day}`
-}
-
-  const [date, setDate] = useState(formatDate(activity.date));
-  const [temperature, setTemperature] = useState(activity.temperature);
-  const [weather, setWeather] = useState(activity.weather_conditions);
-  const [notes, setNotes] = useState(activity.notes);
-  const [activityType, setActivityType] = useState('');
-  const [checkedState, setCheckedState] = useState(
-    clothesList.map(item => item.id)
-  ); 
-
-  // console.log('checked state', checkedState);
-  // console.log('previous clothes', activity.clothes);
-  // console.log('clothes list', clothesList);
-
+  }
   const checkPreviousClothes = (checkbox, previousClothes) => {
     for(let i=0; i<checkbox.length; i++) {
       for(let j=0; j<previousClothes.length; j++){
@@ -65,38 +51,29 @@ function ActivityFormEdit() {
         } 
       }
     }
-
     for (let i=0; i<checkbox.length; i++){
       if(checkbox[i] !== true) {
         checkbox[i] = false
       }
     }
-    // for (let i=0; i<checkbox.length; i++){
-    //   if(checkbox[i] === 'true') {
-    //     checkbox[i] = true
-    //   }
-    // }
-    // checkboxArray.sort()
-    // console.log('after sort', checkboxArray);
-    // checkboxArray.splice(count, checkboxArray.length-count)
-    // console.log('after splice', checkboxArray);
-
     return checkbox
   }
 
-  console.log('checkbox function', checkPreviousClothes(checkedState, activity.clothes));
-
-  // let selectedType;
-  // const setType = (value) => {
-  //   selectedType = value;
-  //   return selectedType;
-  // }
-
-  // let clothesArray=[];
-  // const addClothes = (id) => {  
-  //   clothesArray.push(id)
-  //   return clothesArray;
-  // } 
+  const [date, setDate] = useState(formatDate(activity.date));
+  const [temperature, setTemperature] = useState(activity.temperature);
+  const [weather, setWeather] = useState(activity.weather_conditions);
+  const [notes, setNotes] = useState(activity.notes);
+  const [activityType, setActivityType] = useState('');
+  const [checkedState, setCheckedState] = useState(
+    checkPreviousClothes((clothesList.map(item => item.id)), activity.clothes)
+  ); 
+  
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+  };
   
   const handleCancel = () => {
     history.push(`/viewActivity/${id}`)
