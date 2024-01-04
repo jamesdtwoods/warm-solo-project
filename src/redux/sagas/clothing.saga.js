@@ -57,7 +57,7 @@ function* editClothingItem(action) {
         const response = yield axios({
             method: 'PUT',
             url: `/api/clothes/${action.payload.id}`,
-            data: action.payload
+            data: action.payload.data
         })
         yield fetchClothingItems()
     }

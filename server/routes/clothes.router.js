@@ -80,7 +80,7 @@ router.put('/:id', (req, res) => {
           id=$3;
     `;
     const queryValues = [
-        req.body.item,
+        req.body.name,
         req.body.description,
         req.params.id
     ];
