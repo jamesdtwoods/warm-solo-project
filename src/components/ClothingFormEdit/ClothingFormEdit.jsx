@@ -16,7 +16,6 @@ function ClothingFormEdit() {
   }, []); 
 
   const submitItem = () => {
-    console.log('clothing item:', clothingItem);
     dispatch({ 
       type: 'SAGA/EDIT_CLOTHING_ITEM', 
       payload: {
@@ -27,26 +26,10 @@ function ClothingFormEdit() {
     history.push(`/viewClothingItem/${id}`)
   }
 
-  // const [item, setItem] = useState(clothingItem.name);
-  // const [description, setDescription] = useState(clothingItem.description);
-  // const [clothingType, setClothingType] = useState('');
-
-  const setItem = (newValue) => {
+  const handleChange = (newValue, inputName) => {
     dispatch({
-      type: 'MODIFY_CLOTHING_ITEM_NAME',
-      payload: newValue
-    })
-  }
-  const setDescription = (newValue) => {
-    dispatch({
-      type: 'MODIFY_CLOTHING_ITEM_DESCRIPTION',
-      payload: newValue
-    })
-  }
-  const setClothingType = (newValue) => {
-    dispatch({
-      type: 'MODIFY_CLOTHING_ITEM_TYPE',
-      payload: newValue
+      type: 'MODIFY_CLOTHING_ITEM',
+      payload: {newValue: newValue, property: inputName}
     })
   }
 
@@ -63,12 +46,12 @@ function ClothingFormEdit() {
           type="text"
           name="name"
           value={clothingItem.name}
-          onChange={(e) => setItem(e.target.value)}
+          onChange={(e) => handleChange(e.target.value, 'name')}
         />  
       <br /><br />
       Description:
       <textarea
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(e) => handleChange(e.target.value, 'description')}
         name={clothingItem.description}
         id='description'
         placeholder={clothingItem.description}
@@ -80,7 +63,7 @@ function ClothingFormEdit() {
       <select 
         name="type"
         id='clothing_type_id'
-        onChange={(e) => setClothingType(e.target.value)}
+        onChange={(e) => handleChange(e.target.value, 'clothing_type_id')}
         defaultValue={clothingItem.clothing_type_id}>
         {clothing_types.map(type => {
             return <option key={type.id} value={type.id}>{type.type}</option>

@@ -171,7 +171,7 @@ router.put('/:id', (req, res) => {
           "temperature"=$2, 
           "weather_conditions"=$3,
           "notes"=$4,
-          "activity_type_id"=$5
+          "activity_type_id"=$5,
           "updated_date"=CURRENT_TIMESTAMP
         WHERE
           id=$6;
@@ -237,7 +237,7 @@ function formatActivities (all) {
   return activitiesArray
   }
 }
-  // FIX THIS TODAY
+
 function createActivitiesClothesQuery (clothesArray, activities_id) {
   let activitiesClothesQuery = `
   INSERT INTO "activities_clothes" 
