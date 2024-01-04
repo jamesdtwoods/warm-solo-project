@@ -3,15 +3,15 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function ActivityForm() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const activity_types = useSelector(store => store.activitiesReducer.activityType);
+  const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const [date, setDate] = useState('');
   const [temperature, setTemperature] = useState('');
   const [weather, setWeather] = useState('');
   const [notes, setNotes] = useState('');
   const [activityType, setActivityType] = useState('');
-  const activity_types = useSelector(store => store.activitiesReducer.activityType);
-  const clothesList = useSelector(store => store.clothingReducer.clothingList);
-  const history = useHistory();
-  const dispatch = useDispatch();
   const [checkedState, setCheckedState] = useState(
     new Array(clothesList.length).fill(false)
   );  

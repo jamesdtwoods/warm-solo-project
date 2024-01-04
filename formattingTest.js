@@ -341,4 +341,9 @@ function createActivitiesClothesQuery (clothesArray, activities_id) {
   return activitiesClothesQuery;
 }
 
-console.log(createActivitiesClothesQuery(clothesArray, activities_id));
+// console.log(createActivitiesClothesQuery(clothesArray, activities_id));
+
+
+let address = "123 the street"
+
+console.log(address.split(" ").join("%20"))
