@@ -38,10 +38,7 @@ function ActivityForm() {
       }
     }
     checkboxArray.sort()
-    console.log('after sort', checkboxArray);
     checkboxArray.splice(count, checkboxArray.length-count)
-    console.log('after splice', checkboxArray);
-
     return checkboxArray
   }
 

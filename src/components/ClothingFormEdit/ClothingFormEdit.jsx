@@ -3,12 +3,11 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 function ClothingFormEdit() {
-  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
-  const clothesList = useSelector(store => store.clothingReducer.clothingList);
-  const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
-  const history = useHistory();
   const { id } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
+  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
+  const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
 
   useEffect(() => {
     dispatch({
@@ -16,28 +15,22 @@ function ClothingFormEdit() {
       })
   }, []); 
 
-
-
   const submitItem = () => {
     dispatch({ 
       type: 'SAGA/EDIT_CLOTHING_ITEM', 
       payload: {
         item: item, 
         description: description,
-        clothing_type_id: selectedType,
+        clothing_type_id: clothingType,
         id: id
       }
     })
     history.push(`/viewClothingItem/${id}`)
   }
 
-  const [description, setDescription] = useState(clothingItem.description);
   const [item, setItem] = useState(clothingItem.name);
-  let selectedType;
-  const setType = (value) => {
-    selectedType = value;
-    return selectedType;
-  }
+  const [description, setDescription] = useState(clothingItem.description);
+  const [clothingType, setClothingType] = useState('');
 
   const handleCancel = () => {
     history.push(`/viewClothingItem/${id}`)
@@ -68,7 +61,7 @@ function ClothingFormEdit() {
       <br /><br />
       Clothing Type:
       <select name="type"
-        onChange={(e) => setType(e.target.value)}
+        onChange={(e) => setClothingType(e.target.value)}
         defaultValue={clothingItem.clothing_type_id}>
         {clothing_types.map(type => {
             return <option key={type.id} value={type.id}>{type.type}</option>

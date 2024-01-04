@@ -3,24 +3,18 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 function ClothingForm() {
-  const [description, setDescription] = useState('');
-  const [item, setItem] = useState('');
-  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
-  const history = useHistory()
-  let selectedType;
-
+  const history = useHistory(); 
   const dispatch = useDispatch();
-
+  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
+  const [item, setItem] = useState('');
+  const [description, setDescription] = useState('');
+  const [clothingType, setClothingType] = useState('');
+ 
   useEffect(() => {
     dispatch({ 
     type: 'SAGA/FETCH_CLOTHING_TYPES'
     });
   }, []);
-
-  const setType = (value) => {
-    selectedType = value;
-    return selectedType;
-  }
 
   const submitItem = () => {
     dispatch({ 
@@ -28,7 +22,7 @@ function ClothingForm() {
       payload: {
         item: item, 
         description: description,
-        clothing_type_id: selectedType
+        clothing_type_id: clothingType
       }
     })
     setDescription('')
@@ -39,7 +33,6 @@ function ClothingForm() {
   const backToList = () => {
     history.push(`/viewClothes`)
   }
-
 
   return (
     <div className="container">
@@ -66,7 +59,7 @@ function ClothingForm() {
       <br /><br />
       Clothing Type:
       <select name="type"
-        onChange={(e) => setType(e.target.value)}
+        onChange={(e) => setClothingType(e.target.value)}
         defaultValue=''>
         <option value=''></option>
         {clothing_types.map(type => {

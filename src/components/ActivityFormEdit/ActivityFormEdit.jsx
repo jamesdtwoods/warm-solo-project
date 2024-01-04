@@ -9,11 +9,6 @@ function ActivityFormEdit() {
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const activity = useSelector(store => store.activitiesReducer.selectedActivity);
-
-
-
-
-  console.log('activity', activity);
   
   useEffect(() => {
     dispatch({ 
@@ -21,7 +16,21 @@ function ActivityFormEdit() {
     });
   }, []);
 
+  const formatClothesArray = (checkboxArray, clothesListArray) => {
+    let count = 0;
+    for(let i=0; i<checkboxArray.length; i++) {
+      if(checkboxArray[i]===true){
+        checkboxArray[i] = clothesListArray[i].id;
+        count++;
+      }
+    }
+    checkboxArray.sort()
+    checkboxArray.splice(count, checkboxArray.length-count)
+    return checkboxArray
+  }
+
   const submitItem = () => {
+    const newClothesArray = formatClothesArray(checkedState, clothesList);
     dispatch({ 
       type: 'SAGA/EDIT_ACTIVITY', 
       payload: {
@@ -29,8 +38,8 @@ function ActivityFormEdit() {
         temperature: temperature,
         weather_conditions: weather,
         notes: notes,
-        activity_type_id: selectedType,
-        clothesArray: clothesArray,
+        activity_type_id: activityType,
+        clothesArray: newClothesArray,
         id: id
       }
     })
@@ -65,9 +74,9 @@ function ActivityFormEdit() {
   const [notes, setNotes] = useState(activity.notes);
   const [activityType, setActivityType] = useState('');
   const [checkedState, setCheckedState] = useState(
-    checkPreviousClothes((clothesList.map(item => item.id)), activity.clothes)
+    checkPreviousClothes(clothesList.map(item => item.id), activity.clothes)
   ); 
-  
+
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
@@ -119,24 +128,15 @@ function ActivityFormEdit() {
         onChange={(event) => setNotes(event.target.value)}
         />  
         <br /><br />
-        Activity Type:
+        Activity Type: 
         <select name="type"
-        onChange={(e) => setType(e.target.value)}
+        onChange={(e) => setActivityType(e.target.value)}
         defaultValue={activity.activities_id}>
         {activity_types.map(type => {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}
         </select>
         <br /><br />
-        Previous Clothes:
-        <ul>
-            {activity.clothes.map((clothingItem) => (
-              
-              <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type}</li> 
-              
-          ))}
-        </ul>
-        {/* is there a way to have the previous choices selected? */}
         <strong>Closet:</strong>
       <br />
       {clothesList.map((item, index) => {
