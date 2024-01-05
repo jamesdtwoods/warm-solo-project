@@ -27,13 +27,24 @@ const activityListByWeather = (state = [], action) => {
   }
 };
 
+// const selectedActivity = (state = {}, action) => {
+//     switch (action.type) {
+//       case 'SET_ACTIVITY':
+//         return action.payload;
+//       default:
+//         return state;
+//     }
+// };
+
 const selectedActivity = (state = {}, action) => {
-    switch (action.type) {
-      case 'SET_ACTIVITY':
-        return action.payload;
-      default:
-        return state;
-    }
+  if (action.type === 'SET_ACTIVITY') {
+    return action.payload
+  } else if (action.type === 'MODIFY_ACTIVITY') {
+    const editedProperty = action.payload.property
+    const newValue = action.payload.newValue
+    return {...state, [editedProperty]: newValue}
+  } 
+  return state;
 };
 
 export default combineReducers({

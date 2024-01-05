@@ -29,18 +29,33 @@ function ActivityFormEdit() {
     return checkboxArray
   }
 
+  const handleChange = (newValue, inputName) => {
+    console.log('value and input', newValue, inputName);
+    dispatch({
+      type: 'MODIFY_ACTIVITY',
+      payload: {newValue: newValue, property: inputName}
+    })
+  }
+
   const submitItem = () => {
-    const newClothesArray = formatClothesArray(checkedState, clothesList);
+    // const newClothesArray = formatClothesArray(checkedState, clothesList);
+    // dispatch({ 
+    //   type: 'SAGA/EDIT_ACTIVITY', 
+    //   payload: {
+    //     date: date, 
+    //     temperature: temperature,
+    //     weather_conditions: weather,
+    //     notes: notes,
+    //     activity_type_id: activityType,
+    //     clothesArray: newClothesArray,
+    //     id: id
+    //   }
+    // })
     dispatch({ 
       type: 'SAGA/EDIT_ACTIVITY', 
       payload: {
-        date: date, 
-        temperature: temperature,
-        weather_conditions: weather,
-        notes: notes,
-        activity_type_id: activityType,
-        clothesArray: newClothesArray,
-        id: id
+        id: id,
+        data: activity
       }
     })
     history.push(`/viewActivity/${id}`)
@@ -68,22 +83,27 @@ function ActivityFormEdit() {
     return checkbox
   }
 
-  const [date, setDate] = useState(formatDate(activity.date));
-  const [temperature, setTemperature] = useState(activity.temperature);
-  const [weather, setWeather] = useState(activity.weather_conditions);
-  const [notes, setNotes] = useState(activity.notes);
-  const [activityType, setActivityType] = useState('');
+  // const [date, setDate] = useState(formatDate(activity.date));
+  // const [temperature, setTemperature] = useState(activity.temperature);
+  // const [weather, setWeather] = useState(activity.weather_conditions);
+  // const [notes, setNotes] = useState(activity.notes);
+  // const [activityType, setActivityType] = useState('');
   const [checkedState, setCheckedState] = useState(
     checkPreviousClothes(clothesList.map(item => item.id), activity.clothes)
   ); 
+  console.log('starting clothes array', checkedState);
 
-  const handleOnChange = (position) => {
+  const handleClothingChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
     setCheckedState(updatedCheckedState);
+    console.log('clothes array after click', checkedState);
+    const newClothesArray = formatClothesArray(checkedState, clothesList);
+    console.log('formatted clothes array', newClothesArray);
+    handleChange(newClothesArray, 'clothesArray')
   };
-  
+
   const handleCancel = () => {
     history.push(`/viewActivity/${id}`)
   }
@@ -97,8 +117,8 @@ function ActivityFormEdit() {
         type="date"
         name="date"
         required
-        value={date}
-        onChange={(event) => setDate(event.target.value)}
+        value={formatDate(activity.date)}
+        onChange={(e) => handleChange(e.target.value, 'date')}
         />  
         <br /><br />
         Temperature:
@@ -106,8 +126,8 @@ function ActivityFormEdit() {
         type="number"
         name="temperature"
         required
-        value={temperature}
-        onChange={(event) => setTemperature(event.target.value)}
+        value={activity.temperature}
+        onChange={(e) => handleChange(e.target.value, 'temperature')}
         />  
         <br /><br />
         Weather:
@@ -115,8 +135,8 @@ function ActivityFormEdit() {
         type="text"
         name="weather"
         required
-        value={weather}
-        onChange={(event) => setWeather(event.target.value)}
+        value={activity.weather_conditions}
+        onChange={(e) => handleChange(e.target.value, 'weather_conditions')}
         />  
         <br /><br />
         Notes:
@@ -124,13 +144,13 @@ function ActivityFormEdit() {
         type="text"
         name="notes"
         required
-        value={notes}
-        onChange={(event) => setNotes(event.target.value)}
+        value={activity.notes}
+        onChange={(e) => handleChange(e.target.value, 'notes')}
         />  
         <br /><br />
         Activity Type: 
         <select name="type"
-        onChange={(e) => setActivityType(e.target.value)}
+        onChange={(e) => handleChange(e.target.value, 'activity_type_id')}
         defaultValue={activity.activities_id}>
         {activity_types.map(type => {
             return <option key={type.id} value={type.id}>{type.type}</option>
@@ -149,7 +169,7 @@ function ActivityFormEdit() {
                 value={item.id} 
                 key={index} 
                 checked={checkedState[index]} 
-                onChange={() => handleOnChange(index)}
+                onChange={() => handleClothingChange(index)}
               />
               <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -162,7 +182,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -175,7 +195,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -188,7 +208,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -201,7 +221,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -214,7 +234,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -227,7 +247,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -240,7 +260,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}
@@ -253,7 +273,7 @@ function ActivityFormEdit() {
               value={item.id} 
               key={index} 
               checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
+              onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
           </>)}

@@ -87,7 +87,7 @@ function* editActivity(action) {
         const response = yield axios({
             method: 'PUT',
             url: `/api/activities/${action.payload.id}`,
-            data: action.payload
+            data: action.payload.data
         })
         yield fetchActivities()
     }

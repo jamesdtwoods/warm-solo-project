@@ -179,19 +179,45 @@ router.put('/:id', (req, res) => {
     const queryValues = [
         req.body.date,
         req.body.temperature,
-        req.body.weather,
+        req.body.weather_conditions,
         req.body.notes,
         req.body.activity_type_id,
         req.params.id
     ];
-  
     pool.query(queryText, queryValues)
-      .then((result) => { res.sendStatus(200); })
-      .catch((err) => {
-        console.log('Error in PUT /api/activities/:id', err);
-        res.sendStatus(500);
-      });
-});
+    .then(result => {
+      const queryDeleteText = `
+      DELETE FROM activities_clothes
+        WHERE activities_id=${req.params.id};
+    `;
+    // second QUERY removes clothes FOR THAT activity
+      pool.query(queryDeleteText)
+        .then(result => {
+          const clothesArray = req.body.clothesArray
+          console.log('clothes array', clothesArray);
+          console.log('activity id', req.params.id);
+          console.log('new query', createActivitiesClothesQuery(clothesArray, req.params.id));
+          const insertActivitiesClothesQuery = createActivitiesClothesQuery(clothesArray, req.params.id);
+          // Third QUERY ADDS clothes FOR THAT activity
+          pool.query(insertActivitiesClothesQuery)
+          .then(result => {
+            res.sendStatus(201);
+          }).catch(err => {
+            // catch for third query
+            console.log(err);
+            res.sendStatus(500)
+        })
+        }).catch(err => {
+          // catch for second query
+          console.log(err);
+          res.sendStatus(500)
+      })
+    }).catch(err => { // 👈 Catch for first query
+      console.log(err);
+      res.sendStatus(500)
+    })
+})
+
 
 function formatActivities (all) {
   if (all[0] === undefined){
