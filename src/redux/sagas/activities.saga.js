@@ -30,7 +30,7 @@ function* fetchActivitiesByWeather(action) {
     const activities = yield axios({
       method: 'GET',
       url: `/api/activities/weather/${action.payload}`
-  })
+    })
     yield put({
       type: 'SET_ACTIVITIES_BY_WEATHER',
       payload: activities.data
@@ -45,7 +45,7 @@ function* fetchActivitiesBySearch(action) {
     const activities = yield axios({
       method: 'GET',
       url: `/api/activities/search/${action.payload.min}-${action.payload.max}`
-  })
+    })
     yield put({
       type: 'SET_ACTIVITIES_BY_WEATHER',
       payload: activities.data
@@ -57,12 +57,12 @@ function* fetchActivitiesBySearch(action) {
 
 function* postActivity(action) {
     try {
-        const response = yield axios({
-            method: 'POST',
-            url: '/api/activities',
-            data: action.payload
-        })
-        yield fetchActivities()
+      const response = yield axios({
+          method: 'POST',
+          url: '/api/activities',
+          data: action.payload
+      })
+      yield fetchActivities()
     }
     catch (error) {
         console.error('activity Item POST failed:', error)
@@ -84,12 +84,17 @@ function* deleteActivity(action) {
 
 function* editActivity(action) {
     try {
+      yield put({
+        type: 'SET_ACTIVITY',
+        payload: action.payload.data
+      });
         const response = yield axios({
             method: 'PUT',
             url: `/api/activities/${action.payload.id}`,
             data: action.payload.data
         })
         yield fetchActivities()
+
     }
     catch (error) {
         console.error('activity Item EDIT failed:', error)

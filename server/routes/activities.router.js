@@ -20,7 +20,7 @@ router.get('/types', (req, res) => {
 
 router.get('/', (req, res) => {
   const queryText = `
-  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
+  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
     FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
@@ -46,7 +46,7 @@ router.get('/', (req, res) => {
 
 router.get('/weather/:temperature', (req, res) => {
   const queryText = `
-  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
+  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
     FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
@@ -79,7 +79,7 @@ router.get('/weather/:temperature', (req, res) => {
 
 router.get('/search/:tempRange', (req, res) => {
   const queryText = `
-  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type
+  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
     FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
@@ -129,11 +129,12 @@ router.post('/', (req, res) => {
     .then(result => {
       // ID IS HERE!
       console.log('New Activities Id:', result.rows[0].id);
+      console.log('clothes array', req.body.clothesArray)
       const activitesId = result.rows[0].id
       const clothesArray = req.body.clothesArray
-      console.log('new query', createActivitiesClothesQuery(clothesArray, activitesId));
+      console.log('new query', newActivityClothesQuery(clothesArray, activitesId));
       // Now handle the clothes reference:
-      const insertActivitiesClothesQuery = createActivitiesClothesQuery(clothesArray, activitesId);
+      const insertActivitiesClothesQuery = newActivityClothesQuery(clothesArray, activitesId);
       // SECOND QUERY ADDS clothes FOR THAT NEW activity
       pool.query(insertActivitiesClothesQuery)
         .then(result => {
@@ -196,10 +197,10 @@ router.put('/:id', (req, res) => {
           const clothesArray = req.body.clothesArray
           console.log('clothes array', clothesArray);
           console.log('activity id', req.params.id);
-          console.log('new query', createActivitiesClothesQuery(clothesArray, req.params.id));
-          const insertActivitiesClothesQuery = createActivitiesClothesQuery(clothesArray, req.params.id);
+          console.log('new query', updateActivitiesClothesQuery(clothesArray, req.params.id));
+          const editActivitiesClothesQuery = updateActivitiesClothesQuery(clothesArray, req.params.id);
           // Third QUERY ADDS clothes FOR THAT activity
-          pool.query(insertActivitiesClothesQuery)
+          pool.query(editActivitiesClothesQuery)
           .then(result => {
             res.sendStatus(201);
           }).catch(err => {
@@ -231,10 +232,10 @@ function formatActivities (all) {
         notes: all[0].notes,
         activity_type: all[0].activity_type,
         activity_type_id: all[0].activity_type_id,
-        clothes: [{
+        clothesArray: [{
             clothes_id: all[0].clothes_id,
             name: all[0].name,
-            clothing_type: all[0].clothing_type
+            clothing_type_id: all[0].clothing_type_id
         }]
     }]
     for(let i=1; i<all.length; i++) {
@@ -247,15 +248,15 @@ function formatActivities (all) {
                 notes: all[i].notes,
                 activity_type: all[i].activity_type,
                 activity_type_id: all[i].activity_type_id,
-                clothes: []
+                clothesArray: []
             })
         }
         for (let j=0; j<activitiesArray.length; j++) {
             if(activitiesArray[j].activities_id === all[i].activities_id){
-            activitiesArray[j].clothes.push({
+            activitiesArray[j].clothesArray.push({
               clothes_id: all[i].clothes_id,
               name: all[i].name,
-              clothing_type: all[i].clothing_type
+              clothing_type_id: all[i].clothing_type_id
             })
           }
         }
@@ -264,7 +265,7 @@ function formatActivities (all) {
   }
 }
 
-function createActivitiesClothesQuery (clothesArray, activities_id) {
+function newActivityClothesQuery (clothesArray, activities_id) {
   let activitiesClothesQuery = `
   INSERT INTO "activities_clothes" 
   ("activities_id", "clothes_id")
@@ -278,6 +279,26 @@ function createActivitiesClothesQuery (clothesArray, activities_id) {
     } else if (i === clothesArray.length-1) {
       activitiesClothesQuery+=`
       (${activities_id}, ${clothesArray[i]});
+      `
+    }
+  }
+  return activitiesClothesQuery;
+}
+
+function updateActivitiesClothesQuery (clothesArray, activities_id) {
+  let activitiesClothesQuery = `
+  INSERT INTO "activities_clothes" 
+  ("activities_id", "clothes_id")
+  VALUES
+  `
+  for (let i=0; i<clothesArray.length; i++) {
+    if (i < clothesArray.length-1){
+      activitiesClothesQuery+=`
+      (${activities_id}, ${clothesArray[i].id}),
+    `
+    } else if (i === clothesArray.length-1) {
+      activitiesClothesQuery+=`
+      (${activities_id}, ${clothesArray[i].id});
       `
     }
   }

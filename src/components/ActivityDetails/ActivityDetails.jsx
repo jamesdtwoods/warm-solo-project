@@ -54,8 +54,8 @@ function ActivityDetails () {
             <h3>{formatDate(activity.date)}  ({activity.temperature}℉)</h3>
             <p>{activity.notes}</p>
             <ul>
-                {activity.clothes.map((clothingItem) => (
-                    <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type}</li> 
+                {activity.clothesArray.map((clothingItem) => (
+                    <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type_id}</li> 
                 ))}
             </ul>
             <button onClick={editItem}>Edit</button>

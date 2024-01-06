@@ -16,17 +16,11 @@ function ActivityFormEdit() {
     });
   }, []);
 
-  const formatClothesArray = (checkboxArray, clothesListArray) => {
-    let count = 0;
-    for(let i=0; i<checkboxArray.length; i++) {
-      if(checkboxArray[i]===true){
-        checkboxArray[i] = clothesListArray[i].id;
-        count++;
-      }
-    }
-    checkboxArray.sort()
-    checkboxArray.splice(count, checkboxArray.length-count)
-    return checkboxArray
+  const formatClothesArray = (checkboxArray) => {
+    console.log('before filter', checkboxArray);
+    const filteredArray = checkboxArray.filter(item => item.checked)
+    console.log('after filter', filteredArray);
+    return filteredArray
   }
 
   const handleChange = (newValue, inputName) => {
@@ -38,24 +32,20 @@ function ActivityFormEdit() {
   }
 
   const submitItem = () => {
-    // const newClothesArray = formatClothesArray(checkedState, clothesList);
-    // dispatch({ 
-    //   type: 'SAGA/EDIT_ACTIVITY', 
-    //   payload: {
-    //     date: date, 
-    //     temperature: temperature,
-    //     weather_conditions: weather,
-    //     notes: notes,
-    //     activity_type_id: activityType,
-    //     clothesArray: newClothesArray,
-    //     id: id
-    //   }
-    // })
+    const newClothesArray = formatClothesArray(checkedState);
+    console.log('new clothes array', newClothesArray);
     dispatch({ 
       type: 'SAGA/EDIT_ACTIVITY', 
       payload: {
         id: id,
-        data: activity
+        data: {
+          date: activity.date, 
+          temperature: activity.temperature,
+          weather_conditions: activity.weather_conditions,
+          notes: activity.notes,
+          activity_type_id: activity.activity_type_id,
+          clothesArray: newClothesArray
+        }
       }
     })
     history.push(`/viewActivity/${id}`)
@@ -70,38 +60,42 @@ function ActivityFormEdit() {
   const checkPreviousClothes = (checkbox, previousClothes) => {
     for(let i=0; i<checkbox.length; i++) {
       for(let j=0; j<previousClothes.length; j++){
-        if(checkbox[i] === previousClothes[j].clothes_id){
-          checkbox[i]=true;
+        if(checkbox[i].id === previousClothes[j].clothes_id){
+          checkbox[i].checked=true;
         } 
       }
     }
     for (let i=0; i<checkbox.length; i++){
-      if(checkbox[i] !== true) {
-        checkbox[i] = false
+      if(checkbox[i].checked !== true) {
+        checkbox[i].checked = false
       }
     }
     return checkbox
   }
 
-  // const [date, setDate] = useState(formatDate(activity.date));
-  // const [temperature, setTemperature] = useState(activity.temperature);
-  // const [weather, setWeather] = useState(activity.weather_conditions);
-  // const [notes, setNotes] = useState(activity.notes);
-  // const [activityType, setActivityType] = useState('');
+
   const [checkedState, setCheckedState] = useState(
-    checkPreviousClothes(clothesList.map(item => item.id), activity.clothes)
+    checkPreviousClothes(clothesList.map(item => item), activity.clothesArray)
+    // clothesList.map(item => item)
+  //   clothesList.map(item => {
+  //     return ({
+  //       clothes_id: item.id,
+  //       name: item.name,
+  //       clothing_type: item.id
+  //     })
+  // })
   ); 
   console.log('starting clothes array', checkedState);
 
   const handleClothingChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-    setCheckedState(updatedCheckedState);
-    console.log('clothes array after click', checkedState);
-    const newClothesArray = formatClothesArray(checkedState, clothesList);
-    console.log('formatted clothes array', newClothesArray);
-    handleChange(newClothesArray, 'clothesArray')
+    setCheckedState(checkedState.map((item, index) => {
+      console.log('in map, item, index', item, index);
+      if(index === position) {
+        console.log('in conditional, item.checked:', item.checked);
+        item.checked = !item.checked
+      }
+      return item
+    }))
   };
 
   const handleCancel = () => {
@@ -168,7 +162,7 @@ function ActivityFormEdit() {
                 name='clothes' 
                 value={item.id} 
                 key={index} 
-                checked={checkedState[index]} 
+                checked={checkedState[index].checked} 
                 onChange={() => handleClothingChange(index)}
               />
               <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -181,7 +175,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -194,7 +188,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -207,7 +201,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -220,7 +214,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -233,7 +227,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -246,7 +240,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -259,7 +253,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
@@ -272,7 +266,7 @@ function ActivityFormEdit() {
               name='clothes' 
               value={item.id} 
               key={index} 
-              checked={checkedState[index]} 
+              checked={checkedState[index].checked} 
               onChange={() => handleClothingChange(index)}
             />
             <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
