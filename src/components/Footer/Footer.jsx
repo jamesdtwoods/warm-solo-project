@@ -8,8 +8,13 @@ import favicon from '../Navbar/warm_favicon_2.png'
 
 function Footer() {
   return <footer>
-      <p><img className='brand-logo-footer' src={favicon}></img><br />Stay<text className='brand-name-footer'> warm</text> out there
-      <br />&copy; James Woods 2024</p>
+      <p>
+        <img className='brand-logo-footer' src={favicon}></img>
+        <br />
+        Stay<text className='brand-name-footer'> warm</text> out there
+        <br />
+        &copy; James Woods 2024
+      </p>
     </footer>;
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -8,8 +9,6 @@ function RegisterForm() {
   const dispatch = useDispatch();
 
   const registerUser = (event) => {
-    event.preventDefault();
-
     dispatch({
       type: 'REGISTER',
       payload: {
@@ -20,7 +19,7 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <>
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -52,9 +51,9 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button variant='add' onClick={registerUser}>Register</Button>
       </div>
-    </form>
+    </>
   );
 }
 
