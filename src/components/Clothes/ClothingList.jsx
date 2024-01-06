@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import ClothingItem from './ClothingItem';
 
 function ClothingList() {
@@ -52,7 +53,7 @@ function ClothingList() {
     <div className="container">
       {checkAllFunction(clothesList) ?  
         <div>
-          <button onClick={addClothes}>Add Clothes to Closet</button>
+          <Button size='sm' variant='add' onClick={addClothes}>Add Clothes to Closet</Button>
           <h2>Closet</h2>
           {checkFunction(clothesList, 1) ? 
             <> <h3>Hats:</h3> 

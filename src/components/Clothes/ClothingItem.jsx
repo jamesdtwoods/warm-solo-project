@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ClothingItem({clothingItem}) {
   const history = useHistory()
@@ -18,8 +19,8 @@ function ClothingItem({clothingItem}) {
 
   return (
     <li>
-        <p>{clothingItem.name}</p>
-        <button onClick={viewItem}>View</button>
+        <p>{clothingItem.name} <Button size='sm' variant='view' onClick={viewItem}>View</Button></p>
+        
 
     </li>
   );

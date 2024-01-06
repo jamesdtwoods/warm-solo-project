@@ -34,6 +34,8 @@ import ActivityFormEdit from '../Activities/ActivityFormEdit';
 import Weather from '../Weather/Weather';
 import WeatherHeader from '../WeatherHeader/WeatherHeader';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
 function App() {

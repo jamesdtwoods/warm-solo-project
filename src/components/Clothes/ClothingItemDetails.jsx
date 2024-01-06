@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ClothingItemDetails () {
     const { id } = useParams()
@@ -27,12 +28,12 @@ function ClothingItemDetails () {
 
     return(
         <div className="container">
-            <button onClick={toClothingList}>Back to Closet</button>
+            <Button size='sm' variant='back' onClick={toClothingList}>Back to Closet</Button>
             <h3>{clothingItem.name}</h3>
             <p>{clothingItem.description}</p>
-            <button onClick={editItem}>Edit</button>
+            <Button size='sm' variant='edit' onClick={editItem}>Edit</Button>
             <br /><br />
-            <button onClick={deleteItem}>Remove from Closet</button>
+            <Button size='sm' variant='delete' onClick={deleteItem}>Remove from Closet</Button>
         </div>
     )
 }

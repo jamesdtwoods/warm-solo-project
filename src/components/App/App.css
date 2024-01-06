@@ -25,10 +25,10 @@ Container
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
-
+/* 
 .btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
@@ -57,6 +57,40 @@ Button
 .btn:hover {
   background-color: #008183;
   text-decoration: none;
+} */
+
+.btn-add {
+  background-color: #00acb0;
+  color: white;
+  padding: 1px 5px;
+}
+
+.btn-view {
+  background-color: white;
+  color: #00acb0;
+  border-color: #00acb0;
+  padding: 1px 5px;
+}
+
+.btn-edit {
+  background-color: white;
+  color: blue;
+  border-color: blue;
+  padding: 1px 5px;
+}
+
+.btn-delete {
+  background-color: white;
+  color: red;
+  border-color: red;
+  padding: 1px 5px;
+}
+
+.btn-back {
+  background-color: white;
+  color: green;
+  border-color: green;
+  padding: 1px 5px;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
