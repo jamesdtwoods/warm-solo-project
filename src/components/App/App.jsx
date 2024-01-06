@@ -26,11 +26,11 @@ import ClothingForm from '../ClothingForm/ClothingForm';
 import ClothingList from '../ClothingList/ClothingList';
 import ClothingItemDetails from '../ClothingItemDetails/ClothingItemDetails';
 import ClothingFormEdit from '../ClothingFormEdit/ClothingFormEdit';
-import ActivityForm from '../ActivityForm/ActivityForm';
-import ActivityList from '../ActivityList/ActivityList';
-import ActivityListByWeather from '../ActivityListByWeather/ActivityListByWeather';
-import ActivityDetails from '../ActivityDetails/ActivityDetails';
-import ActivityFormEdit from '../ActivityFormEdit/ActivityFormEdit';
+import ActivityForm from '../Activities/ActivityForm';
+import ActivityList from '../Activities/ActivityList';
+import ActivityListByWeather from '../Activities/ActivityListByWeather';
+import ActivityDetails from '../Activities/ActivityDetails';
+import ActivityFormEdit from '../Activities/ActivityFormEdit';
 import Weather from '../Weather/Weather';
 import WeatherHeader from '../WeatherHeader/WeatherHeader';
 
