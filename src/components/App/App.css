@@ -38,6 +38,10 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%; 
+  margin-top: 80px;
+  padding: 20px;
+  text-align: center;
+
 }
 
 img {
@@ -140,7 +144,7 @@ Button
 .btn-weather {
   background-color: #F6F6F6;
   color: #004A55;
-  border-color: #004A55;
+  border-color: #A7CDCC;
   padding: 1px 5px;
   margin: 2px;
 }
@@ -277,14 +281,23 @@ Navbar
   padding: 0.5rem 0rem;
   background-color: #004A55;
   color: #FFA372;
-  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+  box-shadow: 0 2px 2px 2px #A7CDCC;
 }
 .brand-name {
   text-decoration: none;
   color: #FFA372;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #ED6663;
   font-size: 24px;
   font-weight: 700;
   margin-left: 1rem;
+}
+.brand-name-footer {
+  text-decoration: none;
+  color: #ED6663;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FFA372;
+  font-weight: 600;
 }
 
 

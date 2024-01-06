@@ -1,5 +1,4 @@
 import React from 'react';
-import './Footer.css';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -8,7 +7,7 @@ import './Footer.css';
 
 function Footer() {
   return <footer>
-      Stay warm out there
+      Stay<text className='brand-name-footer'> warm</text> out there
       <br />&copy; James Woods 2024
     </footer>;
 }
