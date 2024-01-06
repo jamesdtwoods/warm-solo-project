@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ClothingItem from '../ClothingItem/ClothingItem';
+import ClothingItem from './ClothingItem';
 
 function ClothingList() {
   const dispatch = useDispatch();
