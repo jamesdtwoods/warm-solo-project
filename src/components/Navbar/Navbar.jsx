@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+import favicon from './favicon.ico'
 // import './Navbar.css';
 
 function Navbar() {
@@ -24,8 +25,8 @@ function Navbar() {
     return (
         <nav className="navigation">
             <h1 className="brand-name" onClick={toHome}>
-                warm
-            </h1>
+            <img className='brand-logo' src={favicon}></img>warm 
+            </h1>  
         {user.id && (
             <>
           <button 

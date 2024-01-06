@@ -16,43 +16,23 @@ COLORS:
   color: #F6F6F6;
 } */
 
-
-html,
-body,
-#react-root {
+html, body, #react-root {
   position: relative;
   min-height: 100vh;
 }
-
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #004A55;
   margin: 0px;
   background-color: #F6F6F6;
 }
-
-footer {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #004A55;
-  background-color: #A7CDCC;
-  position: absolute;
-  bottom: 0;
-  width: 100%; 
-  margin-top: 80px;
-  padding: 20px;
-  text-align: center;
-
-}
-
 img {
   display: inline-block;
   max-width: 100%;
 }
-
 .list {
   margin: 0px;
 }
-
 li {
   margin-bottom: 5px;
 }
@@ -62,11 +42,11 @@ Container
 -------------------------------------------------------------------------------- */
 
 .container {
-  padding: 20px;
+  padding: 20px 20px 85px 20px;
 }
 
 /* --------------------------------------------------------------------------------
-Button
+Buttons
 -------------------------------------------------------------------------------- */
 /* 
 .btn {
@@ -108,7 +88,6 @@ Button
   padding: 1px 5px;
   margin: 2px 2px 10px 2px;
 }
-
 .btn-view {
   background-color: #F6F6F6;
   color: #004A55;
@@ -116,7 +95,6 @@ Button
   padding: 1px 5px;
   margin: 2px;
 }
-
 .btn-edit {
   background-color: #A7CDCC;
   color: #004A55;
@@ -124,7 +102,6 @@ Button
   padding: 1px 5px;
   margin: 2px;
 }
-
 .btn-delete {
   background-color: #F6F6F6;
   color: #ED6663;
@@ -132,7 +109,6 @@ Button
   padding: 1px 5px;
   margin: 2px;
 }
-
 .btn-back {
   background-color: #F6F6F6;
   color: #004A55;
@@ -140,7 +116,6 @@ Button
   padding: 1px 5px;
   margin: 2px 2px 10px 2px;
 }
-
 .btn-weather {
   background-color: #F6F6F6;
   color: #004A55;
@@ -148,7 +123,6 @@ Button
   padding: 1px 5px;
   margin: 2px;
 }
-
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
   padding: 0;
@@ -159,7 +133,6 @@ Button
   font: inherit;
   color: #444;
 }
-
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #008183;
@@ -207,66 +180,6 @@ input, select, textarea {
   color: #004A55;
 }
 
-/* --------------------------------------------------------------------------------
-Nav
--------------------------------------------------------------------------------- */
-
-.nav {
-  /* flex box layout */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 0 0 30px;
-  background-color: #004A55;
-  overflow: hidden;
-}
-
-.nav:hover {
-  background-color: #008183;
-}
-
-.nav a {
-  text-decoration: none;
-}
-
-.nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
-  margin: 0;
-}
-
-.btn-navLink {
-  display: inline-block;
-  color: #ED6663;
-  background-color: #004A55;
-  text-align: center;
-  /* padding: 24px 10px; */
-  text-decoration: none;
-  font-size: 15px;
-  width: 100%;
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border: none;
-  cursor: pointer;
-  outline: 0;
-}
-
-.navLink:hover {
-  background-color: #008183;
-}
-
-
-/* --------------------------------------------------------------------------------
-Header
--------------------------------------------------------------------------------- */
-
-.header-weather {
-  padding-top: 10px;
-  padding-left: 20px;
-}
 
 /* --------------------------------------------------------------------------------
 Navbar
@@ -292,15 +205,10 @@ Navbar
   font-weight: 700;
   margin-left: 1rem;
 }
-.brand-name-footer {
-  text-decoration: none;
-  color: #ED6663;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #FFA372;
-  font-weight: 600;
+
+.brand-logo {
+  height: 25px;
 }
-
-
 .navigation-menu {
   margin-left: auto;
 }
@@ -339,7 +247,6 @@ Navbar
 .hamburger:hover {
   background-color: #ED6663;
 }
-
 @media screen and (max-width: 768px) {
   .hamburger {
     display: block;
@@ -354,7 +261,7 @@ Navbar
     flex-direction: column;
     /* // makes menu span full height and width */
     width: 100%;
-    height: calc(100vh - 77px);
+    height: calc(100vh - 60vh);
     background-color: #004A55;
     border-top: 1px solid #004A55;;
   }
@@ -372,3 +279,91 @@ Navbar
     color: #FFA372;
   }
 }
+
+/* --------------------------------------------------------------------------------
+Header
+-------------------------------------------------------------------------------- */
+
+.header-weather {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+/* --------------------------------------------------------------------------------
+Footer
+-------------------------------------------------------------------------------- */
+
+footer {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #004A55;
+  background-color: #A7CDCC;
+  position: absolute;
+  bottom: 0;
+  width: 100%; 
+  padding: 10px;
+  text-align: center;
+}
+.brand-logo-footer {
+  height: 25px;
+  margin-top: 2.5px;
+  background-color: #004A55;
+  border-radius: 25px;
+}
+.brand-name-footer {
+  text-decoration: none;
+  color: #ED6663;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FFA372;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------------
+Nav - OLD
+-------------------------------------------------------------------------------- */
+/* 
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0 0 30px;
+  background-color: #004A55;
+  overflow: hidden;
+}
+
+.nav:hover {
+  background-color: #008183;
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f2f2f2;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.btn-navLink {
+  display: inline-block;
+  color: #ED6663;
+  background-color: #004A55;
+  text-align: center;
+  padding: 24px 10px;
+  text-decoration: none;
+  font-size: 15px;
+  width: 100%;
+  /* these last two make the logout button in
+  the nav bar look like another link 
+  border: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+.navLink:hover {
+  background-color: #008183;
+}
+*/

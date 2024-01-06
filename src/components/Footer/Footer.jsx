@@ -1,4 +1,5 @@
 import React from 'react';
+import favicon from '../Navbar/warm_favicon_2.png'
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -7,8 +8,8 @@ import React from 'react';
 
 function Footer() {
   return <footer>
-      Stay<text className='brand-name-footer'> warm</text> out there
-      <br />&copy; James Woods 2024
+      <p><img className='brand-logo-footer' src={favicon}></img><br />Stay<text className='brand-name-footer'> warm</text> out there
+      <br />&copy; James Woods 2024</p>
     </footer>;
 }
 
