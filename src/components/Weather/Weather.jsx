@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function Weather() {
   const [latitude, setLatitude] = useState('')
@@ -38,7 +39,7 @@ function Weather() {
         placeholder='location'
         onChange={(event) => setLocation(event.target.value)}
       />  
-      <button onClick={fetchWeather}>Get Weather</button>
+      <Button size='sm' variant='add' onClick={fetchWeather}>Get Weather</Button>
       <br />
       {checkWeather(theWeather) ? 
       <>

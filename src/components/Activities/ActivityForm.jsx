@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ActivityForm() {
   const history = useHistory();
@@ -68,7 +69,7 @@ function ActivityForm() {
 
   return (
     <div className="container">
-      <button onClick={backToList}>Back to activities log</button>
+      <Button size='sm' variant='back' onClick={backToList}>Back to activities log</Button>
       <br /><br />
       Activity Date:
       <input
@@ -238,8 +239,8 @@ function ActivityForm() {
           </>)}
       })}
       <br /><br />
-      <button onClick={submitItem}>Add to Activity Log</button>
-      <button onClick={backToList}>Cancel</button>
+      <Button size='sm' variant='add' onClick={submitItem}>Add to Activity Log</Button>
+      <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
     </div>
   );
 }

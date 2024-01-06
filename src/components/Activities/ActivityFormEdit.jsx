@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ActivityFormEdit() {
   const history = useHistory();
@@ -104,7 +105,7 @@ function ActivityFormEdit() {
 
   return (
     <div className="container">
-      <button onClick={handleCancel}>Back to Activity</button>
+      <Button size='sm' variant='back' onClick={handleCancel}>Back to Activity</Button>
       <br /><br />
         Activity Date:
         <input
@@ -273,8 +274,8 @@ function ActivityFormEdit() {
           </>)}
       })}
         <br /><br />
-        <button onClick={submitItem}>Add to Activity Log</button>
-        <button onClick={handleCancel}>Cancel</button>
+        <Button size='sm' variant='add' onClick={submitItem}>Add to Activity Log</Button>
+        <Button size='sm' variant='back' onClick={handleCancel}>Cancel</Button>
     </div>
   );
 }

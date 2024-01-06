@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function Activity({activity}) {
   const history = useHistory()
@@ -24,7 +25,7 @@ function Activity({activity}) {
   return (
     <li>
       <p>{formatDate(activity.date)} - {activity.temperature}℉, {activity.weather_conditions}</p>
-      <button onClick={viewActivity}>View</button>
+      <Button size='sm' variant='view' onClick={viewActivity}>View</Button>
     </li>
   );
 }

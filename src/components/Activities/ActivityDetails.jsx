@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ActivityDetails () {
     const { id } = useParams();
@@ -45,12 +46,12 @@ function ActivityDetails () {
             {checkAllFunction(activities) 
              ? 
             <>
-            <button onClick={toActivityListByWeather}>Back to Activity List By Weather</button>
+            <Button size='sm' variant='back' onClick={toActivityListByWeather}>Back to Activity List By Weather</Button>
             <br /><br />
-            <button onClick={toActivityList}>Back to Activity List</button>
+            <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>
             </>
              : 
-            <button onClick={toActivityList}>Back to Activity List</button>}
+             <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>}
             <h3>{formatDate(activity.date)}  ({activity.temperature}℉)</h3>
             <p>{activity.notes}</p>
             <ul>
@@ -58,8 +59,8 @@ function ActivityDetails () {
                     <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type_id}</li> 
                 ))}
             </ul>
-            <button onClick={editItem}>Edit</button>
-            <button onClick={deleteItem}>Remove</button>
+            <Button size='sm' variant='edit' onClick={editItem}>Edit</Button>
+            <Button size='sm' variant='delete' onClick={deleteItem}>Remove</Button>
         </div>
     )
 }

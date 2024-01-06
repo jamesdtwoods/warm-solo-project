@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Activity from './Activity';
+import { Button } from 'react-bootstrap';
 
 
 function ActivityList() {
@@ -88,9 +89,9 @@ function ActivityList() {
         <div>
           {checkWeather(theWeather) ? 
           <>
-            <button onClick={searchActivitiesByWeather}>
+            <Button size='sm' variant='back' onClick={searchActivitiesByWeather}>
               Show Activities From Temperatures +/- 5℉ of current temperature
-            </button><br /><br />
+            </Button><br /><br />
           </> : <></>}
           Search Activities by Temperature Range:
           <br />
@@ -108,9 +109,9 @@ function ActivityList() {
             value={maxTemp}
             onChange={(event) => setMaxTemp(event.target.value)}
           />
-          <button onClick={searchActivities}>Search Activities</button>
+          <Button size='sm' variant='back' onClick={searchActivities}>Search Activities</Button>
           <br /><br />
-          <button onClick={addActivity}>Add New Activity</button>
+          <Button size='sm' variant='add' onClick={addActivity}>Add New Activity</Button>
           <h2>Activity Log</h2>
           {checkFunction(activities, 1) ? 
             <> <h3>Biking:</h3> 
@@ -150,7 +151,7 @@ function ActivityList() {
         </div>
         : <>
             <h1>No activities in log yet</h1>
-            <button onClick={addActivity}>Add Activity</button>
+            <Button size='sm' variant='add' onClick={addActivity}>Add Activity</Button>
           </>}
     </div>
   );

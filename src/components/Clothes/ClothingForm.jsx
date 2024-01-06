@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ClothingForm() {
   const history = useHistory(); 
@@ -36,7 +37,7 @@ function ClothingForm() {
 
   return (
     <div className="container">
-      <button onClick={backToList}>Back To Closet</button>
+      <Button size='sm' variant='back' onClick={backToList}>Back To Closet</Button>
       <br /><br />
       Clothing Item:
       <input
@@ -67,9 +68,9 @@ function ClothingForm() {
         })}
       </select>
       <br /><br />
-      <button onClick={backToList}>Cancel</button>
+      <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
       <br /><br />
-      <button onClick={submitItem}>Add to Closet</button>
+      <Button size='sm' variant='add' onClick={submitItem}>Add to Closet</Button>
     </div>
   );
 }

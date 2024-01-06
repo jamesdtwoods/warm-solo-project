@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function ClothingFormEdit() {
   const { id } = useParams();
@@ -39,7 +40,7 @@ function ClothingFormEdit() {
 
   return (
     <div className="container">
-      <button onClick={handleCancel}>Back to Clothing Item</button>
+      <Button size='sm' variant='back' onClick={handleCancel}>Back to Clothing Item</Button>
       <br /><br />
       Clothing Item:
         <input
@@ -56,7 +57,7 @@ function ClothingFormEdit() {
         id='description'
         placeholder={clothingItem.description}
         rows="4"
-        cols="50"
+        cols="40"
       />
       <br /><br />
       Clothing Type:
@@ -70,8 +71,8 @@ function ClothingFormEdit() {
         })}
       </select>
       <br /><br />
-      <button onClick={submitItem}>SUBMIT</button>
-      <button onClick={handleCancel}>CANCEL</button>
+      <Button size='sm' variant='add' onClick={submitItem}>SUBMIT</Button>
+      <Button size='sm' variant='back' onClick={handleCancel}>CANCEL</Button>
     </div>
   );
 }

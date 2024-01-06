@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Activity from './Activity.jsx';
+import { Button } from 'react-bootstrap';
 
 
 function ActivityListByWeather() {
@@ -54,7 +55,7 @@ function ActivityListByWeather() {
     <div className="container">
       {checkAllFunction(activities) ?  
         <div>
-          <button onClick={toActivityList}>Back To Activity List</button>
+          <Button size='sm' variant='back' onClick={toActivityList}>Back To Activity List</Button>
           <h2>Activity List Based on Temperature</h2>
           {checkFunction(activities, 1) ? 
             <> <h3>Biking:</h3> 
@@ -94,7 +95,7 @@ function ActivityListByWeather() {
         </div>
         : <>
             <h1>No activities within temperature range</h1>
-            <button onClick={toActivityList}>Back To Activity List</button>
+            <Button size='sm' variant='back' onClick={toActivityList}>Back To Activity List</Button>
           </>}
     </div>
   );
