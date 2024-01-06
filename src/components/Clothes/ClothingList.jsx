@@ -56,63 +56,63 @@ function ClothingList() {
           <Button size='sm' variant='add' onClick={addClothes}>Add Clothes to Closet</Button>
           <h2>Closet</h2>
           {checkFunction(clothesList, 1) ? 
-            <> <h3>Hats:</h3> 
+            <> <h4>Hats:</h4> 
               <ul>
                 {mapFunction(clothesList, 1)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 2) ? 
-            <> <h3>Gloves:</h3> 
+            <> <h4>Gloves:</h4> 
               <ul>
                 {mapFunction(clothesList, 2)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 3) ? 
-            <> <h3>Socks:</h3> 
+            <> <h4>Socks:</h4> 
               <ul>
                 {mapFunction(clothesList, 3)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 4) ? 
-            <> <h3>Base Layer - Torso:</h3> 
+            <> <h4>Base Layer - Torso:</h4> 
               <ul>
                 {mapFunction(clothesList, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 5) ? 
-            <> <h3>Base Layer - Legs:</h3> 
+            <> <h4>Base Layer - Legs:</h4> 
               <ul>
                 {mapFunction(clothesList, 5)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 6) ? 
-            <> <h3>Jackets:</h3> 
+            <> <h4>Jackets:</h4> 
               <ul>
                 {mapFunction(clothesList, 6)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 7) ? 
-            <> <h3>Pants:</h3> 
+            <> <h4>Pants:</h4> 
               <ul>
                 {mapFunction(clothesList, 7)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 8) ? 
-            <> <h3>Accessories:</h3> 
+            <> <h4>Accessories:</h4> 
               <ul>
                 {mapFunction(clothesList, 8)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 9) ? 
-            <> <h3>Other:</h3> 
+            <> <h4>Other:</h4> 
               <ul>
                 {mapFunction(clothesList, 9)}
               </ul>

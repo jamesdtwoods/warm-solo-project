@@ -12,7 +12,7 @@ router.get('/:location', (req, res) => {
         url: `https://api.mapbox.com/geocoding/v5/mapbox.places/${req.params.location}.json?autocomplete=false&access_token=${apiKey}`
     })
     .then((response) => {
-        console.log('response', response.data);
+        // console.log('response', response.data);
         axios({
             method: 'GET',
             url: `https://api.weather.gov/points/${response.data.features[0].center[1]},${response.data.features[0].center[0]}`

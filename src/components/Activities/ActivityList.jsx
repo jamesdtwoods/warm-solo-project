@@ -114,35 +114,35 @@ function ActivityList() {
           <Button size='sm' variant='add' onClick={addActivity}>Add New Activity</Button>
           <h2>Activity Log</h2>
           {checkFunction(activities, 1) ? 
-            <> <h3>Biking:</h3> 
+            <> <h4>Biking:</h4> 
               <ul>
                 {mapFunction(activities, 1)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 2) ? 
-            <> <h3>Running:</h3> 
+            <> <h4>Running:</h4> 
               <ul>
                 {mapFunction(activities, 2)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 3) ? 
-            <> <h3>CC Skiing (classic):</h3> 
+            <> <h4>CC Skiing (classic):</h4> 
               <ul>
                 {mapFunction(activities, 3)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 4) ? 
-            <> <h3>CC Skiing (skate):</h3> 
+            <> <h4>CC Skiing (skate):</h4> 
               <ul>
                 {mapFunction(activities, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 5) ? 
-            <> <h3>Other:</h3> 
+            <> <h4>Other:</h4> 
               <ul>
                 {mapFunction(activities, 5)}
               </ul>

@@ -35,7 +35,6 @@ function ClothingItemDetails () {
             <h3>{clothingItem.name}</h3>
             <p>{clothingItem.description}</p>
             <Button size='sm' variant='edit' onClick={editItem}>Edit</Button>
-            <br /><br />
             <Button size='sm' variant='delete' onClick={handleShow}>Remove from Closet</Button>
             <Modal
                 show={show}

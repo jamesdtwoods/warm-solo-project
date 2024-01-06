@@ -19,9 +19,8 @@ function ClothingItem({clothingItem}) {
 
   return (
     <li>
-        <p>{clothingItem.name} <Button size='sm' variant='view' onClick={viewItem}>View</Button></p>
-        
-
+        <p className='list'>{clothingItem.name}</p>
+        <Button size='sm' variant='view' onClick={viewItem}>View Item</Button>
     </li>
   );
 }

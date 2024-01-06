@@ -20,7 +20,8 @@ COLORS:
 html,
 body,
 #react-root {
-  height: 100%;
+  position: relative;
+  min-height: 100vh;
 }
 
 body {
@@ -30,12 +31,21 @@ body {
   background-color: #F6F6F6;
 }
 
+footer {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #004A55;
+  background-color: #A7CDCC;
+  position: absolute;
+  bottom: 0;
+  width: 100%; 
+}
+
 img {
   display: inline-block;
   max-width: 100%;
 }
 
-p {
+.list {
   margin: 0px;
 }
 
@@ -92,7 +102,7 @@ Button
   background-color: #004A55;
   color: #F6F6F6;
   padding: 1px 5px;
-  margin: 2px
+  margin: 2px 2px 10px 2px;
 }
 
 .btn-view {
@@ -100,7 +110,7 @@ Button
   color: #004A55;
   border-color: #004A55;
   padding: 1px 5px;
-  margin: 2px
+  margin: 2px;
 }
 
 .btn-edit {
@@ -108,7 +118,7 @@ Button
   color: #004A55;
   border-color: #004A55;
   padding: 1px 5px;
-  margin: 2px
+  margin: 2px;
 }
 
 .btn-delete {
@@ -116,7 +126,7 @@ Button
   color: #ED6663;
   border-color: #ED6663;
   padding: 1px 5px;
-  margin: 2px
+  margin: 2px;
 }
 
 .btn-back {
@@ -124,7 +134,7 @@ Button
   color: #004A55;
   border-color: #004A55;
   padding: 1px 5px;
-  margin: 2px
+  margin: 2px 2px 10px 2px;
 }
 
 .btn-weather {
@@ -132,7 +142,7 @@ Button
   color: #004A55;
   border-color: #004A55;
   padding: 1px 5px;
-  margin: 2px
+  margin: 2px;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -171,20 +181,26 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
-.formPanel {
+/* .formPanel {
   box-sizing: border-box;
   width: 400px;
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #F6F6F6;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
-}
+} */
 
-input {
+input, select, textarea {
   margin: 5px;
   margin-bottom: 10px;
+  background-color: #F6F6F6;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color: #004A55;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #004A55;
 }
 
 /* --------------------------------------------------------------------------------
