@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 function ActivityDetails () {
     const { id } = useParams();
@@ -9,6 +9,9 @@ function ActivityDetails () {
     const history = useHistory();
     const activity = useSelector(store => store.activitiesReducer.selectedActivity);
     const activities = useSelector(store => store.activitiesReducer.activityListByWeather);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const checkAllFunction = (activities) => {
         let check = false;
@@ -59,8 +62,25 @@ function ActivityDetails () {
                     <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type_id}</li> 
                 ))}
             </ul>
-            <Button size='sm' variant='edit' onClick={editItem}>Edit</Button>
-            <Button size='sm' variant='delete' onClick={deleteItem}>Remove</Button>
+            <Button size='sm' variant='edit' onClick={editItem}>Edit Activity</Button>
+            <Button size='sm' variant='delete' onClick={handleShow}>Remove Activity</Button>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                <Modal.Title>Remove activity from log</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    This activity will be removed from your log. Are you sure you want to remove this activity? 
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant='back' onClick={handleClose}>Cancel</Button>
+                <Button variant='delete' onClick={deleteItem}>Remove Activity</Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

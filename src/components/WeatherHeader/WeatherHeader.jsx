@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 function WeatherHeader() {
   const user = useSelector(store => store.user);
@@ -15,6 +16,10 @@ function WeatherHeader() {
     return check;
   }
 
+  const toWeather = () => {
+    history.push(`/weather`)
+  }
+
   return (
     <div className="header-weather">
         {!user.id && (
@@ -24,7 +29,7 @@ function WeatherHeader() {
             <p>Current weather: {theWeather.properties.periods[0].temperature} ℉</p>
         )}
         {user.id && !checkWeather(theWeather) && (
-            <Link to="/weather">Get Weather</Link>
+            <Button size='sm' variant='weather' onClick={toWeather}>Get Weather</Button>
         )}
     </div>
   );

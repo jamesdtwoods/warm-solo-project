@@ -35,6 +35,14 @@ img {
   max-width: 100%;
 }
 
+p {
+  margin: 0px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -84,6 +92,7 @@ Button
   background-color: #004A55;
   color: #F6F6F6;
   padding: 1px 5px;
+  margin: 2px
 }
 
 .btn-view {
@@ -91,6 +100,7 @@ Button
   color: #004A55;
   border-color: #004A55;
   padding: 1px 5px;
+  margin: 2px
 }
 
 .btn-edit {
@@ -98,6 +108,7 @@ Button
   color: #004A55;
   border-color: #004A55;
   padding: 1px 5px;
+  margin: 2px
 }
 
 .btn-delete {
@@ -105,6 +116,7 @@ Button
   color: #ED6663;
   border-color: #ED6663;
   padding: 1px 5px;
+  margin: 2px
 }
 
 .btn-back {
@@ -112,6 +124,15 @@ Button
   color: #004A55;
   border-color: #004A55;
   padding: 1px 5px;
+  margin: 2px
+}
+
+.btn-weather {
+  background-color: #F6F6F6;
+  color: #004A55;
+  border-color: #004A55;
+  padding: 1px 5px;
+  margin: 2px
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
