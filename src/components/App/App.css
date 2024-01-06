@@ -1,3 +1,22 @@
+/* 
+COLORS:
+.primary dark{
+  color: #004A55;
+}
+.primary light{
+  color: #A7CDCC;
+}
+.secondary dark{
+  color: #ED6663;
+}
+.secondary light{
+  color: #FFA372;
+}
+.background{
+  color: #F6F6F6;
+} */
+
+
 html,
 body,
 #react-root {
@@ -6,7 +25,9 @@ body,
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #004A55;
   margin: 0px;
+  background-color: #F6F6F6;
 }
 
 img {
@@ -32,7 +53,7 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #004A55;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -60,36 +81,36 @@ Button
 } */
 
 .btn-add {
-  background-color: #00acb0;
-  color: white;
+  background-color: #004A55;
+  color: #F6F6F6;
   padding: 1px 5px;
 }
 
 .btn-view {
-  background-color: white;
-  color: #00acb0;
-  border-color: #00acb0;
+  background-color: #F6F6F6;
+  color: #004A55;
+  border-color: #004A55;
   padding: 1px 5px;
 }
 
 .btn-edit {
-  background-color: white;
-  color: blue;
-  border-color: blue;
+  background-color: #A7CDCC;
+  color: #004A55;
+  border-color: #004A55;
   padding: 1px 5px;
 }
 
 .btn-delete {
-  background-color: white;
-  color: red;
-  border-color: red;
+  background-color: #F6F6F6;
+  color: #ED6663;
+  border-color: #ED6663;
   padding: 1px 5px;
 }
 
 .btn-back {
-  background-color: white;
-  color: black;
-  border-color: black;
+  background-color: #F6F6F6;
+  color: #004A55;
+  border-color: #004A55;
   padding: 1px 5px;
 }
 
@@ -156,7 +177,7 @@ Nav
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #00acb0;
+  background-color: #004A55;
   overflow: hidden;
 }
 
@@ -176,10 +197,10 @@ Nav
   margin: 0;
 }
 
-.navLink {
+.btn-navLink {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
+  color: #ED6663;
+  background-color: #004A55;
   text-align: center;
   /* padding: 24px 10px; */
   text-decoration: none;
@@ -217,16 +238,19 @@ Navbar
   align-items: center;
   position: relative;
   padding: 0.5rem 0rem;
-  background-color: #00acb0;
-  color: #f2f2f2;
+  background-color: #004A55;
+  color: #FFA372;
   box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
 }
 .brand-name {
   text-decoration: none;
-  color: #f2f2f2;
-  font-size: 1.3rem;
+  color: #FFA372;
+  font-size: 24px;
+  font-weight: 700;
   margin-left: 1rem;
 }
+
+
 .navigation-menu {
   margin-left: auto;
 }
@@ -238,10 +262,12 @@ Navbar
   /* // removes default disc bullet for li tags and applies margin to left & right side */
   list-style-type: none;
   margin: 0 1rem;
+  color: #FFA372;
 }
 .navigation-menu.expanded li {
   display: block;
   padding: 24px 10px;
+  color: #FFA372;
 }
 .hamburger {
   /* // removes default border on button element */
@@ -279,18 +305,20 @@ Navbar
     /* // makes menu span full height and width */
     width: 100%;
     height: calc(100vh - 77px);
-    background-color: #00acb0;
-    border-top: 1px solid #008183;;
+    background-color: #004A55;
+    border-top: 1px solid #004A55;;
   }
   .navigation-menu li {
     /* // centers link text and strips off margin */
     text-align: center;
     margin: 0;
+    color: #FFA372;
   }
   .navigation-menu li:hover {
-    background-color: #008183;
+    background-color: #004A55;
   }
   .navigation-menu.expanded ul {
     display: block;
+    color: #FFA372;
   }
 }

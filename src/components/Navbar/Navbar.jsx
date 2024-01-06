@@ -23,7 +23,7 @@ function Navbar() {
     }
     return (
         <nav className="navigation">
-            <h1 className="nav-title" onClick={toHome}>
+            <h1 className="brand-name" onClick={toHome}>
                 warm
             </h1>
         {user.id && (
