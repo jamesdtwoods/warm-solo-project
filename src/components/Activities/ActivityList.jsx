@@ -10,8 +10,10 @@ function ActivityList() {
   const history = useHistory()
   const activities = useSelector(store => store.activitiesReducer.activityList);
   const theWeather = useSelector(store => store.weather);
+  const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const [minTemp, setMinTemp] = useState('');
   const [maxTemp, setMaxTemp] = useState('');
+  const [activityType, setActivityType] = useState('');
 
   useEffect(() => {
       dispatch({
@@ -69,7 +71,8 @@ function ActivityList() {
       type: 'SAGA/FETCH_ACTIVITIES_BY_SEARCH',
       payload: {
         min: minTemp,
-        max: maxTemp
+        max: maxTemp,
+        activity_type_id: activityType,
       }
     })
     history.push(`/viewActivitiesByWeather`)
@@ -90,10 +93,10 @@ function ActivityList() {
           {checkWeather(theWeather) ? 
           <>
             <Button size='sm' variant='back' onClick={searchActivitiesByWeather}>
-              Show Activities From Temperatures +/- 5℉ of current temperature
+              Show All Activities From Temperatures +/- 5℉ of current temperature
             </Button><br /><br />
           </> : <></>}
-          Search Activities by Temperature Range:
+          Search Activities:
           <br />
           <input
             type="number"
@@ -109,6 +112,15 @@ function ActivityList() {
             value={maxTemp}
             onChange={(event) => setMaxTemp(event.target.value)}
           />
+          Activity Type:
+          <select name="type"
+            onChange={(e) => setActivityType(e.target.value)}
+            defaultValue={activityType}>
+            <option value=''></option>
+            {activity_types.map(type => {
+                return <option key={type.id} value={type.id}>{type.type}</option>
+            })}
+          </select>
           <Button size='sm' variant='back' onClick={searchActivities}>Search Activities</Button>
           <br /><br />
           <Button size='sm' variant='add' onClick={addActivity}>Add New Activity</Button>

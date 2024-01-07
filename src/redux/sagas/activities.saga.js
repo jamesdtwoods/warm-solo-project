@@ -44,7 +44,7 @@ function* fetchActivitiesBySearch(action) {
   try {
     const activities = yield axios({
       method: 'GET',
-      url: `/api/activities/search/${action.payload.min}-${action.payload.max}`
+      url: `/api/activities/search/?min=${action.payload.min}&max=${action.payload.max}&type=${action.payload.activity_type_id}`
     })
     yield put({
       type: 'SET_ACTIVITIES_BY_WEATHER',

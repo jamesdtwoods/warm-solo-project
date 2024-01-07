@@ -77,7 +77,7 @@ router.get('/weather/:temperature', (req, res) => {
     })
 });
 
-router.get('/search/:tempRange', (req, res) => {
+router.get('/search/?', (req, res) => {
   const queryText = `
   SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
     FROM activities
@@ -89,14 +89,16 @@ router.get('/search/:tempRange', (req, res) => {
         ON activities_clothes.clothes_id = clothes.id
       LEFT JOIN clothing_type
         ON clothes.clothing_type_id = clothing_type.id
-    WHERE activities.user_id = $1 AND activities.temperature >= ($2) AND activities.temperature <= ($3) 
+    WHERE activities.user_id = ($1) AND activities.temperature >= ($2) AND activities.temperature <= ($3) AND activity_type_id = ($4)
     ORDER BY activities.date, activities.temperature, activities_id;
   `;
   const queryValues = [
     req.user.id,
-    req.params.tempRange.split('-')[0],
-    req.params.tempRange.split('-')[1]
+    req.query.min,
+    req.query.max,
+    req.query.type
   ];
+  console.log('query values', queryValues);
   pool.query(queryText, queryValues)
     .then((result) => {
       console.log('temp query result', result.rows);
@@ -104,7 +106,7 @@ router.get('/search/:tempRange', (req, res) => {
       res.send(theActivities)
     })
     .catch(err => {
-      console.log('ERROR: Get activity items by temperature', err);
+      console.log('ERROR: Get activity items by search', err);
       res.sendStatus(500)
     })
 });
