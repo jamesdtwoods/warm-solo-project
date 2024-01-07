@@ -33,6 +33,10 @@ img {
 .list {
   margin: 0px;
 }
+.activity-list {
+  margin: 0px;
+  font-weight: bold;
+}
 li {
   margin-bottom: 5px;
 }

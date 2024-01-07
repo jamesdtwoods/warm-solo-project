@@ -9,7 +9,8 @@ function ActivityDetails () {
     const dispatch = useDispatch();
     const history = useHistory();
     const activity = useSelector(store => store.activitiesReducer.selectedActivity);
-    const activities = useSelector(store => store.activitiesReducer.activityListByWeather);    const [show, setShow] = useState(false);
+    const activities = useSelector(store => store.activitiesReducer.activityListByWeather);
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -54,11 +55,11 @@ function ActivityDetails () {
         history.push(`/editActivity/${id}`)
     }
     const toActivityList = () => {
-        history.push(`/viewActivities`)
+        history.goBack()
     }
-    const toActivityListByWeather = () => {
-        history.push(`/viewActivitiesByWeather`)
-    }
+    // const toActivityListByWeather = () => {
+    //     history.push(`/viewActivitiesByWeather`)
+    // }
     const formatDate = (dateInput) => {
         let year = dateInput.split('T',1)[0].split('-')[0]
         let month = dateInput.split('T',1)[0].split('-')[1]
@@ -68,7 +69,7 @@ function ActivityDetails () {
 
     return(
         <div className="container">
-            {checkAllFunction(activities) 
+            {/* {checkAllFunction(activities) 
              ? 
             <>
             <Button size='sm' variant='back' onClick={toActivityListByWeather}>Back to Activity List By Weather</Button>
@@ -76,8 +77,9 @@ function ActivityDetails () {
             <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>
             </>
              : 
-             <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>}
-            <h3>{formatDate(activity.date)}  ({activity.temperature}℉)</h3>
+             <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>} */}
+            <Button size='sm' variant='back' onClick={toActivityList}>Back</Button>
+            <h2>{formatDate(activity.date)}  ({activity.temperature}℉)</h2>
             <p>{activity.notes}</p>
             {/* <ul>
                 {activity.clothesArray.map((clothingItem) => (
@@ -85,63 +87,63 @@ function ActivityDetails () {
                 ))}
             </ul> */}
             {checkFunction(activity.clothesArray, 1) ? 
-            <> <h4>Hats:</h4> 
+            <> <p className="activity-list">Hats:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 1)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 2) ? 
-            <> <h4>Gloves:</h4> 
+            <> <p className="activity-list">Gloves:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 2)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 3) ? 
-            <> <h4>Socks:</h4> 
+            <> <p className="activity-list">Socks:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 3)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 4) ? 
-            <> <h4>Base Layer - Top:</h4> 
+            <> <p className="activity-list">Base Layer - Top:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 5) ? 
-            <> <h4>Base Layer - Bottom:</h4> 
+            <> <p className="activity-list">Base Layer - Bottom:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 5)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 6) ? 
-            <> <h4>Jackets:</h4> 
+            <> <p className="activity-list">Jackets:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 6)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 7) ? 
-            <> <h4>Pants:</h4> 
+            <> <p className="activity-list">Pants:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 7)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 8) ? 
-            <> <h4>Accessories:</h4> 
+            <> <p className="activity-list">Accessories:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 8)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 9) ? 
-            <> <h4>Other:</h4> 
+            <> <p className="activity-list">Other:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 9)}
               </ul>

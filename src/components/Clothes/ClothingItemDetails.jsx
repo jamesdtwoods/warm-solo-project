@@ -26,12 +26,12 @@ function ClothingItemDetails () {
     }
 
     const toClothingList = () => {
-        history.push(`/viewClothes`)
+        history.goBack()
     }
 
     return(
         <div className="container">
-            <Button size='sm' variant='back' onClick={toClothingList}>Back to Closet</Button>
+            <Button size='sm' variant='back' onClick={toClothingList}>Back</Button>
             <h3>{clothingItem.name}</h3>
             <p>{clothingItem.description}</p>
             <Button size='sm' variant='edit' onClick={editItem}>Edit</Button>

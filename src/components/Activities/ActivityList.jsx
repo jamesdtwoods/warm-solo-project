@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Activity from './Activity';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 
 function ActivityList() {
@@ -14,6 +14,9 @@ function ActivityList() {
   const [minTemp, setMinTemp] = useState('');
   const [maxTemp, setMaxTemp] = useState('');
   const [activityType, setActivityType] = useState('');
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
       dispatch({
@@ -96,32 +99,52 @@ function ActivityList() {
               Show All Activities From Temperatures +/- 5℉ of current temperature
             </Button><br /><br />
           </> : <></>}
-          Search Activities:
-          <br />
-          <input
-            type="number"
-            name="minTemp"
-            placeholder='min'
-            value={minTemp}
-            onChange={(event) => setMinTemp(event.target.value)}
-          />
-          <input
-            type="number"
-            name="maxTemp"
-            placeholder='max'
-            value={maxTemp}
-            onChange={(event) => setMaxTemp(event.target.value)}
-          />
-          Activity Type:
-          <select name="type"
-            onChange={(e) => setActivityType(e.target.value)}
-            defaultValue={activityType}>
-            <option value=''></option>
-            {activity_types.map(type => {
-                return <option key={type.id} value={type.id}>{type.type}</option>
-            })}
-          </select>
-          <Button size='sm' variant='back' onClick={searchActivities}>Search Activities</Button>
+          <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                <Modal.Title>Search Activity Log</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  Search Activities:
+                  <br />
+                  Min Temperature:
+                  <input
+                    type="number"
+                    name="minTemp"
+                    placeholder='min'
+                    value={minTemp}
+                    onChange={(event) => setMinTemp(event.target.value)}
+                  />
+                  <br />
+                  Max Temperature:
+                  <input
+                    type="number"
+                    name="maxTemp"
+                    placeholder='max'
+                    value={maxTemp}
+                    onChange={(event) => setMaxTemp(event.target.value)}
+                  />
+                  <br />
+                  Activity Type:
+                  <select name="type"
+                    onChange={(e) => setActivityType(e.target.value)}
+                    defaultValue={activityType}>
+                    <option value=''></option>
+                    {activity_types.map(type => {
+                        return <option key={type.id} value={type.id}>{type.type}</option>
+                    })}
+                  </select>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant='back' onClick={handleClose}>Cancel</Button>
+                <Button size='sm' variant='back' onClick={searchActivities}>Search Activities</Button>
+                </Modal.Footer>
+            </Modal>
+          <Button size='sm' variant='back' onClick={handleShow}>Search Activities</Button>
           <br /><br />
           <Button size='sm' variant='add' onClick={addActivity}>Add New Activity</Button>
           <h2>Activity Log</h2>

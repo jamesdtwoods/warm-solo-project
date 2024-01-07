@@ -20,7 +20,7 @@ router.get('/types', (req, res) => {
 
 router.get('/', (req, res) => {
   const queryText = `
-  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
+  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
     FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
@@ -46,8 +46,7 @@ router.get('/', (req, res) => {
 
 router.get('/weather/:temperature', (req, res) => {
   const queryText = `
-  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
-    FROM activities
+    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id    FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
       LEFT JOIN activities_clothes
@@ -63,11 +62,8 @@ router.get('/weather/:temperature', (req, res) => {
     req.user.id,
     req.params.temperature
   ];
-  console.log('temp to use', req.params.temperature);
-  console.log('user id', req.user.id);
   pool.query(queryText, queryValues)
     .then((result) => {
-      console.log('temp query result', result.rows);
       let theActivities = formatActivities(result.rows)
       res.send(theActivities)
     })
@@ -79,8 +75,7 @@ router.get('/weather/:temperature', (req, res) => {
 
 router.get('/search/?', (req, res) => {
   const queryText = `
-  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
-    FROM activities
+    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id    FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
       LEFT JOIN activities_clothes
@@ -98,10 +93,8 @@ router.get('/search/?', (req, res) => {
     req.query.max,
     req.query.type
   ];
-  console.log('query values', queryValues);
   pool.query(queryText, queryValues)
     .then((result) => {
-      console.log('temp query result', result.rows);
       let theActivities = formatActivities(result.rows)
       res.send(theActivities)
     })
@@ -129,13 +122,8 @@ router.post('/', (req, res) => {
     ];
     pool.query(queryText, queryValues)
     .then(result => {
-      // ID IS HERE!
-      console.log('New Activities Id:', result.rows[0].id);
-      console.log('clothes array', req.body.clothesArray)
       const activitesId = result.rows[0].id
       const clothesArray = req.body.clothesArray
-      console.log('new query', newActivityClothesQuery(clothesArray, activitesId));
-      // Now handle the clothes reference:
       const insertActivitiesClothesQuery = newActivityClothesQuery(clothesArray, activitesId);
       // SECOND QUERY ADDS clothes FOR THAT NEW activity
       pool.query(insertActivitiesClothesQuery)
@@ -237,6 +225,7 @@ function formatActivities (all) {
         clothesArray: [{
             clothes_id: all[0].clothes_id,
             name: all[0].name,
+            description: all[0].description,
             clothing_type_id: all[0].clothing_type_id
         }]
     }]
@@ -258,6 +247,7 @@ function formatActivities (all) {
             activitiesArray[j].clothesArray.push({
               clothes_id: all[i].clothes_id,
               name: all[i].name,
+              description: all[i].description,
               clothing_type_id: all[i].clothing_type_id
             })
           }
