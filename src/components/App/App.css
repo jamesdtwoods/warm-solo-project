@@ -45,6 +45,10 @@ Container
   padding: 20px 20px 85px 20px;
 }
 
+.container-login {
+  padding: 20px 20px 40px 20px;
+}
+
 /* --------------------------------------------------------------------------------
 Buttons
 -------------------------------------------------------------------------------- */
@@ -147,10 +151,10 @@ Alert
   box-sizing: border-box;
   padding: 15px 10px;
   margin: 15px 0;
-  border: 2px solid #e01616;
-  background-color: #efefef;
+  border: 2px solid #ED6663;
+  background-color: #F6F6F6;
   border-radius: 3px;
-  color: #e01616;
+  color: #ED6663;
   font-size: 0.8rem;
 }
 

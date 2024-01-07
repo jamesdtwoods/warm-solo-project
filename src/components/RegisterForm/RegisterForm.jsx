@@ -21,9 +21,9 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <div className="container">
+    <div className="container-login">
       <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <h2>Come in from the cold</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}

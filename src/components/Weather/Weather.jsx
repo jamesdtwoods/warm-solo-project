@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 
 function Weather() {
   const [latitude, setLatitude] = useState('')
   const [longitude, setLongitude] = useState('')
   const [location, setLocation] = useState('')
+  const [spinner, setSpinner] = useState(false)
   const theWeather = useSelector(store => store.weather);
   const history = useHistory()
   const dispatch = useDispatch();
 
   const fetchWeather = () => {
+    // setSpinner(<Spinner animation="border" />)
     dispatch({ 
       type: 'SAGA/FETCH_WEATHER', 
       payload: location
@@ -24,13 +26,14 @@ function Weather() {
     let check = false;
     if (theWeather.properties){
       check = true;
+      // setSpinner(false)
     }
     return check;
   }
 
   return (
     <div className="container">
-      <h3>location:</h3>
+      <h3>Location:</h3>
       <input
         type="text"
         name="location"
@@ -41,6 +44,7 @@ function Weather() {
       />  
       <Button size='sm' variant='add' onClick={fetchWeather}>Get Weather</Button>
       <br />
+      {/* {spinner ? <Spinner animation="border" /> : <></>} */}
       {checkWeather(theWeather) ? 
       <>
         <h3>Current weather:</h3> 

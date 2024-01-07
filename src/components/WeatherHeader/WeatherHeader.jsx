@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
 function WeatherHeader() {
   const user = useSelector(store => store.user);
   const theWeather = useSelector(store => store.weather);
+  const history = useHistory()
 
   const checkWeather = (theWeather) => {
     let check = false;

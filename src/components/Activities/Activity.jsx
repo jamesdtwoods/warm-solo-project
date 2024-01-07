@@ -24,7 +24,7 @@ function Activity({activity}) {
 
   return (
     <li>
-      <p>{formatDate(activity.date)} - {activity.temperature}℉, {activity.weather_conditions} </p>
+      <p className='list'>{formatDate(activity.date)} - {activity.temperature}℉, {activity.weather_conditions} </p>
       <Button size='sm' variant='view' onClick={viewActivity}>View Activity</Button>
     </li>
   );
