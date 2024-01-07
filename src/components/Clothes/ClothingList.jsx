@@ -77,14 +77,14 @@ function ClothingList() {
             </> 
           : <></>}
           {checkFunction(clothesList, 4) ? 
-            <> <h4>Base Layer - Torso:</h4> 
+            <> <h4>Base Layer - Top:</h4> 
               <ul>
                 {mapFunction(clothesList, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 5) ? 
-            <> <h4>Base Layer - Legs:</h4> 
+            <> <h4>Base Layer - Bottom:</h4> 
               <ul>
                 {mapFunction(clothesList, 5)}
               </ul>

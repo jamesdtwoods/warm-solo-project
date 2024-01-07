@@ -122,7 +122,7 @@ function ActivityForm() {
       {clothesList.map((item, index) => {
         if (item.clothing_type_id === 1) {
             return (<>
-              <p>Hats:</p>
+              <p className='list'>Hats:</p>
               <input 
                 type="checkbox" 
                 name='clothes' 
@@ -135,7 +135,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 2) {
           return (<>
-            <p>Gloves:</p>
+            <p className='list'>Gloves:</p>
             <input 
               type="checkbox" 
               name='clothes' 
@@ -148,7 +148,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 3) {
           return (<>
-            <p>Socks:</p>
+            <p className='list'>Socks:</p>
             <input 
               type="checkbox" 
               name='clothes' 
@@ -161,7 +161,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 4) {
           return (<>
-            <p>Base Layer Top:</p>
+            <p className='list'>Base Layer Top:</p>
             <input 
               type="checkbox" 
               name='clothes' 
@@ -174,7 +174,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 5) {
           return (<>
-            <p>Base Layer Botttom:</p>
+            <p className='list'>Base Layer Botttom:</p>
             <input 
               type="checkbox" 
               name='clothes' 
@@ -187,7 +187,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 6) {
           return (<>
-            <p>Jacket:</p>
+            <p className='list'>Jacket:</p>
             <input 
               type="checkbox" 
               name='clothes' 
@@ -200,7 +200,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 7) {
           return (<>
-            <p>Pants:</p>
+            <p className='list'>Pants:</p>
             <input 
               type="checkbox" 
               name='clothes' 
@@ -213,7 +213,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 8) {
           return (<>
-            <p>Accesories:</p>
+            <p className='list'>Accesories:</p>
             <input 
               type="checkbox" 
               name='clothes' 
@@ -226,7 +226,7 @@ function ActivityForm() {
           </>)}
         if (item.clothing_type_id === 9) {
           return (<>
-            <p>Other:</p>
+            <p className='list'>Other:</p>
             <input 
               type="checkbox" 
               name='clothes' 

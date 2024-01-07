@@ -14,7 +14,8 @@ function ClothingItem({clothingItem}) {
       type: 'SET_CLOTHING_ITEM',
       payload: clothingItem
     })
-    history.push(`/viewClothingItem/${clothingItem.id}`)
+    {clothingItem.id ? history.push(`/viewClothingItem/${clothingItem.id}`) : history.push(`/viewClothingItem/${clothingItem.clothes_id}`)}
+    // history.push(`/viewClothingItem/${clothingItem.id}`)
   }
 
   return (
