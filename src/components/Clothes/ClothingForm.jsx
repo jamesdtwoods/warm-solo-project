@@ -55,7 +55,7 @@ function ClothingForm() {
         id='description'
         placeholder='Description'
         rows="4"
-        cols="50"
+        cols="40"
       />
       <br /><br />
       Clothing Type:
