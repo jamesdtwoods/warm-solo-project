@@ -330,6 +330,9 @@ footer {
   -webkit-text-stroke-color: #FFA372;
   font-weight: 600;
 }
+.pfooter{
+  margin: 0;
+}
 
 /* --------------------------------------------------------------------------------
 Nav - OLD

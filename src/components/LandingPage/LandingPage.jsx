@@ -7,10 +7,9 @@ import { Button } from 'react-bootstrap';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome to warm');
   const history = useHistory();
 
-  const onLogin = (event) => {
+  const onLogin = () => {
     history.push('/login');
   };
 
@@ -30,10 +29,7 @@ function LandingPage() {
         </p>
         <RegisterForm />
         <center>
-          <h4>Already a User?</h4>
-          <Button variant='add' onClick={onLogin}>
-            Login
-          </Button>
+          <Button variant='edit' onClick={onLogin}>Already a user? Login</Button>
         </center>
     </div>
   );

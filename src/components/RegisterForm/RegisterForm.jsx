@@ -9,6 +9,8 @@ function RegisterForm() {
   const dispatch = useDispatch();
 
   const registerUser = (event) => {
+    event.preventDefault();
+
     dispatch({
       type: 'REGISTER',
       payload: {
@@ -19,7 +21,8 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <>
+    <div className="container">
+      <form className="formPanel" onSubmit={registerUser}>
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -51,9 +54,10 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <Button variant='add' onClick={registerUser}>Register</Button>
+        <Button variant='add' type="submit" onClick={registerUser}>Register</Button>
       </div>
-    </>
+      </form>
+    </div>
   );
 }
 

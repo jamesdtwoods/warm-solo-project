@@ -8,7 +8,7 @@ import favicon from '../Navbar/warm_favicon_2.png'
 
 function Footer() {
   return <footer>
-      <p>
+      <p className='pfooter'>
         <img className='brand-logo-footer' src={favicon}></img>
         <br />
         Stay<text className='brand-name-footer'> warm</text> out there
