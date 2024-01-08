@@ -26,8 +26,9 @@ function ClothingItemDetails () {
     }
 
     const toClothingList = () => {
-        history.goBack()
+        history.push(`/viewClothes`)
     }
+    console.log('history', history);
 
     return(
         <div className="container">

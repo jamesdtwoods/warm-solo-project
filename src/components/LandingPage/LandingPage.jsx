@@ -4,13 +4,13 @@ import { Button } from 'react-bootstrap';
 // import './LandingPage.css';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+import LoginForm from '../LoginForm/LoginForm';
 
 function LandingPage() {
   const history = useHistory();
 
-  const onLogin = () => {
-    history.push('/login');
+  const onRegister = () => {
+    history.push('/registration');
   };
 
   return (
@@ -27,9 +27,9 @@ function LandingPage() {
           Fill your closet with your favorite gear, get the current weather in your area
           and track past activities allowing you to be better informed the next time out.
         </p>
-        <RegisterForm />
+        <LoginForm />
         <center>
-          <Button variant='edit' onClick={onLogin}>Already a user? Login</Button>
+          <Button variant='edit' onClick={onRegister}>Not a user? Click here to register</Button>
         </center>
     </div>
   );

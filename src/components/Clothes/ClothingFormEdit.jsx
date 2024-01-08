@@ -71,8 +71,8 @@ function ClothingFormEdit() {
         })}
       </select>
       <br /><br />
-      <Button size='sm' variant='add' onClick={submitItem}>SUBMIT</Button>
-      <Button size='sm' variant='back' onClick={handleCancel}>CANCEL</Button>
+      <Button size='sm' variant='back' onClick={handleCancel}>Cancel</Button>
+      <Button size='sm' variant='add' onClick={submitItem}>Submit</Button>
     </div>
   );
 }

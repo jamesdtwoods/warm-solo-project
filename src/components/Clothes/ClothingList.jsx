@@ -56,63 +56,63 @@ function ClothingList() {
           <Button size='sm' variant='add' onClick={addClothes}>Add Clothes to Closet</Button>
           <h2>Closet</h2>
           {checkFunction(clothesList, 1) ? 
-            <> <h4>Hats:</h4> 
+            <> <p className='list-bold'>Hats:</p> 
               <ul>
                 {mapFunction(clothesList, 1)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 2) ? 
-            <> <h4>Gloves:</h4> 
+            <> <p className='list-bold'>Gloves:</p> 
               <ul>
                 {mapFunction(clothesList, 2)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 3) ? 
-            <> <h4>Socks:</h4> 
+            <> <p className='list-bold'>Socks:</p> 
               <ul>
                 {mapFunction(clothesList, 3)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 4) ? 
-            <> <h4>Base Layer - Top:</h4> 
+            <> <p className='list-bold'>Base Layer - Top:</p> 
               <ul>
                 {mapFunction(clothesList, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 5) ? 
-            <> <h4>Base Layer - Bottom:</h4> 
+            <> <p className='list-bold'>Base Layer - Bottom:</p> 
               <ul>
                 {mapFunction(clothesList, 5)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 6) ? 
-            <> <h4>Jackets:</h4> 
+            <> <p className='list-bold'>Jackets:</p> 
               <ul>
                 {mapFunction(clothesList, 6)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 7) ? 
-            <> <h4>Pants:</h4> 
+            <> <p className='list-bold'>Pants:</p> 
               <ul>
                 {mapFunction(clothesList, 7)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 8) ? 
-            <> <h4>Accessories:</h4> 
+            <> <p className='list-bold'>Accessories:</p> 
               <ul>
                 {mapFunction(clothesList, 8)}
               </ul>
             </> 
           : <></>}
           {checkFunction(clothesList, 9) ? 
-            <> <h4>Other:</h4> 
+            <> <p className='list-bold'>Other:</p> 
               <ul>
                 {mapFunction(clothesList, 9)}
               </ul>

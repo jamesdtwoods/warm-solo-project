@@ -38,7 +38,6 @@ function ActivityDetails () {
             itemArray.push(item);
           }
         }
-        console.log('itemarray', itemArray);
         return itemArray.map((clothingItem) => {
           return <ClothingItem key={clothingItem.clothes_id} clothingItem={clothingItem} />
         })
@@ -80,70 +79,71 @@ function ActivityDetails () {
              <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>} */}
             <Button size='sm' variant='back' onClick={toActivityList}>Back</Button>
             <h2>{formatDate(activity.date)}  ({activity.temperature}℉)</h2>
-            <p>{activity.notes}</p>
+            <h4>{activity.notes}</h4>
+            {activity.clothesArray ? <p className="list-bold">Clothes wore:</p> : <></>}
             {/* <ul>
                 {activity.clothesArray.map((clothingItem) => (
                     <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type_id}</li> 
                 ))}
             </ul> */}
             {checkFunction(activity.clothesArray, 1) ? 
-            <> <p className="activity-list">Hats:</p> 
+            <> <p className="list-bold">Hats:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 1)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 2) ? 
-            <> <p className="activity-list">Gloves:</p> 
+            <> <p className="list-bold">Gloves:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 2)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 3) ? 
-            <> <p className="activity-list">Socks:</p> 
+            <> <p className="list-bold">Socks:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 3)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 4) ? 
-            <> <p className="activity-list">Base Layer - Top:</p> 
+            <> <p className="list-bold">Base Layer - Top:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 5) ? 
-            <> <p className="activity-list">Base Layer - Bottom:</p> 
+            <> <p className="list-bold">Base Layer - Bottom:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 5)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 6) ? 
-            <> <p className="activity-list">Jackets:</p> 
+            <> <p className="list-bold">Jackets:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 6)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 7) ? 
-            <> <p className="activity-list">Pants:</p> 
+            <> <p className="list-bold">Pants:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 7)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 8) ? 
-            <> <p className="activity-list">Accessories:</p> 
+            <> <p className="list-bold">Accessories:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 8)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activity.clothesArray, 9) ? 
-            <> <p className="activity-list">Other:</p> 
+            <> <p className="list-bold">Other:</p> 
               <ul>
                 {mapFunction(activity.clothesArray, 9)}
               </ul>

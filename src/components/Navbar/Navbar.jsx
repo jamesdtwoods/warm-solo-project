@@ -63,9 +63,7 @@ function Navbar() {
               <li className="nav" onClick={toActivities}>
                 Activity Log
               </li>
-              <li>
                 <LogOutButton className="navLink" />
-              </li>
             </ul>
           </div>
           </>
