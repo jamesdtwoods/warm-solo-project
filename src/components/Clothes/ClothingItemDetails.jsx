@@ -33,8 +33,10 @@ function ClothingItemDetails () {
     return(
         <div className="container">
             <Button size='sm' variant='back' onClick={toClothingList}>Back</Button>
-            <h3>{clothingItem.name}</h3>
-            <p>{clothingItem.description}</p>
+            <h2>{clothingItem.name}</h2>
+            <br />
+            <h4>{clothingItem.description}</h4>
+            <br />
             <Button size='sm' variant='edit' onClick={editItem}>Edit</Button>
             <Button size='sm' variant='delete' onClick={handleShow}>Remove from Closet</Button>
             <Modal

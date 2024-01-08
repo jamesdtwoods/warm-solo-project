@@ -274,8 +274,8 @@ function ActivityFormEdit() {
           </>)}
       })}
         <br />
-        <Button size='sm' variant='add' onClick={submitItem}>Add to Activity Log</Button>
         <Button size='sm' variant='back' onClick={handleCancel}>Cancel</Button>
+        <Button size='sm' variant='add' onClick={submitItem}>Add to Activity Log</Button>
     </div>
   );
 }

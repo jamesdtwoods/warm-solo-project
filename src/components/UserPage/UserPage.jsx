@@ -13,22 +13,21 @@ function UserPage() {
   return (
     <div className="container">
       <center>
-      <h2>Welcome, {user.username}!</h2>
-      <br />
-      <br />
-      <Button size='lg' variant='view-home' onClick={()=>history.push(`/viewClothes`)}>View Closet</Button>
-      <br />
-      <br />
-      <Button size='lg' variant='add-home' onClick={()=>history.push(`/newClothes`)}>Add Clothes to Cloest</Button>
-      <br />
-      <br />
-      <Button size='lg' variant='view-home' onClick={()=>history.push(`/viewActivities`)}>View Activity Log</Button>
-      <br />
-      <br />
-      <Button size='lg' variant='add-home' onClick={()=>history.push(`/newActivity`)}>Add Activity</Button>
-      <br />
-      <br />
-      <LogOutButton className="delete" />
+        <h2>Welcome, {user.username}!</h2>
+        <br />
+        <Button size='lg' variant='view-home' onClick={()=>history.push(`/viewClothes`)}>View Closet</Button>
+        <br />
+        <br />
+        <Button size='lg' variant='add-home' onClick={()=>history.push(`/newClothes`)}>Add Clothes to Cloest</Button>
+        <br />
+        <br />
+        <Button size='lg' variant='view-home' onClick={()=>history.push(`/viewActivities`)}>View Activity Log</Button>
+        <br />
+        <br />
+        <Button size='lg' variant='add-home' onClick={()=>history.push(`/newActivity`)}>Add Activity</Button>
+        <br />
+        <br />
+        <LogOutButton className="delete" />
       </center>
     </div>
   );

@@ -109,8 +109,6 @@ function ActivityList() {
                 <Modal.Title>Search Activity Log</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  Search Activities:
-                  <br />
                   Min Temperature:
                   <input
                     type="number"
@@ -141,43 +139,43 @@ function ActivityList() {
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant='back' onClick={handleClose}>Cancel</Button>
-                <Button size='sm' variant='back' onClick={searchActivities}>Search Activities</Button>
+                <Button variant='add' onClick={searchActivities}>Search Activities</Button>
                 </Modal.Footer>
             </Modal>
           <Button size='sm' variant='back' onClick={handleShow}>Search Activities</Button>
-          <br /><br />
+          <br />
           <Button size='sm' variant='add' onClick={addActivity}>Add New Activity</Button>
           <h2>Activity Log</h2>
           {checkFunction(activities, 1) ? 
-            <> <h4>Biking:</h4> 
+            <> <p className='list-bold'>Biking:</p> 
               <ul>
                 {mapFunction(activities, 1)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 2) ? 
-            <> <h4>Running:</h4> 
+            <> <p className='list-bold'>Running:</p> 
               <ul>
                 {mapFunction(activities, 2)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 3) ? 
-            <> <h4>CC Skiing (classic):</h4> 
+            <> <p className='list-bold'>CC Skiing (classic):</p> 
               <ul>
                 {mapFunction(activities, 3)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 4) ? 
-            <> <h4>CC Skiing (skate):</h4> 
+            <> <p className='list-bold'>CC Skiing (skate):</p> 
               <ul>
                 {mapFunction(activities, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 5) ? 
-            <> <h4>Other:</h4> 
+            <> <p className='list-bold'>Other:</p> 
               <ul>
                 {mapFunction(activities, 5)}
               </ul>

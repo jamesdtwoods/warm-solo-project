@@ -69,7 +69,6 @@ function ClothingForm() {
       </select>
       <br /><br />
       <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
-      <br /><br />
       <Button size='sm' variant='add' onClick={submitItem}>Add to Closet</Button>
     </div>
   );
