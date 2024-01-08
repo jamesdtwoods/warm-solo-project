@@ -22,7 +22,7 @@ function* fetchUser() {
     yield put({ type: 'SAGA/FETCH_ACTIVITIES', payload: response.data });
     yield put({ type: 'SAGA/FETCH_ACTIVITY_TYPES', payload: response.data });
     yield put({ type: 'SAGA/FETCH_CLOTHES', payload: response.data });
-    yield put({ type: 'FETCH_CLOTHING_TYPES', payload: response.data });
+    yield put({ type: 'SAGA/FETCH_CLOTHING_TYPES', payload: response.data });
 
   } catch (error) {
     console.log('User get request failed', error);

@@ -8,6 +8,7 @@ function ActivityForm() {
   const dispatch = useDispatch();
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
+  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
   const [date, setDate] = useState('');
   const [temperature, setTemperature] = useState('');
   const [weather, setWeather] = useState('');
@@ -67,6 +68,38 @@ function ActivityForm() {
     history.push(`/viewActivities`)
   }
 
+  const checkFunction = (clothesList, clothing_type_id) => {
+    let check = false;
+    for (let item of clothesList) {
+      if (item.clothing_type_id === clothing_type_id) {
+        check = true;
+      }
+    }
+    return check;
+  }
+
+  const mapFunction = (clothesList, clothing_type_id) => {
+    let clothesArray=[]
+    for (let clothing_item of clothesList) {
+      if(clothing_item.clothing_type_id === clothing_type_id){
+        clothesArray.push(clothing_item);
+      }
+    }
+    return clothesArray.map((clothing_item, index) => {
+      return (<>
+                <input 
+                  type="checkbox" 
+                  name='clothes' 
+                  value={clothing_item.id} 
+                  key={index} 
+                  checked={checkedState[index]} 
+                  onChange={() => handleOnChange(index)}
+                />
+                <label htmlFor='clothes'>{clothing_item.name}, {clothing_item.id}</label><br/>
+              </>)
+    })
+  }
+
   return (
     <div className="container">
       <Button size='sm' variant='back' onClick={backToList}>Back to activities log</Button>
@@ -117,127 +150,70 @@ function ActivityForm() {
         })}
       </select>
       <br /><br />
-      <strong>Closet:</strong>
-      <br />
-      {clothesList.map((item, index) => {
-        if (item.clothing_type_id === 1) {
-            return (<>
-              <p className='list'>Hats:</p>
-              <input 
-                type="checkbox" 
-                name='clothes' 
-                value={item.id} 
-                key={index} 
-                checked={checkedState[index]} 
-                onChange={() => handleOnChange(index)}
-              />
-              <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 2) {
-          return (<>
-            <p className='list'>Gloves:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 3) {
-          return (<>
-            <p className='list'>Socks:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 4) {
-          return (<>
-            <p className='list'>Base Layer Top:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 5) {
-          return (<>
-            <p className='list'>Base Layer Botttom:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 6) {
-          return (<>
-            <p className='list'>Jacket:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 7) {
-          return (<>
-            <p className='list'>Pants:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 8) {
-          return (<>
-            <p className='list'>Accesories:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-        if (item.clothing_type_id === 9) {
-          return (<>
-            <p className='list'>Other:</p>
-            <input 
-              type="checkbox" 
-              name='clothes' 
-              value={item.id} 
-              key={index} 
-              checked={checkedState[index]} 
-              onChange={() => handleOnChange(index)}
-            />
-            <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-          </>)}
-      })}
+      <h2>Closet</h2>
+        {checkFunction(clothesList, 1) ? 
+          <> <p className='list-bold'>Hats:</p> 
+            <ul>
+              {mapFunction(clothesList, 1)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 2) ? 
+          <> <p className='list-bold'>Gloves:</p> 
+            <ul>
+              {mapFunction(clothesList, 2)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 3) ? 
+          <> <p className='list-bold'>Socks:</p> 
+            <ul>
+              {mapFunction(clothesList, 3)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 4) ? 
+          <> <p className='list-bold'>Base Layer - Top:</p> 
+            <ul>
+              {mapFunction(clothesList, 4)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 5) ? 
+          <> <p className='list-bold'>Base Layer - Bottom:</p> 
+            <ul>
+              {mapFunction(clothesList, 5)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 6) ? 
+          <> <p className='list-bold'>Jackets:</p> 
+            <ul>
+              {mapFunction(clothesList, 6)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 7) ? 
+          <> <p className='list-bold'>Pants:</p> 
+            <ul>
+              {mapFunction(clothesList, 7)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 8) ? 
+          <> <p className='list-bold'>Accessories:</p> 
+            <ul>
+              {mapFunction(clothesList, 8)}
+            </ul>
+          </> 
+        : <></>}
+        {checkFunction(clothesList, 9) ? 
+          <> <p className='list-bold'>Other:</p> 
+            <ul>
+              {mapFunction(clothesList, 9)}
+            </ul>
+          </> 
+        : <></>}
       <br /><br />
       <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
       <Button size='sm' variant='add' onClick={submitItem}>Add to Activity Log</Button>
