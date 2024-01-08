@@ -8,7 +8,6 @@ function ActivityForm() {
   const dispatch = useDispatch();
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
-  const clothing_types = useSelector(store => store.clothingReducer.clothingType);
   const [date, setDate] = useState('');
   const [temperature, setTemperature] = useState('');
   const [weather, setWeather] = useState('');
@@ -17,6 +16,7 @@ function ActivityForm() {
   const [checkedState, setCheckedState] = useState(
     new Array(clothesList.length).fill(false)
   );  
+  console.log('checked state', checkedState);
 
   useEffect(() => {
     dispatch({ 
@@ -80,9 +80,10 @@ function ActivityForm() {
 
   const mapFunction = (clothesList, clothing_type_id) => {
     let clothesArray=[]
-    for (let clothing_item of clothesList) {
-      if(clothing_item.clothing_type_id === clothing_type_id){
-        clothesArray.push(clothing_item);
+    for (let i=0; i< clothesList.length; i++) {
+      if(clothesList[i].clothing_type_id === clothing_type_id){
+        clothesList[i].index = i;
+        clothesArray.push(clothesList[i]);
       }
     }
     return clothesArray.map((clothing_item, index) => {
@@ -91,9 +92,9 @@ function ActivityForm() {
                   type="checkbox" 
                   name='clothes' 
                   value={clothing_item.id} 
-                  key={index} 
-                  checked={checkedState[index]} 
-                  onChange={() => handleOnChange(index)}
+                  key={clothing_item.index} 
+                  checked={checkedState[clothing_item.index]} 
+                  onChange={() => handleOnChange(clothing_item.index)}
                 />
                 <label htmlFor='clothes'>{clothing_item.name}, {clothing_item.id}</label><br/>
               </>)
@@ -151,6 +152,12 @@ function ActivityForm() {
       </select>
       <br /><br />
       <h2>Closet</h2>
+      {/* {clothesList.map((item, index) => {
+            return (<>
+              <input type="checkbox" name='clothes' value={item.id} key={index} checked={checkedState[index]} onChange={() => handleOnChange(index)}/>
+              <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
+            </>)
+      })} */}
         {checkFunction(clothesList, 1) ? 
           <> <p className='list-bold'>Hats:</p> 
             <ul>

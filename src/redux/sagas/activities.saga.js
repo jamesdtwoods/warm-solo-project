@@ -84,10 +84,10 @@ function* deleteActivity(action) {
 
 function* editActivity(action) {
     try {
-      yield put({
-        type: 'SET_ACTIVITY',
-        payload: action.payload.data
-      });
+      // yield put({
+      //   type: 'SET_ACTIVITY',
+      //   payload: action.payload.data
+      // });
         const response = yield axios({
             method: 'PUT',
             url: `/api/activities/${action.payload.id}`,

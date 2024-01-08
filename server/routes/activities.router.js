@@ -167,12 +167,13 @@ router.put('/:id', (req, res) => {
         WHERE
           id=$6;
     `;
+    console.log('req.body:', req.body);
     const queryValues = [
-        req.body.date,
-        req.body.temperature,
-        req.body.weather_conditions,
-        req.body.notes,
-        req.body.activity_type_id,
+        req.body.activity.date,
+        req.body.activity.temperature,
+        req.body.activity.weather_conditions,
+        req.body.activity.notes,
+        req.body.activity.activity_type_id,
         req.params.id
     ];
     pool.query(queryText, queryValues)
@@ -184,11 +185,13 @@ router.put('/:id', (req, res) => {
     // second QUERY removes clothes FOR THAT activity
       pool.query(queryDeleteText)
         .then(result => {
-          const clothesArray = req.body.clothesArray
-          console.log('clothes array', clothesArray);
+          
+          const clothesArray = req.body.clothesArrayForQuery
+          console.log('clothes array', req.body.clothesArrayForQuery);
           console.log('activity id', req.params.id);
-          console.log('new query', updateActivitiesClothesQuery(clothesArray, req.params.id));
-          const editActivitiesClothesQuery = updateActivitiesClothesQuery(clothesArray, req.params.id);
+          // const formattedClothesArray = formatClothesArray(clothesArray)
+          console.log('new query', editActivityClothesQuery(clothesArray, req.params.id));
+          const editActivitiesClothesQuery = editActivityClothesQuery(clothesArray, req.params.id);
           // Third QUERY ADDS clothes FOR THAT activity
           pool.query(editActivitiesClothesQuery)
           .then(result => {
@@ -277,7 +280,7 @@ function newActivityClothesQuery (clothesArray, activities_id) {
   return activitiesClothesQuery;
 }
 
-function updateActivitiesClothesQuery (clothesArray, activities_id) {
+function editActivityClothesQuery (clothesArray, activities_id) {
   let activitiesClothesQuery = `
   INSERT INTO "activities_clothes" 
   ("activities_id", "clothes_id")
@@ -295,6 +298,14 @@ function updateActivitiesClothesQuery (clothesArray, activities_id) {
     }
   }
   return activitiesClothesQuery;
+}
+
+function formatClothesArray (clothesArray) {
+  let formattedArray=[];
+  for(let i=0; i<clothesArray.length; i++){
+    formattedArray.push(clothesArray[i].clothes_id)
+  }
+  return formattedArray
 }
 
 module.exports = router;
