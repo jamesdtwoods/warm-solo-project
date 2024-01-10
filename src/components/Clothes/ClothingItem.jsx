@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
+
 function ClothingItem({clothingItem}) {
   const history = useHistory()
   const dispatch = useDispatch();
@@ -14,13 +15,13 @@ function ClothingItem({clothingItem}) {
       type: 'SET_CLOTHING_ITEM',
       payload: clothingItem
     })
-    // checks to see if coming from /viewClothes or from /viewActivity
+    // // checks to see if coming from /clothesList or from /activityDetails 
+    // // {from: ...} should tell where I came from to use on conditional back button
     {clothingItem.id ? 
-      // coming from /viewClothes
+      // coming from /clothesList
       history.push(`/viewClothingItem/${clothingItem.id}`, {from:'clothesList'}) 
-      // coming from /viewActivity - I want to tell where I came from 
-    : history.push(`/viewClothingItem/${clothingItem.clothes_id}`, {from:'viewActivity'})}
-    
+      // coming from /activityDetails
+    : history.push(`/viewClothingItem/${clothingItem.clothes_id}`, {from:'activityDetails'})}
   }
 
   return (

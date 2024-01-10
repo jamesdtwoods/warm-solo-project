@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
@@ -26,29 +26,14 @@ function ClothingItemDetails () {
         history.push(`/editClothes/${id}`)
     }
 
-    const toClothingList = () => {
-        history.push(`/viewClothes`)
-    }
-
-    const toActivity = () => {
-        history.goBack()
-    }
-
     const goBack = () => {
-        console.log('location', location);
-        console.log('history', history);
-    //    if(history.go(-1) === '/viewClothes' || history.go(-1).includes('/viewActivity/')){
-    //     history.go(-1)
-    //    } else if (history.go(-1).includes('/editClothes/')) {
-    //     history.go(-2)
-    //    }
+        history.goBack()
     }
 
 
     return(
         <div className="container">
             <Button size='sm' variant='back' onClick={goBack}>Back</Button>
-            {/* <Button size='sm' variant='back' onClick={toActivity}>Back to activity</Button> */}
             <h2>{clothingItem.name}</h2>
             <br />
             <h4>{clothingItem.description}</h4>

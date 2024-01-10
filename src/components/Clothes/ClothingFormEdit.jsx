@@ -35,7 +35,8 @@ function ClothingFormEdit() {
   }
 
   const handleCancel = () => {
-    history.push(`/viewClothingItem/${id}`)
+    history.replace(`/editClothes/${id}`)
+    history.goBack()
   }
 
   return (
