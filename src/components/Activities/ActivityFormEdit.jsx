@@ -226,6 +226,15 @@ function ActivityFormEdit() {
         onChange={(e) => handleChange(e.target.value, 'weather_conditions')}
         />  
         <br /><br />
+        How did you feel?:
+        <select name="type"
+          onChange={(e) => handleChange(e.target.value, 'feel')}
+          defaultValue={activity.feel}>
+          <option value='hot'>Too Hot 🥵</option>
+          <option value='cold'>Too Cold 🥶</option>
+          <option value='right'>Just Right 😎</option>
+        </select>
+        <br /><br />
         Notes:
         <input
         type="text"

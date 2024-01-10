@@ -20,7 +20,7 @@ router.get('/types', (req, res) => {
 
 router.get('/', (req, res) => {
   const queryText = `
-  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
+  SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.feel, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id
     FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
@@ -46,7 +46,8 @@ router.get('/', (req, res) => {
 
 router.get('/weather/:temperature', (req, res) => {
   const queryText = `
-    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id    FROM activities
+    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.feel, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id    
+    FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
       LEFT JOIN activities_clothes
@@ -75,7 +76,8 @@ router.get('/weather/:temperature', (req, res) => {
 
 router.get('/search/?', (req, res) => {
   const queryText = `
-    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id    FROM activities
+    SELECT activities.id AS activities_id, activities.date, activities.temperature, activities.weather_conditions, activities.feel, activities.notes, activity_type.type AS activity_type, activity_type.id AS activity_type_id, clothes.id AS clothes_id, clothes.name, clothes.description, clothing_type.type AS clothing_type, clothing_type.id AS clothing_type_id    
+    FROM activities
       LEFT JOIN activity_type
         ON activities.activity_type_id = activity_type.id
       LEFT JOIN activities_clothes
@@ -107,15 +109,16 @@ router.get('/search/?', (req, res) => {
 router.post('/', (req, res) => {
     const queryText = `
     INSERT INTO "activities" 
-      ("date", "temperature", "weather_conditions", "notes", "user_id", "activity_type_id")
+      ("date", "temperature", "weather_conditions", "feel", "notes", "user_id", "activity_type_id")
     VALUES 
-      ($1, $2, $3, $4, $6, $5)
+      ($1, $2, $3, $4, $5, $7, $6)
       RETURNING "id";
     `;
     const queryValues = [
         req.body.date,
         req.body.temperature,
         req.body.weather_conditions,
+        req.body.feel,
         req.body.notes,
         req.body.activity_type_id,
         req.user.id
@@ -161,17 +164,19 @@ router.put('/:id', (req, res) => {
           "date"=$1, 
           "temperature"=$2, 
           "weather_conditions"=$3,
-          "notes"=$4,
-          "activity_type_id"=$5,
+          "feel"=$4,
+          "notes"=$5,
+          "activity_type_id"=$6,
           "updated_date"=CURRENT_TIMESTAMP
         WHERE
-          id=$6;
+          id=$7;
     `;
     console.log('req.body:', req.body);
     const queryValues = [
         req.body.activity.date,
         req.body.activity.temperature,
         req.body.activity.weather_conditions,
+        req.body.activity.feel,
         req.body.activity.notes,
         req.body.activity.activity_type_id,
         req.params.id
@@ -222,6 +227,7 @@ function formatActivities (all) {
         date: all[0].date,
         temperature: all[0].temperature,
         weather_conditions: all[0].weather_conditions,
+        feel: all[0].feel,
         notes: all[0].notes,
         activity_type: all[0].activity_type,
         activity_type_id: all[0].activity_type_id,
@@ -239,6 +245,7 @@ function formatActivities (all) {
                 date: all[i].date,
                 temperature: all[i].temperature,
                 weather_conditions: all[i].weather_conditions,
+                feel: all[i].feel,
                 notes: all[i].notes,
                 activity_type: all[i].activity_type,
                 activity_type_id: all[i].activity_type_id,

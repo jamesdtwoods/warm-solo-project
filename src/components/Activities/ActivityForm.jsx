@@ -9,6 +9,7 @@ function ActivityForm() {
   const activity_types = useSelector(store => store.activitiesReducer.activityType);
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
   const [date, setDate] = useState('');
+  const [goldilocks, setGoldilocks] = useState('');
   const [temperature, setTemperature] = useState('');
   const [weather, setWeather] = useState('');
   const [notes, setNotes] = useState('');
@@ -52,6 +53,7 @@ function ActivityForm() {
         date: date, 
         temperature: temperature,
         weather_conditions: weather,
+        feel: goldilocks,
         notes: notes,
         activity_type_id: activityType,
         clothesArray: newClothesArray
@@ -131,6 +133,16 @@ function ActivityForm() {
         value={weather}
         onChange={(event) => setWeather(event.target.value)}
       />  
+      <br /><br />
+      How did you feel?:
+      <select name="type"
+        onChange={(e) => setGoldilocks(e.target.value)}
+        defaultValue={goldilocks}>
+        <option value=''></option>
+        <option value='I was too hot 🥵'>Too Hot 🥵</option>
+        <option value='I was too cold 🥶'>Too Cold 🥶</option>
+        <option value='I was just right 😎'>Just Right 😎</option>
+      </select>
       <br /><br />
       Notes:
       <input

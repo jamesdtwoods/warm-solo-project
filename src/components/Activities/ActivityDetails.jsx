@@ -71,6 +71,7 @@ function ActivityDetails () {
           <Button size='sm' variant='back' onClick={toActivityList}>Back</Button>
           <h2>{formatDate(activity.date)}  ({activity.temperature}℉)</h2>
           <h4>{activity.weatherDetails}</h4>
+          <h4>{activity.feel}</h4>
           <h4>{activity.notes}</h4>
           {activity.clothesArray ? <p className="list-bold">Clothes wore:</p> : <></>}
           {/* <ul>
