@@ -153,6 +153,13 @@ Buttons
   padding: 1px 5px;
   margin: 2px;
 }
+.btn-back-modal {
+  background-color: #F6F6F6;
+  color: #004A55;
+  border-color: #004A55;
+  padding: 1px 5px;
+  margin: 2px;
+}
 .btn-back {
   background-color: #F6F6F6;
   color: #004A55;

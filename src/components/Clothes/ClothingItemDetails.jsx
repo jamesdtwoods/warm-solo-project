@@ -53,7 +53,7 @@ function ClothingItemDetails () {
                     This item will be removed from your closet AND activities. Are you sure you want to remove this item? 
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant='back' onClick={handleClose}>Cancel</Button>
+                <Button variant='back-modal' onClick={handleClose}>Cancel</Button>
                 <Button variant='delete' onClick={deleteItem}>Remove from Closet</Button>
                 </Modal.Footer>
             </Modal>

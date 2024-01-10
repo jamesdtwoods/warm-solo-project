@@ -58,35 +58,35 @@ function ActivityListByWeather() {
           <Button size='sm' variant='back' onClick={toActivityList}>Back To Activity List</Button>
           <h2>Activity List Based on Temperature</h2>
           {checkFunction(activities, 1) ? 
-            <> <h3>Biking:</h3> 
+            <> <p className='list-bold'>Biking:</p> 
               <ul>
                 {mapFunction(activities, 1)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 2) ? 
-            <> <h3>Running:</h3> 
+            <> <p className='list-bold'>Running:</p> 
               <ul>
                 {mapFunction(activities, 2)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 3) ? 
-            <> <h3>CC Skiing (classic):</h3> 
+            <> <p className='list-bold'>CC Skiing (classic):</p> 
               <ul>
                 {mapFunction(activities, 3)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 4) ? 
-            <> <h3>CC Skiing (skate):</h3> 
+            <> <p className='list-bold'>CC Skiing (skate):</p> 
               <ul>
                 {mapFunction(activities, 4)}
               </ul>
             </> 
           : <></>}
           {checkFunction(activities, 5) ? 
-            <> <h3>Other:</h3> 
+            <> <p className='list-bold'>Other:</p> 
               <ul>
                 {mapFunction(activities, 5)}
               </ul>

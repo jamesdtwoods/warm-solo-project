@@ -18,7 +18,6 @@ function ActivityFormEdit() {
   }, []);
 
   const handleOnChange = (position) => {
-    console.log('check box checked, position', position);
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
@@ -39,7 +38,6 @@ function ActivityFormEdit() {
   }
 
   const formatClothesArrayForEdit = (checkboxArray, clothesListArray) => {
-    console.log('in format array', checkboxArray);
     let count = 0;
     for(let i=0; i<checkboxArray.length; i++) {
       if(checkboxArray[i]===true){
@@ -47,10 +45,8 @@ function ActivityFormEdit() {
         count++;
       }
     }
-    console.log('before sort', checkboxArray);
     checkboxArray.sort()
     checkboxArray.splice(count, checkboxArray.length-count)
-    console.log('after sort', checkboxArray);
     return checkboxArray
   }
 
@@ -63,7 +59,6 @@ function ActivityFormEdit() {
   }
 
   const handleChange = (newValue, inputName) => {
-    console.log('value and input', newValue, inputName);
     dispatch({
       type: 'MODIFY_ACTIVITY',
       payload: {newValue: newValue, property: inputName}
@@ -71,11 +66,8 @@ function ActivityFormEdit() {
   }
 
   const submitItem = () => {
-    // const newClothesArray = formatClothesArray(checkedState, clothesList);
-    // console.log('new clothes array', newClothesArray);
     const newClothesArrayForEdit = formatClothesArrayForEdit(checkedState, clothesList);
     handleChange(newClothesArrayForEdit, 'clothesArray')
-    console.log('activity to send', activity);
     dispatch({ 
       type: 'SAGA/EDIT_ACTIVITY', 
       payload: {
@@ -110,14 +102,15 @@ function ActivityFormEdit() {
     }
     return checkbox
   }
-console.log('checkPreviousClothes - formatted', formatPreviousClothesArray(checkPreviousClothes(clothesList, activity.clothesArray)));
+
   const [checkedState, setCheckedState] = useState(
     formatPreviousClothesArray(checkPreviousClothes(clothesList, activity.clothesArray))
   ); 
 
 
   const handleCancel = () => {
-    history.push(`/viewActivity/${id}`)
+    history.replace(`/editActivity/${id}`)
+    history.goBack()
   }
 
   const checkFunction = (clothesList, clothing_type_id) => {
