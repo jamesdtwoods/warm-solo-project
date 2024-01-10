@@ -14,8 +14,13 @@ function ClothingItem({clothingItem}) {
       type: 'SET_CLOTHING_ITEM',
       payload: clothingItem
     })
-    {clothingItem.id ? history.push(`/viewClothingItem/${clothingItem.id}`) : history.push(`/viewClothingItem/${clothingItem.clothes_id}`)}
-    // history.push(`/viewClothingItem/${clothingItem.id}`)
+    // checks to see if coming from /viewClothes or from /viewActivity
+    {clothingItem.id ? 
+      // coming from /viewClothes
+      history.push(`/viewClothingItem/${clothingItem.id}`, {from:'clothesList'}) 
+      // coming from /viewActivity - I want to tell where I came from 
+    : history.push(`/viewClothingItem/${clothingItem.clothes_id}`, {from:'viewActivity'})}
+    
   }
 
   return (
