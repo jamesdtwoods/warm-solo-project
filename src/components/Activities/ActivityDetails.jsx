@@ -59,26 +59,12 @@ function ActivityDetails () {
 
   return(
       <div className="container">
-          {/* {checkAllFunction(activities) 
-            ? 
-          <>
-          <Button size='sm' variant='back' onClick={toActivityListByWeather}>Back to Activity List By Weather</Button>
-          <br /><br />
-          <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>
-          </>
-            : 
-            <Button size='sm' variant='back' onClick={toActivityList}>Back to Activity List</Button>} */}
           <Button size='sm' variant='back' onClick={toActivityList}>Back</Button>
           <h2>{formatDate(activity.date)}  ({activity.temperature}℉)</h2>
           <h4>{activity.weatherDetails}</h4>
-          <h4>{activity.feel}</h4>
           <h4>{activity.notes}</h4>
+          <p>How'd you feel? {activity.feel}</p>
           {activity.clothesArray ? <p className="list-bold">Clothes wore:</p> : <></>}
-          {/* <ul>
-              {activity.clothesArray.map((clothingItem) => (
-                  <li key={clothingItem.clothes_id}>{clothingItem.name}, {clothingItem.clothing_type_id}</li> 
-              ))}
-          </ul> */}
           {checkFunction(activity.clothesArray, 1) ? 
           <> <p className="list-bold">Hats:</p> 
             <ul>

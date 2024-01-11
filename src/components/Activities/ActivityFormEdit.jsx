@@ -78,6 +78,7 @@ function ActivityFormEdit() {
         }
       }
     })
+    history.replace(`/editActivity/${id}`)
     history.push(`/viewActivity/${id}`)
   }
 
@@ -230,9 +231,9 @@ function ActivityFormEdit() {
         <select name="type"
           onChange={(e) => handleChange(e.target.value, 'feel')}
           defaultValue={activity.feel}>
-          <option value='hot'>Too Hot 🥵</option>
-          <option value='cold'>Too Cold 🥶</option>
-          <option value='right'>Just Right 😎</option>
+          <option value='I was too hot 🥵'>Too Hot 🥵</option>
+          <option value='I was too cold 🥶'>Too Cold 🥶</option>
+          <option value='I was just right 😎'>Just Right 😎</option>
         </select>
         <br /><br />
         Notes:

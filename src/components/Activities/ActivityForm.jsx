@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
+import ClothingForm from '../Clothes/ClothingForm';
 
 function ActivityForm() {
   const history = useHistory();
@@ -16,8 +17,10 @@ function ActivityForm() {
   const [activityType, setActivityType] = useState('');
   const [checkedState, setCheckedState] = useState(
     new Array(clothesList.length).fill(false)
-  );  
-  console.log('checked state', checkedState);
+  );
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     dispatch({ 
@@ -163,13 +166,9 @@ function ActivityForm() {
         })}
       </select>
       <br /><br />
+      {/* wrapping this in a blank tag to minimize code */}
+      <>
       <h2>Closet</h2>
-      {/* {clothesList.map((item, index) => {
-            return (<>
-              <input type="checkbox" name='clothes' value={item.id} key={index} checked={checkedState[index]} onChange={() => handleOnChange(index)}/>
-              <label htmlFor='clothes'>{item.name}, {item.id}</label><br/>
-            </>)
-      })} */}
         {checkFunction(clothesList, 1) ? 
           <> <p className='list-bold'>Hats:</p> 
             <ul>
@@ -233,9 +232,24 @@ function ActivityForm() {
             </ul>
           </> 
         : <></>}
+        </>
+      <Button size='sm' variant='back' onClick={handleShow}>Add New Clothing Item</Button>
       <br /><br />
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+        <Modal.Title>Add new item to closet</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ClothingForm handleClose={handleClose}/>
+        </Modal.Body>
+      </Modal>
       <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
-      <Button size='sm' variant='add' onClick={submitItem}>Add to Activity Log</Button>
+      <Button size='sm' variant='add' onClick={submitItem}>Add Activity to Log</Button>
     </div>
   );
 }

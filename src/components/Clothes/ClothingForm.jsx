@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-function ClothingForm() {
+function ClothingForm({handleClose}) {
   const history = useHistory(); 
   const dispatch = useDispatch();
   const clothing_types = useSelector(store => store.clothingReducer.clothingType);
@@ -31,8 +31,43 @@ function ClothingForm() {
     history.push("/viewClothes")
   }
 
+  const submitItemFromModal = () => {
+    dispatch({ 
+      type: 'SAGA/POST_CLOTHING_ITEM', 
+      payload: {
+        item: item, 
+        description: description,
+        clothing_type_id: clothingType
+      }
+    })
+    setDescription('')
+    setItem('')
+    handleClose()
+  }
+
   const backToList = () => {
     history.push(`/viewClothes`)
+  }
+  
+  const checkLocation = () => {
+    console.log('in checkLocation', history.location.pathname);
+    if (history.location.pathname === '/newClothes'){
+      return (
+        <>
+        <br /><br />
+          <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
+          <Button size='sm' variant='add' onClick={submitItem}>Add to Closet</Button>
+        </>
+      )
+    } else if (history.location.pathname === '/newActivity'){
+      return (
+        <>
+        <br /><br />
+          <Button size='sm' variant='back' onClick={handleClose}>Cancel</Button>
+          <Button size='sm' variant='add' onClick={submitItemFromModal}>Add to Closet</Button>
+        </>
+      )
+    }
   }
 
   return (
@@ -67,9 +102,10 @@ function ClothingForm() {
             return <option key={type.id} value={type.id}>{type.type}</option>
         })}
       </select>
-      <br /><br />
+      {/* <br /><br />
       <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
-      <Button size='sm' variant='add' onClick={submitItem}>Add to Closet</Button>
+      <Button size='sm' variant='add' onClick={submitItem}>Add to Closet</Button> */}
+      {checkLocation()}
     </div>
   );
 }

@@ -24,6 +24,7 @@ function ClothingFormEdit() {
         data: clothingItem
       }
     })
+    history.replace(`/editClothes/${id}`)
     history.push(`/viewClothingItem/${id}`)
   }
 
