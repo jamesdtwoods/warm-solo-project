@@ -20,7 +20,7 @@ router.get('/types', (req, res) => {
 
 router.get('/', (req, res) => {
     const query = `
-    SELECT clothes.name, clothes.description, clothes.clothing_type_id, clothing_type.type as clothing_type
+    SELECT clothes.id, clothes.name, clothes.description, clothes.clothing_type_id, clothing_type.type as clothing_type
     FROM clothes
     JOIN clothing_type
     ON clothes.clothing_type_id = clothing_type.id

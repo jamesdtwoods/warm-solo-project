@@ -142,9 +142,9 @@ function ActivityForm() {
         onChange={(e) => setGoldilocks(e.target.value)}
         defaultValue={goldilocks}>
         <option value=''></option>
-        <option value='I was too hot 🥵'>Too Hot 🥵</option>
-        <option value='I was too cold 🥶'>Too Cold 🥶</option>
-        <option value='I was just right 😎'>Just Right 😎</option>
+        <option value='Too hot 🥵'>Too Hot 🥵</option>
+        <option value='Too cold 🥶'>Too Cold 🥶</option>
+        <option value='Just right 😎'>Just Right 😎</option>
       </select>
       <br /><br />
       Notes:

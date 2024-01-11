@@ -147,55 +147,6 @@ function ActivityFormEdit() {
     })
   }
 
-  // const mapFunction = (clothesList, clothing_type_id) => {
-  //   let clothesArray=[]
-  //   for (let i=0; i< clothesList.length; i++) {
-  //     if(clothesList[i].clothing_type_id === clothing_type_id){
-  //       clothesList[i].index = i;
-  //       clothesArray.push(clothesList[i]);
-  //     }
-  //   }
-  //   return clothesArray.map((clothing_item, index) => {
-  //     return (<>
-  //               <input 
-  //                 type="checkbox" 
-  //                 name='clothes' 
-  //                 value={clothing_item.id} 
-  //                 key={clothing_item.index} 
-  //                 checked={checkedState[clothing_item.index].checked} 
-  //                 onChange={() => handleOnChange(clothing_item.index)}
-  //               />
-  //               <label htmlFor='clothes'>{clothing_item.name}, {clothing_item.id}</label><br/>
-  //             </>)
-  //   })
-  // }
-
-  // const mapFunction = (clothesList, clothing_type_id) => {
-  //   let clothesArray=[]
-  //   for (let clothing_item of clothesList) {
-  //     if(clothing_item.clothing_type_id === clothing_type_id){
-  //       clothesArray.push(clothing_item);
-  //     }
-  //   }
-    
-  //   console.log('clothes array', clothesArray);
-  //   return clothesArray.map((clothing_item, index) => {
-  //     return (<>
-  //               <input 
-  //                 type="checkbox" 
-  //                 name='clothes' 
-  //                 value={clothing_item.id} 
-  //                 key={index} 
-  //                 checked={checkedState[index].checked} 
-  //                 onChange={() => handleOnChange(index)}
-  //               />
-  //               <label htmlFor='clothes'>{clothing_item.name}, {clothing_item.id}</label><br/>
-  //             </>)
-  //   })
-  // }
-
-  console.log('checked state', checkedState);
-
   return (
     <div className="container">
       <Button size='sm' variant='back' onClick={handleCancel}>Back to Activity</Button>
@@ -231,9 +182,9 @@ function ActivityFormEdit() {
         <select name="type"
           onChange={(e) => handleChange(e.target.value, 'feel')}
           defaultValue={activity.feel}>
-          <option value='I was too hot 🥵'>Too Hot 🥵</option>
-          <option value='I was too cold 🥶'>Too Cold 🥶</option>
-          <option value='I was just right 😎'>Just Right 😎</option>
+          <option value='Too hot 🥵'>Too Hot 🥵</option>
+          <option value='Too cold 🥶'>Too Cold 🥶</option>
+          <option value='Just right 😎'>Just Right 😎</option>
         </select>
         <br /><br />
         Notes:

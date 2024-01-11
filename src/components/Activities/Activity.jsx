@@ -23,12 +23,10 @@ function Activity({activity}) {
   }
 
   return (
-    <li>
-      {activity.weather_conditions ? 
-      <p className='list'>{formatDate(activity.date)} ({activity.temperature}℉), {activity.weather_conditions}, {activity.feel}</p> 
-      : <p className='list'>{formatDate(activity.date)} ({activity.temperature}℉) {activity.feel}</p>}
+    <tr>
+      <td><p className='list'>{formatDate(activity.date)} ({activity.temperature}℉), {activity.feel}</p></td>
       <Button size='sm' variant='view' onClick={viewActivity}>View Activity</Button>
-    </li>
+    </tr>
   );
 }
 

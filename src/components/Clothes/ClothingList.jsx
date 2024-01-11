@@ -61,7 +61,7 @@ function ClothingList() {
               <> 
               <tr>
                 <th>
-                  Hats
+                  Hats:
                 </th>
               </tr>
                 {mapFunction(clothesList, 1)}
@@ -71,102 +71,93 @@ function ClothingList() {
               <> 
               <tr>
                 <th>
-                  Gloves
+                  Gloves:
                 </th>
               </tr>
                   {mapFunction(clothesList, 2)}
-
               </> 
             : <></>}
             {checkFunction(clothesList, 3) ? 
               <> 
               <tr>
                 <th>
-                  Socks
+                  Socks:
                 </th>
               </tr>
                   {mapFunction(clothesList, 3)}
-
               </> 
             : <></>}
             {checkFunction(clothesList, 4) ? 
               <> 
             <tr>
                 <th>
-                  Base layer - top
+                  Base layer - tops:
                 </th>
               </tr>
                   {mapFunction(clothesList, 4)}
-
               </> 
             : <></>}
             {checkFunction(clothesList, 5) ? 
               <> 
               <tr>
                 <th>
-                  Base layer - top
+                  Base layer - bottoms:
                 </th>
               </tr>
                   {mapFunction(clothesList, 5)}
-                
               </> 
             : <></>}
             {checkFunction(clothesList, 10) ? 
               <> 
               <tr>
                 <th>
-                  Mid layer - top
+                  Mid layer - tops:
                 </th>
               </tr>
                   {mapFunction(clothesList, 10)}
-                
               </> 
             : <></>}
             {checkFunction(clothesList, 6) ? 
               <> 
               <tr>
                 <th>
-                  Jacket
+                  Jackets:
                 </th>
               </tr>
                   {mapFunction(clothesList, 6)}
-                
               </> 
             : <></>}
             {checkFunction(clothesList, 7) ? 
               <> 
               <tr>
                 <th>
-                  Pants
+                  Pants:
                 </th>
               </tr>
                   {mapFunction(clothesList, 7)}
-                
               </> 
             : <></>}
             {checkFunction(clothesList, 8) ? 
               <> 
               <tr>
                 <th>
-                  Accessories
+                  Accessories:
                 </th>
               </tr>
                   {mapFunction(clothesList, 8)}
-                
               </> 
             : <></>}
             {checkFunction(clothesList, 9) ? 
               <> 
               <tr>
                 <th>
-                  Other
+                  Other:
                 </th>
               </tr>
                   {mapFunction(clothesList, 9)}
-                
               </> 
             : <></>}
-          </tbody>
+            </tbody>
           </table>
         </div>
         : <>
