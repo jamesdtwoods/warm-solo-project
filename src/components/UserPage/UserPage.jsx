@@ -18,7 +18,7 @@ function UserPage() {
         <Button size='lg' variant='view-home' onClick={()=>history.push(`/viewClothes`)}>View Closet</Button>
         <br />
         <br />
-        <Button size='lg' variant='add-home' onClick={()=>history.push(`/newClothes`)}>Add Clothes to Cloest</Button>
+        <Button size='lg' variant='add-home' onClick={()=>history.push(`/newClothes`)}>Add Clothes to Closet</Button>
         <br />
         <br />
         <Button size='lg' variant='view-home' onClick={()=>history.push(`/viewActivities`)}>View Activity Log</Button>

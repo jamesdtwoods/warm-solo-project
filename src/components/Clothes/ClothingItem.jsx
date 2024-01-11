@@ -8,8 +8,6 @@ function ClothingItem({clothingItem}) {
   const history = useHistory()
   const dispatch = useDispatch();
 
-
-
   const viewItem = () => {
     dispatch({
       type: 'SET_CLOTHING_ITEM',
@@ -25,10 +23,14 @@ function ClothingItem({clothingItem}) {
   }
 
   return (
-    <li>
+    <tr>
+      <td>
         <p className='list'>{clothingItem.name}</p>
-        <Button size='sm' variant='view' onClick={viewItem}>View Item</Button>
-    </li>
+      </td>
+      <td>
+          <Button size='sm' variant='view' onClick={viewItem}>View Item</Button>
+      </td>
+    </tr>
   );
 }
 

@@ -100,6 +100,13 @@ function ActivityDetails () {
             </ul>
           </> 
         : <></>}
+        {checkFunction(activity.clothesArray, 10) ? 
+          <> <p className="list-bold">Mid layer - top:</p> 
+            <ul>
+              {mapFunction(activity.clothesArray, 10)}
+            </ul>
+          </> 
+        : <></>}
         {checkFunction(activity.clothesArray, 6) ? 
           <> <p className="list-bold">Jackets:</p> 
             <ul>

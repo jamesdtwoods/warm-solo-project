@@ -26,8 +26,8 @@ function Navbar() {
         <nav className="navigation">
             <h1 className="brand-name" onClick={toHome}>
             <img className='brand-logo' src={favicon}></img>
-            värma
-            {/* warm */}
+            {/* värma */}
+            warm
             </h1>  
         {user.id && (
             <>
