@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
       LEFT JOIN clothing_type
         ON clothes.clothing_type_id = clothing_type.id
     WHERE activities.user_id = $1
-    ORDER BY activities.date, activities.temperature, activities_id;
+    ORDER BY activities.date DESC, activities.temperature, activities_id;
   `;
   pool.query(queryText, [req.user.id])
     .then((result) => {

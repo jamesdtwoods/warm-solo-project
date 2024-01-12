@@ -262,6 +262,7 @@ Navbar
   font-size: 24px;
   font-weight: 700;
   margin-left: 1rem;
+  margin-bottom: 0;
 }
 .btn-navLink {
   display: inline-block;

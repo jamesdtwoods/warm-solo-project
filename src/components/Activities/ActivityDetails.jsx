@@ -65,76 +65,102 @@ function ActivityDetails () {
           <h4>{activity.notes}</h4>
           <p>How'd you feel? {activity.feel}</p>
           {activity.clothesArray ? <p className="list-bold">Clothes wore:</p> : <></>}
+          <table>
+            <tbody>
           {checkFunction(activity.clothesArray, 1) ? 
-          <> <p className="list-bold">Hats:</p> 
-            <ul>
+          <> 
+            <tr>
+              <th>
+                Hats:
+              </th>
+            </tr>
               {mapFunction(activity.clothesArray, 1)}
-            </ul>
           </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 2) ? 
-          <> <p className="list-bold">Gloves:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 2)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 3) ? 
-          <> <p className="list-bold">Socks:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 3)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 4) ? 
-          <> <p className="list-bold">Base Layer - Top:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 4)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 5) ? 
-          <> <p className="list-bold">Base Layer - Bottom:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 5)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 10) ? 
-          <> <p className="list-bold">Mid layer - top:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 10)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 6) ? 
-          <> <p className="list-bold">Jackets:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 6)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 7) ? 
-          <> <p className="list-bold">Pants:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 7)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 8) ? 
-          <> <p className="list-bold">Accessories:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 8)}
-            </ul>
-          </> 
-        : <></>}
-        {checkFunction(activity.clothesArray, 9) ? 
-          <> <p className="list-bold">Other:</p> 
-            <ul>
-              {mapFunction(activity.clothesArray, 9)}
-            </ul>
-          </> 
-        : <></>}
+          : <></>}
+          {checkFunction(activity.clothesArray, 2) ? 
+            <> 
+            <tr>
+              <th>
+                Gloves:
+              </th>
+            </tr>
+                {mapFunction(activity.clothesArray, 2)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 3) ? 
+            <> <tr>
+            <th>
+              Socks:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 3)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 4) ? 
+            <> <tr>
+            <th>
+              Base Layer - Top:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 4)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 5) ? 
+            <> <tr>
+            <th>
+              Base Layer - Bottom:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 5)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 10) ? 
+            <> <tr>
+            <th>
+              Mid Layer - Top:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 10)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 6) ? 
+            <> <tr>
+            <th>
+              Jackets:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 6)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 7) ? 
+            <> <tr>
+            <th>
+              Pants:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 7)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 8) ? 
+            <> <tr>
+            <th>
+              Accessories:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 8)}
+            </> 
+          : <></>}
+          {checkFunction(activity.clothesArray, 9) ? 
+            <> <tr>
+            <th>
+              Other:
+            </th>
+          </tr>
+                {mapFunction(activity.clothesArray, 9)}
+            </> 
+          : <></>}
+          </tbody>
+          </table>
           <Button size='md' variant='edit' onClick={editItem}>Edit Activity</Button>
           <Button size='md' variant='delete' onClick={handleShow}>Remove Activity</Button>
           <Modal
