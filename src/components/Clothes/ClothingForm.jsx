@@ -45,26 +45,8 @@ function ClothingForm({handleClose}) {
     if (history.location.pathname === '/newClothes'){
       return (
         <>
-        <br /><br />
-          <Button size='md' variant='back' onClick={backToList}>Cancel</Button>
-          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
-        </>
-      )
-    } else if (history.location.pathname === '/newActivity'){
-      return (
-        <>
-        <br /><br />
-          <Button size='md' variant='back' onClick={handleClose}>Cancel</Button>
-          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
-        </>
-      )
-    }
-  }
-
-  return (
-    <div className="container">
-      <form onSubmit={submitItem}>
         <Button size='md' variant='back' onClick={backToList}>Back To Closet</Button>
+      <form onSubmit={submitItem}>
         <br /><br />
         Clothing Item*
         <input
@@ -97,9 +79,59 @@ function ClothingForm({handleClose}) {
               return <option key={type.id} value={type.id}>{type.type}</option>
           })}
         </select>
-        {checkLocation()}
       </form>
-      
+        <br /><br />
+          <Button size='md' variant='back' onClick={backToList}>Cancel</Button>
+          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
+        </>
+      )
+    } else if (history.location.pathname === '/newActivity'){
+      return (
+        <>
+      <form onSubmit={submitItem}>
+        Clothing Item*
+        <input
+          type="text"
+          name="item"
+          placeholder='Name'
+          required
+          value={item}
+          onChange={(event) => setItem(event.target.value)}
+        />  
+        <br /><br />
+        Description
+        <textarea
+          onChange={(e) => setDescription(e.target.value)}
+          name={description}
+          id='description'
+          placeholder='Description'
+          rows="4"
+          cols="35"
+        />
+        <br /><br />
+        Clothing Type*
+        <select 
+          name="type"
+          onChange={(e) => setClothingType(e.target.value)}
+          required='required'
+          defaultValue=''>
+          <option value='' disabled="disabled">Choose a Clothing Type</option>
+          {clothing_types.map(type => {
+              return <option key={type.id} value={type.id}>{type.type}</option>
+          })}
+        </select>
+      </form>
+        <br /><br />
+          <Button size='md' variant='back' onClick={handleClose}>Cancel</Button>
+          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
+        </>
+      )
+    }
+  }
+
+  return (
+    <div className="container">
+      {checkLocation()}
     </div>
   );
 }

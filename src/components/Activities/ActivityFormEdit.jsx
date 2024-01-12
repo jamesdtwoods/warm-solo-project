@@ -142,7 +142,7 @@ function ActivityFormEdit() {
                   checked={checkedState[clothing_item.index]} 
                   onChange={() => handleOnChange(clothing_item.index)}
                 />
-                <label htmlFor='clothes'>{clothing_item.name}, {clothing_item.id}</label><br/>
+                <label htmlFor='clothes'>{clothing_item.name}</label><br/>
               </>)
     })
   }
