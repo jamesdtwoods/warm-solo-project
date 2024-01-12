@@ -79,7 +79,7 @@ function ActivityFormEdit() {
       }
     })
     history.replace(`/editActivity/${id}`)
-    history.push(`/viewActivity/${id}`)
+    history.goBack()
   }
 
   const formatDate = (dateInput) => {

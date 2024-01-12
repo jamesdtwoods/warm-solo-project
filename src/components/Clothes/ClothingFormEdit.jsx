@@ -25,7 +25,7 @@ function ClothingFormEdit() {
       }
     })
     history.replace(`/editClothes/${id}`)
-    history.push(`/viewClothingItem/${id}`)
+    history.goBack()
   }
 
   const handleChange = (newValue, inputName) => {

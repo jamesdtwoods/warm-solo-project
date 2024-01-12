@@ -192,10 +192,10 @@ router.put('/:id', (req, res) => {
         .then(result => {
           
           const clothesArray = req.body.clothesArrayForQuery
-          console.log('clothes array', req.body.clothesArrayForQuery);
-          console.log('activity id', req.params.id);
+          // console.log('clothes array', req.body.clothesArrayForQuery);
+          // console.log('activity id', req.params.id);
           // const formattedClothesArray = formatClothesArray(clothesArray)
-          console.log('new query', editActivityClothesQuery(clothesArray, req.params.id));
+          // console.log('new query', editActivityClothesQuery(clothesArray, req.params.id));
           const editActivitiesClothesQuery = editActivityClothesQuery(clothesArray, req.params.id);
           // Third QUERY ADDS clothes FOR THAT activity
           pool.query(editActivitiesClothesQuery)

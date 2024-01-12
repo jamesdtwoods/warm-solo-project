@@ -18,8 +18,8 @@ function WeatherHeader() {
             <></>
         )}
         {user.id && theWeather.properties && (
-          <p><Button size='md' variant='weather' onClick={toWeather}>View Weather Details</Button>
-          Current weather: {theWeather.properties.periods[0].temperature} ℉</p>
+          <p>Current weather: {theWeather.properties.periods[0].temperature} ℉
+          <Button size='md' variant='weather' onClick={toWeather}>View Details</Button></p>
         )}
         {user.id && !theWeather.properties && (
             <Button size='md' variant='weather' onClick={toWeather}>Get Weather</Button>
