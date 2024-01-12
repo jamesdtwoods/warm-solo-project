@@ -55,7 +55,7 @@ function ActivityListByWeather() {
     <div className="container">
       {checkAllFunction(activities) ?  
         <div>
-          <Button size='sm' variant='back' onClick={toActivityList}>Back To Activity List</Button>
+          <Button size='md' variant='back' onClick={toActivityList}>Back To Activity List</Button>
           <h2>Activity List Based on Temperature</h2>
           {checkFunction(activities, 1) ? 
             <> <p className='list-bold'>Biking:</p> 
@@ -95,7 +95,7 @@ function ActivityListByWeather() {
         </div>
         : <>
             <h1>No activities within temperature range</h1>
-            <Button size='sm' variant='back' onClick={toActivityList}>Back To Activity List</Button>
+            <Button size='md' variant='back' onClick={toActivityList}>Back To Activity List</Button>
           </>}
     </div>
   );

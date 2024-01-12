@@ -149,7 +149,7 @@ function ActivityFormEdit() {
 
   return (
     <div className="container">
-      <Button size='sm' variant='back' onClick={handleCancel}>Back to Activity</Button>
+      <Button size='md' variant='back' onClick={handleCancel}>Back to Activity</Button>
       <br /><br />
         Activity Date:
         <input
@@ -272,8 +272,8 @@ function ActivityFormEdit() {
           </> 
         : <></>}
         <br />
-        <Button size='sm' variant='back' onClick={handleCancel}>Cancel</Button>
-        <Button size='sm' variant='add' onClick={submitItem}>Add to Activity Log</Button>
+        <Button size='md' variant='back' onClick={handleCancel}>Cancel</Button>
+        <Button size='md' variant='add' onClick={submitItem}>Add to Activity Log</Button>
     </div>
   );
 }

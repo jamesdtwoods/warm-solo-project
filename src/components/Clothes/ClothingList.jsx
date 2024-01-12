@@ -53,7 +53,7 @@ function ClothingList() {
     <div className="container">
       {checkAllFunction(clothesList) ?  
         <div>
-          <Button size='sm' variant='add' onClick={addClothes}>Add Clothes to Closet</Button>
+          <Button size='md' variant='add' onClick={addClothes}>Add Clothes to Closet</Button>
           <h2>Closet</h2>
           <table>
             <tbody>

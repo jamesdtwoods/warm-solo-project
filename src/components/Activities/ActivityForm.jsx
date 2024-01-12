@@ -108,7 +108,7 @@ function ActivityForm() {
 
   return (
     <div className="container">
-      <Button size='sm' variant='back' onClick={backToList}>Back to activities log</Button>
+      <Button size='md' variant='back' onClick={backToList}>Back to activities log</Button>
       <br /><br />
       Activity Date:
       <input
@@ -233,7 +233,7 @@ function ActivityForm() {
           </> 
         : <></>}
         </>
-      <Button size='sm' variant='back' onClick={handleShow}>Add New Clothing Item</Button>
+      <Button size='md' variant='back' onClick={handleShow}>Add New Clothing Item</Button>
       <br /><br />
       <Modal
         show={show}
@@ -248,8 +248,8 @@ function ActivityForm() {
           <ClothingForm handleClose={handleClose}/>
         </Modal.Body>
       </Modal>
-      <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
-      <Button size='sm' variant='add' onClick={submitItem}>Add Activity to Log</Button>
+      <Button size='md' variant='back' onClick={backToList}>Cancel</Button>
+      <Button size='md' variant='add' onClick={submitItem}>Add Activity to Log</Button>
     </div>
   );
 }

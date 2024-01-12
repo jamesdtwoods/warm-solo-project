@@ -31,7 +31,11 @@ img {
   max-width: 100%;
 }
 .list {
-  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.activity-list {
+  padding: 5px;
 }
 .list-bold {
   margin-bottom: 5px;

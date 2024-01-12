@@ -42,12 +42,14 @@ function ClothingFormEdit() {
 
   return (
     <div className="container">
-      <Button size='sm' variant='back' onClick={handleCancel}>Back to Clothing Item</Button>
+      <form onSubmit={submitItem}>
+      <Button size='md' variant='back' onClick={handleCancel}>Back to Clothing Item</Button>
       <br /><br />
       Clothing Item:
         <input
           type="text"
           name="name"
+          required
           value={clothingItem.name}
           onChange={(e) => handleChange(e.target.value, 'name')}
         />  
@@ -66,6 +68,7 @@ function ClothingFormEdit() {
       <select 
         name="type"
         id='clothing_type_id'
+        required='required'
         onChange={(e) => handleChange(e.target.value, 'clothing_type_id')}
         defaultValue={clothingItem.clothing_type_id}>
         {clothing_types.map(type => {
@@ -73,8 +76,9 @@ function ClothingFormEdit() {
         })}
       </select>
       <br /><br />
-      <Button size='sm' variant='back' onClick={handleCancel}>Cancel</Button>
-      <Button size='sm' variant='add' onClick={submitItem}>Submit</Button>
+      <Button size='md' variant='back' onClick={handleCancel}>Cancel</Button>
+      <Button size='md' variant='add' type='submit'>Submit</Button>
+      </form>
     </div>
   );
 }

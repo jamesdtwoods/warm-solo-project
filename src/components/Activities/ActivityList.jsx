@@ -95,7 +95,7 @@ function ActivityList() {
         <div>
           {checkWeather(theWeather) ? 
           <>
-            <Button size='sm' variant='back' onClick={searchActivitiesByWeather}>
+            <Button size='md' variant='back' onClick={searchActivitiesByWeather}>
               Show All Activities From Temperatures +/- 5℉ of current temperature
             </Button><br /><br />
           </> : <></>}
@@ -142,9 +142,9 @@ function ActivityList() {
                 <Button variant='add' onClick={searchActivities}>Search Activities</Button>
                 </Modal.Footer>
           </Modal>
-          <Button size='sm' variant='back' onClick={handleShow}>Search Activities</Button>
+          <Button size='md' variant='back' onClick={handleShow}>Search Activities</Button>
           <br />
-          <Button size='sm' variant='add' onClick={addActivity}>Add New Activity</Button>
+          <Button size='md' variant='add' onClick={addActivity}>Add New Activity</Button>
           <h2>Activity Log</h2>
           <table>
             <tbody>
@@ -203,7 +203,7 @@ function ActivityList() {
         </div>
         : <>
             <h1>No activities in log yet</h1>
-            <Button size='sm' variant='add' onClick={addActivity}>Add Activity</Button>
+            <Button size='md' variant='add' onClick={addActivity}>Add Activity</Button>
           </>}
     </div>
   );

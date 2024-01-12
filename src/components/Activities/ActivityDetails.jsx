@@ -59,7 +59,7 @@ function ActivityDetails () {
 
   return(
       <div className="container">
-          <Button size='sm' variant='back' onClick={toActivityList}>Back</Button>
+          <Button size='md' variant='back' onClick={toActivityList}>Back</Button>
           <h2>{formatDate(activity.date)}  ({activity.temperature}℉)</h2>
           <h4>{activity.weatherDetails}</h4>
           <h4>{activity.notes}</h4>
@@ -135,8 +135,8 @@ function ActivityDetails () {
             </ul>
           </> 
         : <></>}
-          <Button size='sm' variant='edit' onClick={editItem}>Edit Activity</Button>
-          <Button size='sm' variant='delete' onClick={handleShow}>Remove Activity</Button>
+          <Button size='md' variant='edit' onClick={editItem}>Edit Activity</Button>
+          <Button size='md' variant='delete' onClick={handleShow}>Remove Activity</Button>
           <Modal
               show={show}
               onHide={handleClose}

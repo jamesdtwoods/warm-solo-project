@@ -25,7 +25,7 @@ function Activity({activity}) {
   return (
     <tr>
       <td><p className='list'>{formatDate(activity.date)} ({activity.temperature}℉), {activity.feel}</p></td>
-      <Button size='sm' variant='view' onClick={viewActivity}>View Activity</Button>
+      <td><Button size='md' variant='view' onClick={viewActivity}>View Activity</Button></td>
     </tr>
   );
 }

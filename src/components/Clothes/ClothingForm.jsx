@@ -7,7 +7,7 @@ function ClothingForm({handleClose}) {
   const history = useHistory(); 
   const dispatch = useDispatch();
   const clothing_types = useSelector(store => store.clothingReducer.clothingType);
-  const [item, setItem] = useState('');
+  const [item, setItem] = useState(null);
   const [description, setDescription] = useState('');
   const [clothingType, setClothingType] = useState('');
  
@@ -17,7 +17,8 @@ function ClothingForm({handleClose}) {
     });
   }, []);
 
-  const submitItem = () => {
+  const submitItem = (e) => {
+    e.preventDefault()
     dispatch({ 
       type: 'SAGA/POST_CLOTHING_ITEM', 
       payload: {
@@ -28,21 +29,11 @@ function ClothingForm({handleClose}) {
     })
     setDescription('')
     setItem('')
-    history.push("/viewClothes")
-  }
-
-  const submitItemFromModal = () => {
-    dispatch({ 
-      type: 'SAGA/POST_CLOTHING_ITEM', 
-      payload: {
-        item: item, 
-        description: description,
-        clothing_type_id: clothingType
-      }
-    })
-    setDescription('')
-    setItem('')
-    handleClose()
+    if (history.location.pathname === '/newClothes'){
+      history.push("/viewClothes");
+    } else if (history.location.pathname === '/newActivity'){
+      handleClose();
+    }
   }
 
   const backToList = () => {
@@ -55,16 +46,16 @@ function ClothingForm({handleClose}) {
       return (
         <>
         <br /><br />
-          <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
-          <Button size='sm' variant='add' onClick={submitItem}>Add to Closet</Button>
+          <Button size='md' variant='back' onClick={backToList}>Cancel</Button>
+          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
         </>
       )
     } else if (history.location.pathname === '/newActivity'){
       return (
         <>
         <br /><br />
-          <Button size='sm' variant='back' onClick={handleClose}>Cancel</Button>
-          <Button size='sm' variant='add' onClick={submitItemFromModal}>Add to Closet</Button>
+          <Button size='md' variant='back' onClick={handleClose}>Cancel</Button>
+          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
         </>
       )
     }
@@ -72,40 +63,43 @@ function ClothingForm({handleClose}) {
 
   return (
     <div className="container">
-      <Button size='sm' variant='back' onClick={backToList}>Back To Closet</Button>
-      <br /><br />
-      Clothing Item:
-      <input
-        type="text"
-        name="item"
-        required
-        value={item}
-        onChange={(event) => setItem(event.target.value)}
-      />  
-      <br /><br />
-      Description:
-      <textarea
-        onChange={(e) => setDescription(e.target.value)}
-        name={description}
-        id='description'
-        placeholder='Description'
-        rows="4"
-        cols="40"
-      />
-      <br /><br />
-      Clothing Type:
-      <select name="type"
-        onChange={(e) => setClothingType(e.target.value)}
-        defaultValue=''>
-        <option value=''></option>
-        {clothing_types.map(type => {
-            return <option key={type.id} value={type.id}>{type.type}</option>
-        })}
-      </select>
-      {/* <br /><br />
-      <Button size='sm' variant='back' onClick={backToList}>Cancel</Button>
-      <Button size='sm' variant='add' onClick={submitItem}>Add to Closet</Button> */}
-      {checkLocation()}
+      <form onSubmit={submitItem}>
+        <Button size='md' variant='back' onClick={backToList}>Back To Closet</Button>
+        <br /><br />
+        Clothing Item*
+        <input
+          type="text"
+          name="item"
+          placeholder='Name'
+          required
+          value={item}
+          onChange={(event) => setItem(event.target.value)}
+        />  
+        <br /><br />
+        Description
+        <textarea
+          onChange={(e) => setDescription(e.target.value)}
+          name={description}
+          id='description'
+          placeholder='Description'
+          rows="4"
+          cols="40"
+        />
+        <br /><br />
+        Clothing Type*
+        <select 
+          name="type"
+          onChange={(e) => setClothingType(e.target.value)}
+          required='required'
+          defaultValue=''>
+          <option value='' disabled="disabled">Choose a Clothing Type</option>
+          {clothing_types.map(type => {
+              return <option key={type.id} value={type.id}>{type.type}</option>
+          })}
+        </select>
+        {checkLocation()}
+      </form>
+      
     </div>
   );
 }

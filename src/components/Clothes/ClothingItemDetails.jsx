@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams, useLocation } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 
 function ClothingItemDetails () {
     const {id} = useParams()
     const dispatch = useDispatch();
     const history = useHistory();
-    const location = useLocation();
     const clothingItem = useSelector(store => store.clothingReducer.selectedItem);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    useEffect(() => {
+        dispatch({
+            type: 'SET_CLOTHING_ITEM',
+            payload: clothingItem
+        })
+      }, []);
 
     const deleteItem = () => {
         handleClose();
@@ -33,13 +39,13 @@ function ClothingItemDetails () {
 
     return(
         <div className="container">
-            <Button size='sm' variant='back' onClick={goBack}>Back</Button>
+            <Button size='md' variant='back' onClick={goBack}>Back</Button>
             <h2>{clothingItem.name}</h2>
             <br />
             <h4>{clothingItem.description}</h4>
             <br />
-            <Button size='sm' variant='edit' onClick={editItem}>Edit</Button>
-            <Button size='sm' variant='delete' onClick={handleShow}>Remove from Closet</Button>
+            <Button size='md' variant='edit' onClick={editItem}>Edit</Button>
+            <Button size='md' variant='delete' onClick={handleShow}>Remove from Closet</Button>
             <Modal
                 show={show}
                 onHide={handleClose}

@@ -22,7 +22,7 @@ function Weather() {
           <h3>Current weather:</h3> 
           <p>Temperature: {theWeather.properties.periods[0].temperature} ℉</p>
           <p>Current wind: {theWeather.properties.periods[0].windSpeed} {theWeather.properties.periods[0].windDirection}</p>
-          <p>Current conditions: {theWeather.properties.periods[0].shortForecast} <img src={theWeather.properties.periods[0].icon}></img></p>
+          <p>Current conditions: {theWeather.properties.periods[0].shortForecast}</p>
           <p>Probability of precipitation in next hour: {theWeather.properties.periods[0].probabilityOfPrecipitation.value}%</p>
         </> 
       )
@@ -41,7 +41,7 @@ function Weather() {
         placeholder='location'
         onChange={(event) => setLocation(event.target.value)}
       />  
-      <Button size='sm' variant='add' onClick={fetchWeather}>Get Weather</Button>
+      <Button size='md' variant='add' onClick={fetchWeather}>Get Weather</Button>
       <br />
       {checkWeather(theWeather)}
     </div>
