@@ -19,9 +19,10 @@ function ActivityList() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-      dispatch({
-          type: 'SAGA/FETCH_ACTIVITIES'
-        })
+    dispatch({
+        type: 'SAGA/FETCH_ACTIVITIES'
+      })
+      window.scrollTo(top)
   }, []); 
 
   const checkAllFunction = (activities) => {

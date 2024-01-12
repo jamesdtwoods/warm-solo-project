@@ -10,9 +10,10 @@ function ClothingList() {
   const clothesList = useSelector(store => store.clothingReducer.clothingList);
 
   useEffect(() => {
-      dispatch({
-          type: 'SAGA/FETCH_CLOTHES'
-        })
+    dispatch({
+        type: 'SAGA/FETCH_CLOTHES'
+      })
+      window.scrollTo(top)
   }, []); 
 
   const checkAllFunction = (clothesList) => {
