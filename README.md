@@ -8,7 +8,10 @@ _**warm** (Winter Activities Resource Manager)_ is a mobile optimized web app cr
 
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+<img width="333" alt="Screenshot 2024-01-13 at 1 54 51 PM" src="https://github.com/jamesdtwoods/warm-solo-project/assets/142618619/090a1ec1-b590-4e76-af19-4cf3ff9d737a">
+<img width="333" alt="Screenshot 2024-01-13 at 1 55 22 PM" src="https://github.com/jamesdtwoods/warm-solo-project/assets/142618619/6cf134d6-f59b-4cf7-8ada-9c7f19bf11da">
+<img width="333" alt="Screenshot 2024-01-13 at 1 55 41 PM" src="https://github.com/jamesdtwoods/warm-solo-project/assets/142618619/05f73665-b6e0-407e-ba00-518a61e8e6ab">
+<img width="333" alt="Screenshot 2024-01-13 at 1 58 13 PM" src="https://github.com/jamesdtwoods/warm-solo-project/assets/142618619/e700c921-252a-4cae-8aa4-356bb1f0178d">
 
 ### Prerequisites
 
