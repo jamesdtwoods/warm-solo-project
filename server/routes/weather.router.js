@@ -6,7 +6,6 @@ const router = express.Router();
 const apiKey = process.env.MAPBOX_API_KEY
 
 router.get('/:location', (req, res) => {
-    console.log('req.params', req.params)
     axios({
         method: 'GET',
         url: `https://api.mapbox.com/geocoding/v5/mapbox.places/${req.params.location}.json?autocomplete=false&access_token=${apiKey}`

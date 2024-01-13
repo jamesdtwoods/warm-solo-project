@@ -1,5 +1,7 @@
 import React from 'react';
 import favicon from '../Navbar/warm_favicon_2.png'
+import { useHistory } from 'react-router-dom';
+
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -7,8 +9,9 @@ import favicon from '../Navbar/warm_favicon_2.png'
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
+  const history = useHistory();
   return <footer>
-      <p className='pfooter'>
+      <p className='pfooter' onClick={()=>history.push(`/info`)} >
         <img className='brand-logo-footer' src={favicon}></img>
         <br />
         Stay<text className='brand-name-footer'> warm</text> out there
