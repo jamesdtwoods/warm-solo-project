@@ -14,7 +14,7 @@ function InfoPage() {
       <li>weather.gov api - to get weather forcast for coordinate location</li>
       <br />
       <h5>Biggest acheivements:</h5>
-      <li>Data maniuplation and conditional rendering of clothing items to and from the database</li>
+      <li>Data maniuplation and conditional rendering of clothing items/activities to and from the database</li>
       <li>Handling state of the clothing item checkboxes</li>
       <br />
       <h5>Future Development:</h5>
