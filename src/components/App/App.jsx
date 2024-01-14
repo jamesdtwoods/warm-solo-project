@@ -33,6 +33,7 @@ import ActivityDetails from '../Activities/ActivityDetails';
 import ActivityFormEdit from '../Activities/ActivityFormEdit';
 import Weather from '../Weather/Weather';
 import WeatherHeader from '../WeatherHeader/WeatherHeader';
+import Pagination_app from '../Pagination/Pagination_app';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -194,6 +195,18 @@ function App() {
           >
             <Weather />
           </ProtectedRoute>
+
+
+
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact path="/pagination"
+          >
+            <Pagination_app />
+          </ProtectedRoute>
+
+          
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
