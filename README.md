@@ -46,7 +46,8 @@ _**warm** (Winter Activities Resource Manager)_ is a mobile optimized web app cr
 * Allow users to add one another to see thier activities
 
 ## Acknowledgement
-Thanks to [Prime Digital Academy](www.primeacademy.io) (especially all the chefs in the Moonstone cohort and our most patient and thoughful instructor Matt) who gave me the tools and confidence to make this application a reality.
+Thanks to [Prime Digital Academy](www.primeacademy.io) (especially all the chefs in the Moonstone cohort and our most patient and thoughful instructor Matt) who gave me the tools and confidence to make this application a reality. 
+Thanks to [Shubham Khatri](https://github.com/mayankshubham) for creating a guide for [pagination components in react](https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/)
 
 ## Support
 If you have suggestions or issues, you can find my contact information on my [LinkedIn profile](https://www.linkedin.com/in/james-d-t-woods/)
