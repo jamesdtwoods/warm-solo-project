@@ -28,7 +28,7 @@ function ClothingItem({clothingItem}) {
         <p className='list'>{clothingItem.name}</p>
       </td>
       <td>
-          <Button size='md' variant='view' onClick={viewItem}>View Item</Button>
+          <Button size='md' variant='view' onClick={viewItem}>View</Button>
       </td>
     </tr>
   );

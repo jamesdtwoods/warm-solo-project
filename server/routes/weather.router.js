@@ -11,18 +11,19 @@ router.get('/:location', (req, res) => {
         url: `https://api.mapbox.com/geocoding/v5/mapbox.places/${req.params.location}.json?autocomplete=false&access_token=${apiKey}`
     })
     .then((response) => {
-        // console.log('response', response.data);
+        // console.log('geocoding response', response.data);
         axios({
             method: 'GET',
             url: `https://api.weather.gov/points/${response.data.features[0].center[1]},${response.data.features[0].center[0]}`
         })
         .then((response) => {
-            // console.log(response.data.properties.forecastHourly);
+            // console.log('weather.gov points request response:', response.data.properties.forecastHourly);
             axios({
                 method: 'GET',
                 url: `${response.data.properties.forecastHourly}`
             })
             .then((response) => {
+                // console.log('final weather response', response.data);
                 res.send(response.data)
             })
             .catch((error) => {

@@ -19,6 +19,7 @@ function ClothingForm({handleClose}) {
 
   const submitItem = (e) => {
     e.preventDefault()
+    console.log('in submit');
     dispatch({ 
       type: 'SAGA/POST_CLOTHING_ITEM', 
       payload: {
@@ -41,7 +42,7 @@ function ClothingForm({handleClose}) {
   }
   
   const checkLocation = () => {
-    console.log('in checkLocation', history.location.pathname);
+    // console.log('in checkLocation', history.location.pathname);
     if (history.location.pathname === '/newClothes'){
       return (
         <>
@@ -82,7 +83,7 @@ function ClothingForm({handleClose}) {
       </form>
         <br /><br />
           <Button size='md' variant='back' onClick={backToList}>Cancel</Button>
-          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
+          <Button size='md' variant='add' type='submit' onClick={submitItem}>Add to Closet</Button>
         </>
       )
     } else if (history.location.pathname === '/newActivity'){
@@ -123,7 +124,7 @@ function ClothingForm({handleClose}) {
       </form>
         <br /><br />
           <Button size='md' variant='back' onClick={handleClose}>Cancel</Button>
-          <Button size='md' variant='add' type='submit'>Add to Closet</Button>
+          <Button size='md' variant='add' type='submit' onClick={submitItem}>Add to Closet</Button>
         </>
       )
     }
