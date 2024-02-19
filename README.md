@@ -4,7 +4,7 @@
 
 _Duration: three weeks_
 
-_**warm** (Winter Activities Resource Manager)_ is a mobile optimized web app created for people to track cold weather exercise and excursions. Each year when winter comes I find myself either over or under dressed until I build up a mental log of what to wear and when. _**warm**_ takes the guess work out of proper layering by allowing people to create a closet of thier outdoor gear, get the current weather and filter previous entries by weather and activity types to see what they wore the last time out. 
+_**warm** (Winter Activities Resource Manager)_ is a mobile optimized web app created for people to track cold weather exercise and excursions. Each year when winter comes I find myself either over or under dressed until I build up a mental log of what to wear and when. _**warm**_ takes the guess work out of proper layering by allowing people to create a closet of their outdoor gear, get the current weather and filter previous entries by weather and activity types to see what they wore the last time out. 
 
 ## Screen Shot
 
