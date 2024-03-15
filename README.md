@@ -43,7 +43,7 @@ _**warm** (Winter Activities Resource Manager)_ is a mobile optimized web app cr
 
 ## Future goals
 * User specific clothing and activity types
-* Allow users to add one another to see thier activities
+* Allow users to add one another to see thier activities 
 
 ## Acknowledgement
 Thanks to [Prime Digital Academy](www.primeacademy.io) (especially all the chefs in the Moonstone cohort and our most patient and thoughful instructor Matt) who gave me the tools and confidence to make this application a reality. 
